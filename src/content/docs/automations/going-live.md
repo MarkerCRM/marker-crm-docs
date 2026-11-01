@@ -9,6 +9,40 @@ An automation does nothing until it is **Active**. Going live always goes throug
 you never switch on something half-built. Once it is live, your edits wait in a draft until
 you publish them.
 
+## Test with a contact
+
+Before you turn an automation on, or before you publish a change, check what it would do for
+someone real. Click **Test** at the top of the builder, pick a contact in **Contact** and click
+**Run test**. The test uses the flow exactly as it is on screen, saved or not.
+
+**Nothing is sent or changed.** The contact isn't added to the automation, no email is queued
+and no tag is touched — the test only reads.
+
+The panel lists each step they would reach, in order:
+
+| You see | What it means |
+|---|---|
+| **Runs** | The step would do its job for them. |
+| **Not sent: …** | An email would be skipped, with the reason — no email address, an email status that doesn't allow this kind of email, or an address on the suppression list. |
+| **Takes "Path name"** | The **If / else** path their data leads to. For an **A/B split** it adds *a real run picks a path at random*: the test shows one of the paths, not the one they would get. |
+| **Wait 2 days** (and similar) | They would wait here. |
+| **Waits for the event** | A **Wait for an event** step. The test follows the path for when time runs out. |
+| **Not set up yet** | A required setting is empty — a real run would fail here. |
+| **Not available on this site right now** | The step comes from a plugin or feature that is turned off. |
+
+On the canvas, every step they would reach carries the same label and everything else fades,
+so you can see the path at a glance. Click a row in the panel to scroll the canvas to that
+step. Close the panel to clear the marks.
+
+The test also tells you when the contact wouldn't get in at all — the trigger's **Only if**
+rules leave them out, they match the **Stop early** rules, they are inside it right now, or
+they have been through it before and it runs once per contact.
+
+:::note
+The test doesn't fire the trigger, so it can't tell you whether the trigger itself would
+happen. It starts from the moment the contact enters.
+:::
+
 ## The review
 
 Click **Review** at the top right of the builder, or choose **Active** from the state menu

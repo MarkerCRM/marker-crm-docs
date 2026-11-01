@@ -22,6 +22,7 @@ From left to right:
   review rather than switching straight away; see
   [Going live and editing](/automations/going-live/).
 - **Full screen** — hides the WordPress admin around the builder.
+- **Test** — walks the flow for one contact without sending anything. See [Test with a contact](/automations/going-live/#test-with-a-contact).
 - **Stats** — shows how many contacts reached and are waiting at each step, on the canvas.
 - **Settings** — opens the automation's settings: re-entry and **Stop early**.
 - **Reports** — opens the automation's [report](/automations/reports/).
