@@ -6,6 +6,7 @@ import {sidebarTopics} from './src/lib/sections.mjs';
 
 export default defineConfig({
     site: 'https://docs.markercrm.com',
+    prefetch: {prefetchAll: true, defaultStrategy: 'hover'},
     integrations: [
         starlight({
             title: 'Marker CRM Docs',
