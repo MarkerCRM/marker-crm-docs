@@ -3,9 +3,11 @@
     --sl-content-width: 46rem;
     --sl-line-height: 1.7;
 
-    --sl-color-accent-low: #0d3321;
-    --sl-color-accent: #20a862;
-    --sl-color-accent-high: #8ff0bc;
+    /* Brand: primary #F6B51E, neutral #171717. Yellow marks state; text and links stay neutral for contrast. */
+    --sl-color-accent-low: #3a2c08;
+    --sl-color-accent: #F6B51E;
+    --sl-color-accent-high: #fbd77f;
+    --sl-color-text-accent: var(--sl-color-white);
 
     --sl-color-white: #f5f6f7;
     --sl-color-gray-1: #e4e6ea;
@@ -18,11 +20,12 @@
 }
 
 :root[data-theme='light'] {
-    --sl-color-accent-low: #d6f5e4;
-    --sl-color-accent: #137a46;
-    --sl-color-accent-high: #0b4a2b;
+    --sl-color-accent-low: #fdf1d3;
+    --sl-color-accent: #8a5a00;
+    --sl-color-accent-high: #5c3c00;
+    --sl-color-text-accent: var(--sl-color-white);
 
-    --sl-color-white: #111316;
+    --sl-color-white: #171717;
     --sl-color-gray-1: #1d2025;
     --sl-color-gray-2: #34383f;
     --sl-color-gray-3: #5a606b;
