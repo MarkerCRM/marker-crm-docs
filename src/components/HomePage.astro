@@ -1,0 +1,420 @@
+---
+import {Code} from '@astrojs/starlight/components';
+
+// Lucide icons, the same set the plugin's admin uses.
+const icons = {
+    users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+    mail: '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
+    workflow: '<rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/>',
+    chart: '<path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>',
+    settings: '<path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/>',
+    plug: '<path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/>',
+    arrow: '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+};
+
+const steps = [
+    {title: 'Install and set up sending', text: 'Activate the plugin, then choose the name and address your emails come from.', href: '/getting-started/installation/'},
+    {title: 'Bring in your contacts', text: 'Import a CSV, or let sign-ups and forms add people as they arrive.', href: '/contacts/import/'},
+    {title: 'Send or automate', text: 'Send a campaign to a list, or start an automation from a recipe.', href: '/getting-started/quick-start/'},
+];
+
+const areas = [
+    {icon: 'users', title: 'Contacts', text: 'Everyone you know, organised your way.', href: '/contacts/', links: [['Tags and lists', '/contacts/tags/'], ['Segments', '/contacts/segments/'], ['Import contacts', '/contacts/import/']]},
+    {icon: 'mail', title: 'Emails', text: 'Campaigns, sequences and the editor.', href: '/emails/campaigns/', links: [['Campaigns', '/emails/campaigns/'], ['The email editor', '/emails/editor/'], ['Templates', '/emails/templates/']]},
+    {icon: 'workflow', title: 'Automations', text: 'Flows that react to what people do.', href: '/automations/', links: [['The builder', '/automations/builder/'], ['Triggers', '/automations/triggers/'], ['Going live', '/automations/going-live/']]},
+    {icon: 'chart', title: 'Reports and logs', text: 'What was sent, opened and clicked.', href: '/reports/email/', links: [['Email report', '/reports/email/'], ['Contacts report', '/reports/contacts/'], ['Email log', '/logs/email/']]},
+    {icon: 'settings', title: 'Settings', text: 'Sending, consent and who can do what.', href: '/settings/business-profile/', links: [['Email defaults', '/settings/email/'], ['Opt-in & unsubscribe', '/settings/opt-in/'], ['Users and permissions', '/settings/permissions/']]},
+    {icon: 'plug', title: 'Connections', text: 'Bring data in from other tools.', href: '/settings/webhooks/', links: [['Incoming webhooks', '/settings/webhooks/'], ['Action links', '/settings/action-links/'], ['Add-ons', '/add-ons/']]},
+];
+
+const popular = [
+    ['Import contacts from a CSV', '/contacts/import/'],
+    ['Send your first campaign', '/emails/campaigns/'],
+    ['Start an automation from a recipe', '/automations/'],
+    ['Turn on double opt-in', '/settings/opt-in/'],
+    ['Edit a live automation safely', '/automations/going-live/'],
+];
+
+const developerLinks = [
+    ['Your first add-on', 'A complete plugin with one trigger and one action.', '/developers/start/first-add-on/'],
+    ['Triggers and actions', 'The registration contract, fields and results.', '/developers/automations/triggers/'],
+    ['Hooks', 'Every action and filter Marker CRM fires.', '/developers/reference/hooks/'],
+    ['REST API', 'Routes, authentication and responses.', '/developers/reference/rest-api/'],
+];
+
+const snippet = `add_action('marker_crm/loaded', function () {
+    add_filter('marker_crm/automation_actions', function ($actions) {
+        $actions['acme_grant_points'] = [
+            'label'  => __('Grant reward points', 'acme'),
+            'group'  => __('Rewards', 'acme'),
+            'fields' => [[
+                'key'      => 'points',
+                'label'    => __('Points', 'acme'),
+                'type'     => 'number',
+                'required' => true,
+            ]],
+            'run'    => 'acme_grant_points',
+        ];
+
+        return $actions;
+    });
+});`;
+
+const icon = name => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name]}</svg>`;
+---
+
+<div class="home not-content">
+    <section class="home-hero">
+        <div class="home-hero-text">
+            <span class="home-eyebrow">Documentation</span>
+            <h1>Run your CRM inside WordPress</h1>
+            <p class="home-lead">Guides for your contacts, emails and automations, and the reference for building on Marker CRM.</p>
+            <div class="home-actions">
+                <a class="home-button home-button--primary" href="/getting-started/">Get started <Fragment set:html={icon('arrow')}/></a>
+                <a class="home-button" href="/developers/">Developer docs</a>
+            </div>
+        </div>
+
+        <nav class="home-popular" aria-labelledby="home-popular-title">
+            <h2 id="home-popular-title">Popular</h2>
+            <ul>
+                {popular.map(([label, href]) => <li><a href={href}>{label}<Fragment set:html={icon('arrow')}/></a></li>)}
+            </ul>
+        </nav>
+    </section>
+
+    <section class="home-section" aria-labelledby="home-start-title">
+        <h2 id="home-start-title">Get started in three steps</h2>
+        <ol class="home-steps">
+            {steps.map((step, index) => (
+                <li>
+                    <a href={step.href}>
+                        <span class="home-step-number">{index + 1}</span>
+                        <strong>{step.title}</strong>
+                        <span>{step.text}</span>
+                    </a>
+                </li>
+            ))}
+        </ol>
+    </section>
+
+    <section class="home-section" aria-labelledby="home-guides-title">
+        <h2 id="home-guides-title">Explore the guides</h2>
+        <div class="home-areas">
+            {areas.map(area => (
+                <article class="home-area">
+                    <a class="home-area-head" href={area.href}>
+                        <span class="home-icon"><Fragment set:html={icon(area.icon)}/></span>
+                        <span>
+                            <strong>{area.title}</strong>
+                            <span>{area.text}</span>
+                        </span>
+                    </a>
+                    <ul>
+                        {area.links.map(([label, href]) => <li><a href={href}>{label}</a></li>)}
+                    </ul>
+                </article>
+            ))}
+        </div>
+    </section>
+
+    <section class="home-developers" aria-labelledby="home-dev-title">
+        <div class="home-developers-text">
+            <span class="home-eyebrow">For developers</span>
+            <h2 id="home-dev-title">Build on Marker CRM</h2>
+            <p>Add-ons are ordinary WordPress plugins. Register your own automation triggers and actions, merge tags and segment fields, and they appear in the builder like the ones that ship.</p>
+            <ul>
+                {developerLinks.map(([label, text, href]) => (
+                    <li><a href={href}><strong>{label}</strong><span>{text}</span></a></li>
+                ))}
+            </ul>
+        </div>
+        <div class="home-code">
+            <Code code={snippet} lang="php" title="acme-rewards.php"/>
+        </div>
+    </section>
+</div>
+
+<style>
+    /* The home page draws its own heading, so Starlight's title bar above it goes. */
+    :global(.content-panel:has(#_top):has(+ .content-panel .home)) {
+        display: none;
+    }
+
+    .home {
+        --home-border: var(--sl-color-hairline);
+        --home-muted: var(--sl-color-gray-3);
+        --home-card: var(--sl-color-black);
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+        padding-bottom: 2rem;
+    }
+
+    .home a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .home h2 {
+        margin: 0 0 1.25rem;
+        font-size: var(--sl-text-xl);
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        color: var(--sl-color-white);
+    }
+
+    .home :global(svg) {
+        width: 1.1em;
+        height: 1.1em;
+        flex-shrink: 0;
+    }
+
+    .home-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+        gap: 3rem;
+        align-items: center;
+        padding-top: 2rem;
+    }
+
+    .home-eyebrow {
+        display: inline-block;
+        margin-bottom: 1rem;
+        padding: 0.2rem 0.65rem;
+        border: 1px solid var(--home-border);
+        border-radius: 999px;
+        font-size: var(--sl-text-xs);
+        font-weight: 500;
+        color: var(--sl-color-accent);
+    }
+
+    .home-hero h1 {
+        margin: 0;
+        font-size: clamp(2rem, 4.5vw, 3rem);
+        font-weight: 650;
+        line-height: 1.1;
+        letter-spacing: -0.025em;
+        color: var(--sl-color-white);
+    }
+
+    .home-lead {
+        max-width: 34rem;
+        margin: 1rem 0 0;
+        font-size: var(--sl-text-lg);
+        line-height: 1.6;
+        color: var(--sl-color-gray-2);
+    }
+
+    .home-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 2rem;
+    }
+
+    .home-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.6rem 1.1rem;
+        border: 1px solid var(--home-border);
+        border-radius: 0.6rem;
+        font-weight: 500;
+        transition: border-color 0.15s, background 0.15s;
+    }
+
+    .home-button:hover { border-color: var(--sl-color-gray-4); }
+
+    .home-button--primary {
+        border-color: var(--sl-color-white);
+        background: var(--sl-color-white);
+        color: var(--sl-color-black) !important;
+    }
+
+    .home-button--primary:hover { background: var(--sl-color-gray-1); }
+
+    .home-popular {
+        padding: 1.25rem 1.25rem 0.75rem;
+        border: 1px solid var(--home-border);
+        border-radius: 0.9rem;
+        background: var(--sl-color-gray-7, var(--sl-color-gray-6));
+    }
+
+    .home-popular h2 {
+        margin-bottom: 0.5rem;
+        font-size: var(--sl-text-xs);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--home-muted);
+    }
+
+    .home ul, .home ol {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .home-popular li + li { border-top: 1px solid var(--home-border); }
+
+    .home-popular a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.65rem 0;
+        font-size: var(--sl-text-sm);
+        color: var(--sl-color-gray-1);
+    }
+
+    .home-popular a :global(svg) { color: var(--home-muted); transition: transform 0.15s, color 0.15s; }
+    .home-popular a:hover { color: var(--sl-color-accent); }
+    .home-popular a:hover :global(svg) { color: var(--sl-color-accent); transform: translateX(2px); }
+
+    .home-steps {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
+    .home-steps a, .home-area {
+        height: 100%;
+        border: 1px solid var(--home-border);
+        border-radius: 0.9rem;
+        background: var(--home-card);
+        transition: border-color 0.15s;
+    }
+
+    .home-steps a {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        padding: 1.25rem;
+    }
+
+    .home-steps a:hover, .home-area:hover { border-color: var(--sl-color-gray-4); }
+
+    .home-step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.75rem;
+        height: 1.75rem;
+        margin-bottom: 0.5rem;
+        border-radius: 999px;
+        background: var(--sl-color-accent-low);
+        font-size: var(--sl-text-sm);
+        font-weight: 600;
+        color: var(--sl-color-accent-high);
+    }
+
+    .home-steps strong, .home-area strong, .home-developers strong {
+        font-weight: 600;
+        color: var(--sl-color-white);
+    }
+
+    .home-steps a > span:last-child, .home-area-head span span, .home-developers li span {
+        font-size: var(--sl-text-sm);
+        line-height: 1.55;
+        color: var(--home-muted);
+    }
+
+    .home-areas {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
+    .home-area {
+        display: flex;
+        flex-direction: column;
+        padding: 1.25rem;
+    }
+
+    .home-area-head {
+        display: flex;
+        gap: 0.85rem;
+        margin-bottom: 1rem;
+    }
+
+    .home-area-head > span:last-child {
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+    }
+
+    .home-icon :global(svg) { width: 1.15rem; height: 1.15rem; }
+
+    .home-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.25rem;
+        height: 2.25rem;
+        flex-shrink: 0;
+        border-radius: 0.6rem;
+        background: var(--sl-color-accent-low);
+        color: var(--sl-color-accent-high);
+    }
+
+    .home-area ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        margin-top: auto;
+        padding-top: 0.85rem;
+        border-top: 1px solid var(--home-border);
+    }
+
+    .home-area li a {
+        font-size: var(--sl-text-sm);
+        color: var(--sl-color-gray-2);
+    }
+
+    .home-area li a::after { content: ' →'; opacity: 0; transition: opacity 0.15s; }
+    .home-area li a:hover { color: var(--sl-color-accent); }
+    .home-area li a:hover::after { opacity: 1; }
+
+    .home-developers {
+        display: grid;
+        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.35fr);
+        gap: 2.5rem;
+        align-items: center;
+        padding: 2rem;
+        border: 1px solid var(--home-border);
+        border-radius: 1.1rem;
+        background: var(--sl-color-gray-7, var(--sl-color-gray-6));
+    }
+
+    .home-developers h2 { margin-bottom: 0.75rem; font-size: var(--sl-text-2xl); }
+
+    .home-developers p {
+        margin: 0 0 1.25rem;
+        line-height: 1.65;
+        color: var(--sl-color-gray-2);
+    }
+
+    .home-developers li a {
+        display: flex;
+        flex-direction: column;
+        padding: 0.6rem 0;
+        border-top: 1px solid var(--home-border);
+    }
+
+    .home-developers li a:hover strong { color: var(--sl-color-accent); }
+
+    .home-code { min-width: 0; }
+
+    @media (max-width: 64rem) {
+        .home-areas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .home-developers { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    @media (max-width: 48rem) {
+        .home { gap: 3rem; }
+        .home-hero, .home-steps, .home-areas { grid-template-columns: minmax(0, 1fr); }
+        .home-hero { gap: 2rem; padding-top: 0.5rem; }
+        .home-developers { padding: 1.25rem; }
+    }
+</style>
