@@ -1,0 +1,41 @@
+---
+title: Marker CRM documentation
+description: Run your contacts, emails and automations from WordPress — and build on Marker CRM.
+template: splash
+hero:
+  tagline: Everything about running your contacts, emails and automations from WordPress, and the reference for building on Marker CRM.
+  actions:
+    - text: Read the guides
+      link: /getting-started/
+      icon: right-arrow
+    - text: Build on Marker CRM
+      link: /developers/
+      icon: puzzle
+      variant: minimal
+---
+
+import {Card, CardGrid, LinkCard} from '@astrojs/starlight/components';
+
+## Guides
+
+<CardGrid>
+    <LinkCard title="Getting started" description="Install the plugin, bring in your contacts and send your first email." href="/getting-started/" />
+    <LinkCard title="Contacts" description="Tags, lists, segments, custom fields, companies, import and export." href="/contacts/" />
+    <LinkCard title="Emails" description="Campaigns, sequences, templates and the email editor." href="/emails/campaigns/" />
+    <LinkCard title="Automations" description="Triggers, waits, paths and goals on a visual canvas." href="/automations/" />
+    <LinkCard title="Reports and logs" description="What was sent, opened and clicked, and what each contact did." href="/reports/contacts/" />
+    <LinkCard title="Settings" description="Sending, opt-in, preferences, integrations, permissions and privacy." href="/settings/business-profile/" />
+</CardGrid>
+
+## For developers
+
+<CardGrid>
+    <Card title="Add-ons" icon="puzzle">
+        Register your own automation triggers and actions, merge tags and term types from a plugin of your own.
+        [Start building](/developers/)
+    </Card>
+    <Card title="Reference" icon="seti:json">
+        Every hook, the REST API and the shapes they pass.
+        [Open the reference](/developers/reference/hooks/)
+    </Card>
+</CardGrid>
