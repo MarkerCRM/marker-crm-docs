@@ -66,7 +66,7 @@ const options = [
 </div>
 
 <script>
-    document.querySelectorAll<HTMLElement>('[data-page-actions]').forEach((actions) => {
+    document.addEventListener('astro:page-load', () => document.querySelectorAll<HTMLElement>('[data-page-actions]').forEach((actions) => {
         const label = actions.querySelector('[data-copy-label]');
         const source = actions.closest('.page-title')?.querySelector<HTMLTemplateElement>('[data-page-markdown]');
         const toggle = actions.querySelector<HTMLButtonElement>('[data-menu-toggle]');
@@ -124,10 +124,12 @@ const options = [
 
         menu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => close()));
 
-        document.addEventListener('click', (event) => {
+        const outside = (event: MouseEvent) => {
             if (!actions.contains(event.target as Node)) close();
-        });
-    });
+        };
+        document.addEventListener('click', outside);
+        document.addEventListener('astro:before-swap', () => document.removeEventListener('click', outside), {once: true});
+    }));
 </script>
 
 <style>

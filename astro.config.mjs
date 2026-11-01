@@ -28,6 +28,7 @@ export default defineConfig({
                 PageTitle: './src/components/PageTitle.astro',
                 Footer: './src/components/Footer.astro',
                 Search: './src/components/Search.astro',
+                Head: './src/components/Head.astro',
             },
             plugins: [
                 starlightSidebarTopics(sidebarTopics(), {exclude: ['/'], topics: {developers: ['/developers/']}}),

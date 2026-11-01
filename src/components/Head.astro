@@ -1,0 +1,21 @@
+---
+import Default from '@astrojs/starlight/components/Head.astro';
+import {ClientRouter} from 'astro:transitions';
+---
+
+<Default/>
+<ClientRouter/>
+
+<script is:inline>
+    // A swapped-in page brings the theme it was built with; put the reader's choice back before it paints.
+    document.addEventListener('astro:after-swap', () => {
+        let stored = '';
+        try {
+            stored = localStorage.getItem('starlight-theme') || '';
+        } catch {}
+        const theme = stored === 'light' || stored === 'dark'
+            ? stored
+            : (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.dataset.theme = theme;
+    });
+</script>

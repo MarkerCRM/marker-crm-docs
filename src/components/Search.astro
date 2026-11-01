@@ -70,6 +70,7 @@ const SEARCH = '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>';
     };
 
     let pagefind: any = null;
+    let current: Search | null = null;
 
     const loadIndex = async () => {
         if (!pagefind) {
@@ -110,14 +111,11 @@ const SEARCH = '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>';
             this.input.addEventListener('input', () => this.search());
             this.input.addEventListener('keydown', event => this.keys(event));
 
-            document.addEventListener('mc:open-search', () => this.open());
-            window.addEventListener('keydown', (event) => {
-                const typing = (event.target as HTMLElement)?.closest?.('input, textarea, [contenteditable]');
-                if (((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') || (event.key === '/' && !typing)) {
-                    event.preventDefault();
-                    this.dialog.open ? this.dialog.close() : this.open();
-                }
-            });
+            current = this;
+        }
+
+        toggle() {
+            this.dialog.open ? this.dialog.close() : this.open();
         }
 
         open() {
@@ -227,6 +225,16 @@ const SEARCH = '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>';
     }
 
     customElements.define('mc-search', Search);
+
+    // Pages swap without a reload, so these are added once and always reach the search on the current page.
+    document.addEventListener('mc:open-search', () => current?.open());
+    window.addEventListener('keydown', (event) => {
+        const typing = (event.target as HTMLElement)?.closest?.('input, textarea, [contenteditable]');
+        if (((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') || (event.key === '/' && !typing)) {
+            event.preventDefault();
+            current?.toggle();
+        }
+    });
 </script>
 
 <style>

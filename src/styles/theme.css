@@ -186,7 +186,6 @@
 }
 
 /* Moving between pages swaps only the content: the header and sidebar carry over, so the logo never flickers. */
-@view-transition { navigation: auto; }
 
 .header { view-transition-name: mc-header; }
 

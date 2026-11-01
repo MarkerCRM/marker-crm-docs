@@ -76,7 +76,7 @@ const social = [
 </footer>
 
 <script>
-    document.querySelectorAll<HTMLElement>('[data-feedback]').forEach((feedback) => {
+    document.addEventListener('astro:page-load', () => document.querySelectorAll<HTMLElement>('[data-feedback]').forEach((feedback) => {
         const thanks = feedback.querySelector<HTMLElement>('[data-thanks]');
         const missing = feedback.querySelector<HTMLElement>('[data-missing]');
 
@@ -92,7 +92,7 @@ const social = [
 
             document.dispatchEvent(new CustomEvent('docs:feedback', {detail: {vote, page: location.pathname}}));
         }));
-    });
+    }));
 </script>
 
 <style>
