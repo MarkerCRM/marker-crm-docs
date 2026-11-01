@@ -28,7 +28,10 @@ const SEARCH = '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>';
                 <button type="button" class="mc-search-close" data-close-search aria-label="Close search">Esc</button>
             </div>
 
-            <p class="mc-search-heading" data-search-heading>Recent searches</p>
+            <div class="mc-search-heading" data-search-heading hidden>
+                <span data-search-heading-text></span>
+                <button type="button" class="mc-search-clear" data-clear-recent hidden>Clear</button>
+            </div>
             <ul id="mc-search-results" class="mc-search-results" role="listbox" aria-label="Results" data-search-results></ul>
             <p class="mc-search-empty" data-search-empty hidden></p>
 
@@ -42,7 +45,7 @@ const SEARCH = '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>';
 </mc-search>
 
 <script>
-    import {breadcrumbFor} from '../lib/sections.mjs';
+    import {breadcrumbFor, popularPages} from '../lib/sections.mjs';
 
     type Row = {kind: 'page' | 'heading'; title: string; url: string; crumbs: string[]};
 
@@ -95,6 +98,13 @@ const SEARCH = '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>';
 
             this.querySelector('[data-open-search]')!.addEventListener('click', () => this.open());
             this.querySelector('[data-close-search]')!.addEventListener('click', () => this.dialog.close());
+            this.querySelector('[data-clear-recent]')!.addEventListener('click', () => {
+                try {
+                    localStorage.removeItem(RECENT);
+                } catch {}
+                this.search();
+                this.input.focus();
+            });
             this.dialog.addEventListener('click', (event) => { if (event.target === this.dialog) this.dialog.close(); });
             this.dialog.addEventListener('close', () => document.body.removeAttribute('data-search-open'));
             this.input.addEventListener('input', () => this.search());
@@ -125,7 +135,13 @@ const SEARCH = '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>';
             const mine = ++this.ticket;
 
             if (!query) {
-                this.show(recent(), recent().length ? 'Recent searches' : '', recent().length ? '' : 'Search the guides and the developer docs.');
+                const history = recent();
+
+                if (history.length) {
+                    this.show(history, 'Recent searches', '', true);
+                } else {
+                    this.show(popularPages.map(page => ({kind: 'page', title: page.title, url: page.url, crumbs: breadcrumbFor(page.url)})), 'Popular', '');
+                }
                 return;
             }
 
@@ -158,13 +174,14 @@ const SEARCH = '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>';
             }
         }
 
-        show(rows: Row[], heading: string, empty: string) {
+        show(rows: Row[], heading: string, empty: string, clearable = false) {
             this.rows = rows;
             this.active = 0;
 
             const headingEl = this.querySelector<HTMLElement>('[data-search-heading]')!;
-            headingEl.textContent = heading;
+            headingEl.querySelector('[data-search-heading-text]')!.textContent = heading;
             headingEl.hidden = !heading;
+            headingEl.querySelector<HTMLElement>('[data-clear-recent]')!.hidden = !clearable;
 
             const emptyEl = this.querySelector<HTMLElement>('[data-search-empty]')!;
             emptyEl.textContent = empty;
@@ -319,6 +336,29 @@ const SEARCH = '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>';
         font-size: var(--sl-text-sm);
         color: var(--sl-color-gray-3);
     }
+
+    .mc-search-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .mc-search-heading[hidden] { display: none; }
+
+    .mc-search-clear {
+        padding: 0.1rem 0.4rem;
+        border: 0;
+        border-radius: 0.35rem;
+        background: transparent;
+        font: inherit;
+        font-size: var(--sl-text-sm);
+        color: var(--sl-color-gray-3);
+        cursor: pointer;
+    }
+
+    .mc-search-clear:hover { background: var(--sl-color-gray-7, var(--sl-color-gray-6)); color: var(--sl-color-white); }
+
+    .mc-search-clear[hidden] { display: none; }
 
     .mc-search-empty { margin-bottom: 1rem; }
 

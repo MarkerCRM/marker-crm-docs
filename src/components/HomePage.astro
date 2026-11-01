@@ -1,5 +1,6 @@
 ---
 import {Code} from '@astrojs/starlight/components';
+import {popularPages} from '../lib/sections.mjs';
 
 // Lucide icons, the same set the plugin's admin uses.
 const icons = {
@@ -27,13 +28,6 @@ const areas = [
     {icon: 'plug', title: 'Connections', text: 'Bring data in from other tools.', href: '/settings/webhooks/', links: [['Incoming webhooks', '/settings/webhooks/'], ['Action links', '/settings/action-links/'], ['Add-ons', '/add-ons/']]},
 ];
 
-const popular = [
-    ['Import contacts from a CSV', '/contacts/import/'],
-    ['Send your first campaign', '/emails/campaigns/'],
-    ['Start an automation from a recipe', '/automations/'],
-    ['Turn on double opt-in', '/settings/opt-in/'],
-    ['Edit a live automation safely', '/automations/going-live/'],
-];
 
 const developerLinks = [
     ['Your first add-on', 'A complete plugin with one trigger and one action.', '/developers/start/first-add-on/'],
@@ -84,7 +78,7 @@ const icon = name => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
         <nav class="home-popular" aria-labelledby="home-popular-title">
             <h2 id="home-popular-title">Popular</h2>
             <ul>
-                {popular.map(([label, href]) => <li><a href={href}>{label}<Fragment set:html={icon('arrow')}/></a></li>)}
+                {popularPages.map(({title: label, url: href}) => <li><a href={href}>{label}<Fragment set:html={icon('arrow')}/></a></li>)}
             </ul>
         </nav>
     </section>

@@ -42,6 +42,15 @@ export const sidebarTopics = () => sections.map(({id, label, link, icon, groups,
     ],
 }));
 
+// The pages people look for most: on the home page, and in search before anything has been searched.
+export const popularPages = [
+    {title: 'Import contacts from a CSV', url: '/contacts/import/'},
+    {title: 'Send your first campaign', url: '/emails/campaigns/'},
+    {title: 'Start an automation from a recipe', url: '/automations/'},
+    {title: 'Turn on double opt-in', url: '/settings/opt-in/'},
+    {title: 'Edit a live automation safely', url: '/automations/going-live/'},
+];
+
 /** Where a page sits, for a search result: `/contacts/tags/` → ['Guides', 'Contacts']. */
 export const breadcrumbFor = (pathname) => {
     const path = pathname.replace(/^\/|\/$/g, '');
