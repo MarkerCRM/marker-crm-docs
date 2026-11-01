@@ -119,13 +119,18 @@ On a narrow screen (below 1100 pixels wide) the overview starts closed.
 ### With the trigger selected
 
 The trigger's own settings, a **Change** button to pick a different trigger, and **Only if**
-rules. See [Triggers](/automations/triggers/).
+rules. See [Triggers](/automations/triggers/). **Next step** at the bottom shows the first step
+of the flow.
 
 ### With a step selected
 
 - **Internal name** — the name on the card. Only your team sees it.
 - **Internal description** — an optional note, under the disclosure.
 - The step's own settings.
+- **Next step** — the step contacts reach after this one. For an **If / else**, an **A/B split**
+  or a wait with paths, it lists each path and its first step; an empty path shows the step
+  after the split. At the end of the flow it reads **The automation ends here.** Click a step to
+  open it and bring it into view on the canvas.
 - **Delete step** at the bottom.
 
 An email step shows **The email** with **Write the email** (or **Edit the email**), **Send a
