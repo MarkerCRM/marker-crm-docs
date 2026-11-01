@@ -47,8 +47,8 @@ or is still in it? Set this in **Settings** → **If someone triggers it again**
 |---|---|
 | **Skip them** | Each contact goes through once, ever. This is the default. |
 | **Let them go through it again once they finish** | They can enter again, but only after their last run has ended. Nobody is in it twice at once. |
-| **Let them go through it again after** *N* **days** | They can enter again once that many days have passed since they last entered. |
-| **Start them over from the first step** | If they are still inside, that run is ended and a fresh one starts at the top. |
+| **Let them go through it again after** *N* **days** | They can enter again once that many days have passed since they last entered and they have finished it. Nobody is in it twice at once. |
+| **Start them over from the first step** | If they are still inside, that run is ended and a fresh one starts at the top. An email the ended run had not sent yet is dropped, so they don't get it twice. |
 
 The same setting applies when you add contacts by hand, and when another automation starts
 this one. If the same trigger fires twice for one contact at the same moment — a double form

@@ -82,6 +82,13 @@ contact, their details fill the merge tags.
 | **Start another automation** | Puts the contact into another automation at its first step. It has to be on, and its own re-entry setting decides whether they may start it again. |
 | **End the automation** | Takes the contact out here. The card reads *Contacts stop here*, and they count as **Completed**. |
 
+:::note[Automations can't send someone round in circles]
+A contact is never sent back into an automation they came from. That holds whether one
+automation starts another directly with **Start another automation**, or indirectly — say
+automation A adds a tag that starts B, and B adds the tag that starts A. They go round once and
+stop. A loop for itself is also stopped: an automation can't start itself.
+:::
+
 ### WordPress & developer
 
 | Action | What it does |
