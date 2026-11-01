@@ -42,7 +42,7 @@ export const sidebarTopics = () => sections.map(({id, label, link, icon, groups,
     ],
 }));
 
-// The pages people look for most: on the home page, and in search before anything has been searched.
+// The pages people look for most, listed on the home page.
 export const popularPages = [
     {title: 'Import contacts from a CSV', url: '/contacts/import/'},
     {title: 'Send your first campaign', url: '/emails/campaigns/'},

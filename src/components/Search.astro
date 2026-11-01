@@ -45,7 +45,7 @@ const SEARCH = '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>';
 </mc-search>
 
 <script>
-    import {breadcrumbFor, popularPages} from '../lib/sections.mjs';
+    import {breadcrumbFor} from '../lib/sections.mjs';
 
     type Row = {kind: 'page' | 'heading'; title: string; url: string; crumbs: string[]};
 
@@ -136,12 +136,7 @@ const SEARCH = '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>';
 
             if (!query) {
                 const history = recent();
-
-                if (history.length) {
-                    this.show(history, 'Recent searches', '', true);
-                } else {
-                    this.show(popularPages.map(page => ({kind: 'page', title: page.title, url: page.url, crumbs: breadcrumbFor(page.url)})), 'Popular', '');
-                }
+                this.show(history, history.length ? 'Recent searches' : '', '', history.length > 0);
                 return;
             }
 
