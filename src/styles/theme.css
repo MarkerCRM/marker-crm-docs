@@ -4,10 +4,12 @@
     --sl-line-height: 1.7;
 
     /* Brand: primary #F6B51E, neutral #171717. Yellow marks state; text and links stay neutral for contrast. */
-    --sl-color-accent-low: #3a2c08;
+    --sl-color-accent-low: rgb(246 181 30 / 0.14);
     --sl-color-accent: #F6B51E;
-    --sl-color-accent-high: #fbd77f;
+    --sl-color-accent-high: #F6B51E;
     --sl-color-text-accent: var(--sl-color-white);
+    --mc-active-text: #F6B51E;
+    --mc-eyebrow: #F6B51E;
 
     --sl-color-white: #f5f6f7;
     --sl-color-gray-1: #e4e6ea;
@@ -20,10 +22,13 @@
 }
 
 :root[data-theme='light'] {
-    --sl-color-accent-low: #fdf1d3;
-    --sl-color-accent: #8a5a00;
-    --sl-color-accent-high: #5c3c00;
+    /* Yellow is too light for text on white, so on light pages it tints and the text stays neutral. */
+    --sl-color-accent-low: #fef4d8;
+    --sl-color-accent: #b07c0b;
+    --sl-color-accent-high: #171717;
     --sl-color-text-accent: var(--sl-color-white);
+    --mc-active-text: #171717;
+    --mc-eyebrow: #7b7b7b;
 
     --sl-color-white: #171717;
     --sl-color-gray-1: #1d2025;
@@ -92,9 +97,9 @@
 }
 
 .sidebar-content a[aria-current='page'] {
-    border-radius: 0.45rem;
+    border-radius: 0.5rem;
     background: var(--sl-color-accent-low);
-    color: var(--sl-color-accent-high);
+    color: var(--mc-active-text);
     font-weight: 500;
 }
 
