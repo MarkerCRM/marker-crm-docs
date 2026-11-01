@@ -174,3 +174,8 @@
 
     .header site-search > button > span::after { content: '…'; }
 }
+
+@media (min-width: 50rem) {
+    /* Without a sidebar the card would touch the left edge while keeping its gap on the right. */
+    :root:not([data-has-sidebar]) .main-frame { padding-inline-start: 0.75rem; }
+}
