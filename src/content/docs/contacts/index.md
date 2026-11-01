@@ -78,6 +78,11 @@ The status starts as **Subscribed**, or as **Pending** when double opt-in is swi
 under **Settings → Opt-in & unsubscribe**. A Pending contact is sent the confirmation email
 and becomes Subscribed when they click its link.
 
+If someone says the confirmation never arrived, open their page and choose **Send double
+opt-in email** under their stats. It is offered only while they are Pending, needs permission
+to edit contacts, and is refused if double opt-in has been switched off or the address is on
+the suppression list.
+
 If the address already belongs to a contact, that contact is updated rather than duplicated.
 Each email address belongs to one contact only.
 

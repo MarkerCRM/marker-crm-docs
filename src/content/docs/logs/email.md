@@ -69,7 +69,9 @@ has gone.
 ## Delete records
 
 Select rows and use **Delete** in the bar that appears. The records are removed from the log
-and from each contact's history. Nothing is unsent.
+and from each contact's history, and their campaign's report stops counting them — useful for
+clearing out test sends. Nothing is unsent. A campaign whose report has already been kept as a
+summary (see below) is not affected.
 
 ## How long the log is kept
 

@@ -54,7 +54,7 @@ empty and shows up in the builder's checklist as something to fix.
 
 A recipe only appears when everything it uses is available on your site. **Follow up on a
 click** needs click tracking on, for example — turn on **Track clicks** under
-[Settings → Email](/settings/email/) if you don't see it.
+[Settings → Email defaults](/settings/email/) if you don't see it.
 
 :::caution[Check the email kind on sign-up recipes]
 Recipe emails are **Marketing** emails, which only reach subscribed contacts. In **New member

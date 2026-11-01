@@ -97,7 +97,7 @@ Some details worth knowing:
 ### Email
 
 These appear only while tracking is on: **Track opens** and **Track clicks** under
-[Settings → Email](/settings/email/). Turn tracking off and an automation already using them
+[Settings → Email defaults](/settings/email/). Turn tracking off and an automation already using them
 is listed as unavailable.
 
 | Trigger | Starts when | Settings |
