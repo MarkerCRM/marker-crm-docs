@@ -1,0 +1,119 @@
+---
+const {entry, sidebar} = Astro.locals.starlightRoute;
+
+// The label of the sidebar group holding this page, shown above its title.
+const sectionOf = (items, label = null) => {
+    for (const item of items) {
+        if (item.type === 'group') {
+            const found = sectionOf(item.entries, item.label);
+            if (found) return found;
+        } else if (item.isCurrent) {
+            return label;
+        }
+    }
+
+    return null;
+};
+
+const section = sectionOf(sidebar);
+const markdown = entry.body ? `# ${entry.data.title}\n\n${entry.body.replace(/^import .*\n/gm, '').trim()}\n` : '';
+---
+
+<div class="page-title">
+    {section && <p class="eyebrow">{section}</p>}
+
+    <div class="title-row">
+        <h1 id="_top">{entry.data.title}</h1>
+
+        {markdown && (
+            <button type="button" class="copy-page" data-copy-page aria-live="polite">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                <span>Copy page</span>
+            </button>
+        )}
+    </div>
+
+    {entry.data.description && <p class="description">{entry.data.description}</p>}
+
+    {markdown && <template data-page-markdown>{markdown}</template>}
+</div>
+
+<script>
+    document.querySelectorAll<HTMLButtonElement>('[data-copy-page]').forEach((button) => {
+        const label = button.querySelector('span');
+        const source = button.closest('.page-title')?.querySelector<HTMLTemplateElement>('[data-page-markdown]');
+
+        button.addEventListener('click', async () => {
+            if (!label || !source) return;
+
+            try {
+                await navigator.clipboard.writeText(source.content.textContent ?? '');
+                label.textContent = 'Copied';
+            } catch {
+                label.textContent = 'Could not copy';
+            }
+
+            setTimeout(() => { label.textContent = 'Copy page'; }, 2000);
+        });
+    });
+</script>
+
+<style>
+    .page-title { margin-top: 0.5rem; }
+
+    .eyebrow {
+        margin: 0 0 0.35rem;
+        font-size: var(--sl-text-sm);
+        font-weight: 500;
+        color: var(--sl-color-accent);
+    }
+
+    .title-row {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: var(--sl-text-h1);
+        line-height: var(--sl-line-height-headings);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: var(--sl-color-white);
+    }
+
+    .description {
+        margin: 0.6rem 0 0;
+        font-size: var(--sl-text-lg);
+        line-height: 1.55;
+        color: var(--sl-color-gray-2);
+    }
+
+    .copy-page {
+        display: inline-flex;
+        flex-shrink: 0;
+        align-items: center;
+        gap: 0.45rem;
+        margin-top: 0.4rem;
+        padding: 0.4rem 0.75rem;
+        border: 1px solid var(--sl-color-hairline);
+        border-radius: 0.55rem;
+        background: var(--sl-color-bg);
+        font: inherit;
+        font-size: var(--sl-text-sm);
+        font-weight: 500;
+        color: var(--sl-color-gray-2);
+        cursor: pointer;
+    }
+
+    .copy-page:hover { color: var(--sl-color-white); border-color: var(--sl-color-gray-4); }
+
+    .copy-page svg { width: 1rem; height: 1rem; }
+
+    @media (max-width: 40rem) {
+        .copy-page span { display: none; }
+        .copy-page { padding: 0.45rem; }
+    }
+</style>

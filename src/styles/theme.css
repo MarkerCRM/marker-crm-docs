@@ -47,3 +47,82 @@
     padding: 0.1em 0.35em;
     border-radius: 0.3rem;
 }
+
+/* The frame: navigation sits on the page colour, the content on a card above it. */
+:root {
+    --mc-page: #0b0c0e;
+    --sl-color-bg: #121418;
+}
+
+:root[data-theme='light'] {
+    --mc-page: #f4f5f7;
+    --sl-color-bg: #ffffff;
+}
+
+@media (min-width: 50rem) {
+    :root {
+        --sl-color-bg-nav: var(--mc-page);
+        --sl-color-bg-sidebar: var(--mc-page);
+    }
+
+    body { background: var(--mc-page); }
+}
+
+.header { border-bottom: 0; }
+
+@media (min-width: 50rem) {
+    .sidebar-pane { border-inline-end: 0; }
+
+    .starlight-sidebar-topics { display: none; }
+
+    .main-frame { padding-inline-end: 0.75rem; padding-bottom: 0.75rem; }
+
+    .main-frame > div {
+        min-height: calc(100vh - var(--sl-nav-height) - 0.75rem);
+        border: 1px solid var(--sl-color-hairline);
+        border-radius: 1rem;
+        background: var(--sl-color-bg);
+        box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+    }
+
+    .right-sidebar { border-inline-start: 0; background: transparent; }
+}
+
+.sidebar-content a[aria-current='page'] {
+    border-radius: 0.45rem;
+    background: var(--sl-color-accent-low);
+    color: var(--sl-color-accent-high);
+    font-weight: 500;
+}
+
+:root {
+    --sl-text-h1: 2.25rem;
+    --sl-text-h2: 1.5rem;
+    --sl-text-h3: 1.2rem;
+    --sl-text-h4: 1.05rem;
+}
+
+.sl-markdown-content :is(h2) { margin-top: 2.5rem; }
+
+@media (min-width: 50rem) {
+    .main-frame > div .content-panel {
+        padding-inline: clamp(1.5rem, 4vw, 3.5rem);
+        border-top: 0;
+    }
+
+    .main-frame > div .content-panel:first-of-type { padding-top: 2.5rem; }
+}
+
+.sidebar-content ul ul {
+    border-inline-start: 0;
+    margin-inline-start: 0;
+}
+
+.sidebar-content ul ul a {
+    padding-inline-start: 0.75rem;
+}
+
+.sidebar-content summary .group-label .large {
+    font-size: var(--sl-text-sm);
+    font-weight: 600;
+}

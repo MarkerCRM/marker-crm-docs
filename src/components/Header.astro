@@ -1,0 +1,84 @@
+---
+import Search from '@astrojs/starlight/components/Search.astro';
+import SiteTitle from '@astrojs/starlight/components/SiteTitle.astro';
+import SocialIcons from '@astrojs/starlight/components/SocialIcons.astro';
+import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
+import {Icon} from '@astrojs/starlight/components';
+
+const topics = Astro.locals.starlightSidebarTopics?.topics ?? [];
+---
+
+<div class="header">
+    <div class="title-wrapper sl-flex">
+        <SiteTitle/>
+    </div>
+
+    <nav class="tabs print:hidden" aria-label="Documentation sections">
+        {topics.map(topic => (
+            <a href={topic.link} class:list={['tab', {current: topic.isCurrent}]} aria-current={topic.isCurrent ? 'page' : undefined}>
+                {topic.icon && <Icon name={topic.icon} size="1.05em"/>}
+                {topic.label}
+            </a>
+        ))}
+    </nav>
+
+    <div class="search sl-flex print:hidden">
+        <Search/>
+    </div>
+
+    <div class="sl-hidden md:sl-flex print:hidden right-group">
+        <div class="sl-flex social-icons">
+            <SocialIcons/>
+        </div>
+        <ThemeSelect/>
+    </div>
+</div>
+
+<style>
+    .header {
+        display: flex;
+        gap: var(--sl-nav-gap);
+        align-items: center;
+        height: 100%;
+    }
+
+    .title-wrapper {
+        overflow: clip;
+        min-width: 0;
+        padding: 0.25rem;
+        margin: -0.25rem;
+    }
+
+    .tabs {
+        display: none;
+        gap: 0.25rem;
+        margin-inline-start: 1.5rem;
+    }
+
+    .tab {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.4rem 0.75rem;
+        border-radius: 0.5rem;
+        font-size: var(--sl-text-sm);
+        font-weight: 500;
+        color: var(--sl-color-gray-3);
+        text-decoration: none;
+    }
+
+    .tab:hover { color: var(--sl-color-white); background: var(--sl-color-gray-6); }
+
+    .tab.current { color: var(--sl-color-white); }
+
+    .search { margin-inline-start: auto; }
+
+    .right-group, .social-icons {
+        gap: 1rem;
+        align-items: center;
+    }
+
+    @media (min-width: 50rem) {
+        .tabs { display: flex; }
+    }
+</style>
