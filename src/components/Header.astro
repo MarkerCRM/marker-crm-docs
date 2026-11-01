@@ -1,7 +1,6 @@
 ---
 import Search from '@astrojs/starlight/components/Search.astro';
 import SiteTitle from '@astrojs/starlight/components/SiteTitle.astro';
-import SocialIcons from '@astrojs/starlight/components/SocialIcons.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import {Icon} from '@astrojs/starlight/components';
 
@@ -27,9 +26,6 @@ const topics = Astro.locals.starlightSidebarTopics?.topics ?? [];
     </div>
 
     <div class="sl-hidden md:sl-flex print:hidden right-group">
-        <div class="sl-flex social-icons">
-            <SocialIcons/>
-        </div>
         <ThemeToggle/>
     </div>
 </div>
@@ -75,7 +71,7 @@ const topics = Astro.locals.starlightSidebarTopics?.topics ?? [];
 
     .right-group { margin-inline-start: auto; }
 
-    .right-group, .social-icons {
+    .right-group {
         gap: 1rem;
         align-items: center;
     }

@@ -14,7 +14,6 @@ export default defineConfig({
             customCss: ['@fontsource-variable/inter', './src/styles/theme.css'],
             editLink: {baseUrl: 'https://github.com/MarkerCRM/marker-crm-docs/edit/main/'},
             lastUpdated: true,
-            social: [{icon: 'github', label: 'GitHub', href: 'https://github.com/MarkerCRM'}],
             components: {
                 Header: './src/components/Header.astro',
                 PageTitle: './src/components/PageTitle.astro',
