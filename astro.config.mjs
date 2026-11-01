@@ -21,7 +21,6 @@ export default defineConfig({
                 {tag: 'meta', attrs: {name: 'theme-color', content: '#171717'}},
             ],
             customCss: ['@fontsource-variable/inter', './src/styles/theme.css'],
-            editLink: {baseUrl: 'https://github.com/MarkerCRM/marker-crm-docs/edit/main/'},
             lastUpdated: true,
             components: {
                 Header: './src/components/Header.astro',
