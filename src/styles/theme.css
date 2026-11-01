@@ -22,13 +22,13 @@
 }
 
 :root[data-theme='light'] {
-    /* Yellow is too light for text on white, so on light pages it tints and the text stays neutral. */
-    --sl-color-accent-low: #fef4d8;
-    --sl-color-accent: #b07c0b;
-    --sl-color-accent-high: #171717;
+    /* On white the brand yellow is deepened just enough to read, over a barely tinted background. */
+    --sl-color-accent-low: #f6f1e4;
+    --sl-color-accent: #c88d00;
+    --sl-color-accent-high: #c88d00;
     --sl-color-text-accent: var(--sl-color-white);
-    --mc-active-text: #171717;
-    --mc-eyebrow: #7b7b7b;
+    --mc-active-text: #c88d00;
+    --mc-eyebrow: #c88d00;
 
     --sl-color-white: #171717;
     --sl-color-gray-1: #1d2025;
@@ -205,3 +205,5 @@
     ::view-transition-old(*),
     ::view-transition-new(*) { animation: none !important; }
 }
+
+.site-title img { height: 1.75rem; }
