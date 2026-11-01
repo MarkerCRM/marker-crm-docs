@@ -4,7 +4,8 @@ export const sections = [
         id: 'guides',
         label: 'Guides',
         link: '/getting-started/',
-        icon: 'open-book',
+        // Lucide book-open, drawn in the header.
+        glyph: '<path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/>',
         groups: [
             {label: 'Getting started', directory: 'getting-started'},
             {label: 'Contacts', directory: 'contacts'},
@@ -20,7 +21,8 @@ export const sections = [
         id: 'developers',
         label: 'Developers',
         link: '/developers/',
-        icon: 'puzzle',
+        // Lucide code-xml.
+        glyph: '<path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/>',
         groups: [
             {label: 'Start here', directory: 'developers/start'},
             {label: 'Automations', directory: 'developers/automations'},
@@ -31,11 +33,10 @@ export const sections = [
     },
 ];
 
-export const sidebarTopics = () => sections.map(({id, label, link, icon, groups, links}) => ({
+export const sidebarTopics = () => sections.map(({id, label, link, groups, links}) => ({
     id,
     label,
     link,
-    icon,
     items: [
         ...groups.map(group => ({label: group.label, items: [{autogenerate: {directory: group.directory}}]})),
         ...links,
