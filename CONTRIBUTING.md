@@ -5,6 +5,13 @@ One site, two tabs: **Guides** (`src/content/docs/*`, for people running the CRM
 belongs to is decided by its folder; the sidebar is generated from the folders, ordered by
 `sidebar.order` in the front matter.
 
+## When the docs change
+
+With the plugin, not after it: when a module is finished, or a screen, setting, hook or route
+changes, the pages for it are updated in the same piece of work and pushed to `main`, which
+deploys the site. Guides cover what a user sees; Developers covers hooks, REST routes and
+registry entries. The plugin's own rules (`.claude/rules/role.md`, §10) say the same.
+
 ## Addresses are a promise
 
 The plugin's admin links straight to these pages (`resources/admin/common/docs.js` in the
