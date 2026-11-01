@@ -1,0 +1,225 @@
+---
+import EditLink from '@astrojs/starlight/components/EditLink.astro';
+import LastUpdated from '@astrojs/starlight/components/LastUpdated.astro';
+import {Icon} from '@astrojs/starlight/components';
+
+const {entry, pagination} = Astro.locals.starlightRoute;
+const {prev, next} = pagination;
+const isPage = entry.data.template !== 'splash';
+
+const issue = new URL('https://github.com/MarkerCRM/marker-crm-docs/issues/new');
+issue.searchParams.set('title', `Docs: ${entry.data.title}`);
+issue.searchParams.set('body', `Page: ${new URL(Astro.url.pathname, Astro.site).href}\n\nWhat was missing or unclear?\n`);
+
+// Lucide icons, the set the plugin uses.
+const thumb = '<path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/>';
+const svg = (paths, flip = false) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"${flip ? ' style="transform: scaleY(-1)"' : ''}>${paths}</svg>`;
+
+const social = [
+    {label: 'GitHub', href: 'https://github.com/MarkerCRM', icon: 'github'},
+    {label: 'Website', href: 'https://markercrm.com', svg: '<circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>'},
+];
+---
+
+<footer class="docs-footer">
+    {isPage && (
+        <div class="feedback" data-feedback>
+            <p class="feedback-question">Was this page helpful?</p>
+
+            <div class="feedback-choices">
+                <button type="button" data-vote="yes"><Fragment set:html={svg(thumb)}/>Yes</button>
+                <button type="button" data-vote="no"><Fragment set:html={svg(thumb, true)}/>No</button>
+            </div>
+
+            <p class="feedback-thanks" data-thanks hidden aria-live="polite">
+                Thanks for letting us know.
+                <a href={issue.href} target="_blank" rel="noopener" data-missing hidden>Tell us what was missing</a>
+            </p>
+        </div>
+    )}
+
+    {(prev || next) && (
+        <nav class="pager print:hidden" aria-label="More pages">
+            {prev ? (
+                <a href={prev.href} rel="prev" class="pager-link">
+                    <span class="pager-title">{prev.label}</span>
+                    <span class="pager-hint"><Icon name="left-caret" size="1rem"/>Previous</span>
+                </a>
+            ) : <span/>}
+            {next && (
+                <a href={next.href} rel="next" class="pager-link pager-link--next">
+                    <span class="pager-title">{next.label}</span>
+                    <span class="pager-hint">Next<Icon name="right-caret" size="1rem"/></span>
+                </a>
+            )}
+        </nav>
+    )}
+
+    <div class="footer-bottom">
+        <div class="social">
+            {social.map(link => (
+                <a href={link.href} target="_blank" rel="noopener" aria-label={link.label} title={link.label}>
+                    {link.icon ? <Icon name={link.icon} size="1.3rem"/> : <Fragment set:html={svg(link.svg)}/>}
+                </a>
+            ))}
+        </div>
+
+        {isPage && (
+            <div class="meta">
+                <EditLink/>
+                <LastUpdated/>
+            </div>
+        )}
+    </div>
+</footer>
+
+<script>
+    document.querySelectorAll<HTMLElement>('[data-feedback]').forEach((feedback) => {
+        const thanks = feedback.querySelector<HTMLElement>('[data-thanks]');
+        const missing = feedback.querySelector<HTMLElement>('[data-missing]');
+
+        feedback.querySelectorAll<HTMLButtonElement>('[data-vote]').forEach(button => button.addEventListener('click', () => {
+            const vote = button.dataset.vote;
+
+            feedback.querySelectorAll<HTMLButtonElement>('[data-vote]').forEach((choice) => {
+                choice.setAttribute('aria-pressed', String(choice === button));
+            });
+
+            if (thanks) thanks.hidden = false;
+            if (missing) missing.hidden = vote !== 'no';
+
+            document.dispatchEvent(new CustomEvent('docs:feedback', {detail: {vote, page: location.pathname}}));
+        }));
+    });
+</script>
+
+<style>
+    .docs-footer {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+        margin-top: 3rem;
+    }
+
+    .feedback {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem 1rem;
+    }
+
+    .feedback-question {
+        margin: 0;
+        color: var(--sl-color-gray-2);
+    }
+
+    .feedback-choices {
+        display: flex;
+        gap: 0.75rem;
+    }
+
+    .feedback-choices button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.45rem 0.9rem;
+        border: 1px solid var(--sl-color-hairline-light, var(--sl-color-gray-5));
+        border-radius: 0.65rem;
+        background: var(--sl-color-bg);
+        font: inherit;
+        font-size: var(--sl-text-sm);
+        color: var(--sl-color-gray-2);
+        cursor: pointer;
+    }
+
+    .feedback-choices button:hover { border-color: var(--sl-color-gray-4); color: var(--sl-color-white); }
+
+    .feedback-choices button[aria-pressed='true'] {
+        border-color: var(--sl-color-accent);
+        background: var(--sl-color-accent-low);
+        color: var(--sl-color-accent-high);
+    }
+
+    .feedback-choices :global(svg) { width: 1.05rem; height: 1.05rem; }
+
+    .feedback-thanks {
+        flex-basis: 100%;
+        margin: 0;
+        font-size: var(--sl-text-sm);
+        color: var(--sl-color-gray-3);
+    }
+
+    .feedback-thanks a { margin-inline-start: 0.35rem; color: var(--sl-color-accent); }
+
+    .pager {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
+    .pager-link {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        padding: 1rem 1.25rem;
+        border: 1px solid var(--sl-color-gray-5);
+        border-radius: 0.85rem;
+        color: var(--sl-color-white);
+        text-decoration: none;
+        transition: border-color 0.15s;
+    }
+
+    .pager-link:hover { border-color: var(--sl-color-gray-3); }
+
+    .pager-link--next { align-items: flex-end; text-align: end; }
+
+    .pager-title { font-size: var(--sl-text-lg); line-height: 1.35; }
+
+    .pager-hint {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.2rem;
+        font-size: var(--sl-text-sm);
+        color: var(--sl-color-gray-3);
+    }
+
+    .footer-bottom {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--sl-color-hairline);
+    }
+
+    .social {
+        display: flex;
+        gap: 1.25rem;
+    }
+
+    .social a {
+        display: inline-flex;
+        color: var(--sl-color-gray-4);
+    }
+
+    .social a:hover { color: var(--sl-color-white); }
+
+    .social :global(svg) { width: 1.3rem; height: 1.3rem; }
+
+    .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1.5rem;
+        font-size: var(--sl-text-sm);
+        color: var(--sl-color-gray-3);
+    }
+
+    .meta :global(p), .meta :global(a) { margin: 0; font-size: var(--sl-text-sm); }
+
+    @media (max-width: 40rem) {
+        .pager { grid-template-columns: minmax(0, 1fr); }
+        .pager-link--next { align-items: flex-start; text-align: start; }
+    }
+</style>

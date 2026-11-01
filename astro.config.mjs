@@ -18,6 +18,7 @@ export default defineConfig({
             components: {
                 Header: './src/components/Header.astro',
                 PageTitle: './src/components/PageTitle.astro',
+                Footer: './src/components/Footer.astro',
             },
             plugins: [
                 starlightSidebarTopics([
