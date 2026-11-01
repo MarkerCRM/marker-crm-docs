@@ -126,3 +126,51 @@
     font-size: var(--sl-text-sm);
     font-weight: 600;
 }
+
+/* Thin scrollbars, like the ones the content frame and sidebar should have. */
+.sidebar-pane, .main-frame > div, .right-sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--sl-color-gray-5) transparent;
+}
+
+:is(.sidebar-pane, .main-frame > div)::-webkit-scrollbar { width: 6px; }
+:is(.sidebar-pane, .main-frame > div)::-webkit-scrollbar-thumb { border-radius: 999px; background: var(--sl-color-gray-5); }
+:is(.sidebar-pane, .main-frame > div)::-webkit-scrollbar-track { background: transparent; }
+
+@media (min-width: 50rem) {
+    /* The page stays put and the card scrolls inside its frame. */
+    body { overflow: hidden; }
+
+    .main-frame > div {
+        height: calc(100dvh - var(--sl-nav-height) - 0.75rem);
+        min-height: 0;
+        overflow-y: auto;
+        scroll-padding-top: 1.5rem;
+    }
+
+    /* On pages with a sidebar the search box sits at its top, as a full-width field. */
+    [data-has-sidebar] .header .search {
+        position: fixed;
+        top: calc(var(--sl-nav-height) + 0.25rem);
+        left: var(--sl-sidebar-pad-x);
+        width: calc(var(--sl-sidebar-width) - 2 * var(--sl-sidebar-pad-x));
+    }
+
+    [data-has-sidebar] .sidebar-content { padding-top: 3.75rem; }
+
+    [data-has-sidebar] .header site-search,
+    [data-has-sidebar] .header site-search > button { width: 100%; max-width: none; }
+
+    .header site-search > button {
+        height: 2.5rem;
+        padding-inline: 0.85rem;
+        border: 1px solid var(--sl-color-hairline);
+        border-radius: 0.75rem;
+        background: var(--sl-color-bg);
+        color: var(--sl-color-gray-3);
+    }
+
+    .header site-search > button:hover { border-color: var(--sl-color-gray-4); color: var(--sl-color-white); }
+
+    .header site-search > button > span::after { content: '…'; }
+}

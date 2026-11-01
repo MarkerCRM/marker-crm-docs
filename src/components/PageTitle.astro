@@ -1,4 +1,6 @@
 ---
+import {markdownPath, pageMarkdown} from '../lib/markdown';
+
 const {entry, sidebar} = Astro.locals.starlightRoute;
 
 // The label of the sidebar group holding this page, shown above its title.
@@ -16,8 +18,21 @@ const sectionOf = (items, label = null) => {
 };
 
 const section = sectionOf(sidebar);
-const markdown = entry.body ? `# ${entry.data.title}\n\n${entry.body.replace(/^import .*\n/gm, '').trim()}\n` : '';
+const markdown = pageMarkdown(entry);
+const rawUrl = new URL(markdownPath(Astro.url.pathname), Astro.site).href;
+const prompt = encodeURIComponent(`Read ${rawUrl} so I can ask questions about it.`);
+
+const icon = paths => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
+const COPY = '<rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>';
+
+const options = [
+    {key: 'copy', label: 'Copy page', hint: 'Copy page as Markdown for LLMs', icon: COPY},
+    {key: 'view', label: 'View as Markdown', hint: 'View this page as plain text', href: markdownPath(Astro.url.pathname), icon: '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/>'},
+    {key: 'chatgpt', label: 'Open in ChatGPT', hint: 'Ask questions about this page', href: `https://chatgpt.com/?hints=search&q=${prompt}`, icon: '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>'},
+    {key: 'claude', label: 'Open in Claude', hint: 'Ask questions about this page', href: `https://claude.ai/new?q=${prompt}`, icon: '<path d="M12 3v18"/><path d="M3 12h18"/><path d="m5.6 5.6 12.8 12.8"/><path d="m18.4 5.6-12.8 12.8"/>'},
+];
 ---
+
 
 <div class="page-title">
     {section && <p class="eyebrow">{section}</p>}
@@ -26,10 +41,21 @@ const markdown = entry.body ? `# ${entry.data.title}\n\n${entry.body.replace(/^i
         <h1 id="_top">{entry.data.title}</h1>
 
         {markdown && (
-            <button type="button" class="copy-page" data-copy-page aria-live="polite">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-                <span>Copy page</span>
-            </button>
+            <div class="copy-page" data-page-actions>
+                <button type="button" class="copy-main" data-copy-page>
+                    <Fragment set:html={icon(COPY)}/>
+                    <span data-copy-label aria-live="polite">Copy page</span>
+                </button>
+                <button type="button" class="copy-toggle" data-menu-toggle aria-haspopup="menu" aria-expanded="false" aria-label="More ways to use this page">
+                    <Fragment set:html={icon('<path d="m6 9 6 6 6-6"/>')}/>
+                </button>
+
+                <div class="copy-menu" role="menu" data-menu hidden>
+                    {options.map(option => (option.href
+                        ? <a role="menuitem" href={option.href} target="_blank" rel="noopener" class="copy-item"><Fragment set:html={icon(option.icon)}/><span><strong>{option.label}</strong><small>{option.hint}</small></span></a>
+                        : <button type="button" role="menuitem" class="copy-item" data-copy-page><Fragment set:html={icon(option.icon)}/><span><strong>{option.label}</strong><small>{option.hint}</small></span></button>))}
+                </div>
+            </div>
         )}
     </div>
 
@@ -39,11 +65,29 @@ const markdown = entry.body ? `# ${entry.data.title}\n\n${entry.body.replace(/^i
 </div>
 
 <script>
-    document.querySelectorAll<HTMLButtonElement>('[data-copy-page]').forEach((button) => {
-        const label = button.querySelector('span');
-        const source = button.closest('.page-title')?.querySelector<HTMLTemplateElement>('[data-page-markdown]');
+    document.querySelectorAll<HTMLElement>('[data-page-actions]').forEach((actions) => {
+        const label = actions.querySelector('[data-copy-label]');
+        const source = actions.closest('.page-title')?.querySelector<HTMLTemplateElement>('[data-page-markdown]');
+        const toggle = actions.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+        const menu = actions.querySelector<HTMLElement>('[data-menu]');
+        const items = () => [...(menu?.querySelectorAll<HTMLElement>('[role="menuitem"]') ?? [])];
 
-        button.addEventListener('click', async () => {
+        const close = (focus = false) => {
+            if (!menu || menu.hidden) return;
+            menu.hidden = true;
+            toggle?.setAttribute('aria-expanded', 'false');
+            if (focus) toggle?.focus();
+        };
+
+        const open = () => {
+            if (!menu) return;
+            menu.hidden = false;
+            toggle?.setAttribute('aria-expanded', 'true');
+            items()[0]?.focus();
+        };
+
+        actions.querySelectorAll('[data-copy-page]').forEach(button => button.addEventListener('click', async () => {
+            close(true);
             if (!label || !source) return;
 
             try {
@@ -54,6 +98,24 @@ const markdown = entry.body ? `# ${entry.data.title}\n\n${entry.body.replace(/^i
             }
 
             setTimeout(() => { label.textContent = 'Copy page'; }, 2000);
+        }));
+
+        toggle?.addEventListener('click', () => (menu?.hidden ? open() : close()));
+
+        menu?.addEventListener('keydown', (event) => {
+            const list = items();
+            const at = list.indexOf(document.activeElement as HTMLElement);
+
+            if (event.key === 'Escape') close(true);
+            if (event.key === 'ArrowDown') list[(at + 1) % list.length]?.focus();
+            if (event.key === 'ArrowUp') list[(at - 1 + list.length) % list.length]?.focus();
+            if (['Escape', 'ArrowDown', 'ArrowUp'].includes(event.key)) event.preventDefault();
+        });
+
+        menu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => close()));
+
+        document.addEventListener('click', (event) => {
+            if (!actions.contains(event.target as Node)) close();
         });
     });
 </script>
@@ -92,15 +154,21 @@ const markdown = entry.body ? `# ${entry.data.title}\n\n${entry.body.replace(/^i
     }
 
     .copy-page {
+        position: relative;
         display: inline-flex;
         flex-shrink: 0;
+        margin-top: 0.4rem;
+        border: 1px solid var(--sl-color-hairline);
+        border-radius: 0.6rem;
+        background: var(--sl-color-bg);
+    }
+
+    .copy-page button {
+        display: inline-flex;
         align-items: center;
         gap: 0.45rem;
-        margin-top: 0.4rem;
-        padding: 0.4rem 0.75rem;
-        border: 1px solid var(--sl-color-hairline);
-        border-radius: 0.55rem;
-        background: var(--sl-color-bg);
+        border: 0;
+        background: transparent;
         font: inherit;
         font-size: var(--sl-text-sm);
         font-weight: 500;
@@ -108,12 +176,55 @@ const markdown = entry.body ? `# ${entry.data.title}\n\n${entry.body.replace(/^i
         cursor: pointer;
     }
 
-    .copy-page:hover { color: var(--sl-color-white); border-color: var(--sl-color-gray-4); }
+    .copy-main { padding: 0.4rem 0.7rem; border-radius: 0.6rem 0 0 0.6rem; }
 
-    .copy-page svg { width: 1rem; height: 1rem; }
+    .copy-toggle { padding: 0.4rem 0.5rem; border-inline-start: 1px solid var(--sl-color-hairline) !important; border-radius: 0 0.6rem 0.6rem 0; }
+
+    .copy-page button:hover { color: var(--sl-color-white); background: var(--sl-color-gray-7, var(--sl-color-gray-6)); }
+
+    .copy-page :global(svg) { width: 1rem; height: 1rem; flex-shrink: 0; }
+
+    .copy-menu {
+        position: absolute;
+        top: calc(100% + 0.4rem);
+        right: 0;
+        z-index: 20;
+        width: 18rem;
+        padding: 0.35rem;
+        border: 1px solid var(--sl-color-hairline);
+        border-radius: 0.8rem;
+        background: var(--sl-color-bg);
+        box-shadow: 0 12px 32px rgb(0 0 0 / 0.12);
+    }
+
+    .copy-menu[hidden] { display: none; }
+
+    .copy-page .copy-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.7rem;
+        width: 100%;
+        padding: 0.55rem 0.65rem;
+        border-radius: 0.55rem;
+        color: var(--sl-color-white);
+        text-align: start;
+        text-decoration: none;
+    }
+
+    .copy-item :global(svg) { margin-top: 0.15rem; color: var(--sl-color-gray-2); }
+
+    .copy-item span { display: flex; flex-direction: column; }
+
+    .copy-item strong { font-size: var(--sl-text-sm); font-weight: 500; }
+
+    .copy-item small { font-size: var(--sl-text-xs); color: var(--sl-color-gray-3); }
+
+    .copy-page .copy-item:hover, .copy-page .copy-item:focus-visible {
+        background: var(--sl-color-gray-7, var(--sl-color-gray-6));
+        outline: none;
+    }
 
     @media (max-width: 40rem) {
-        .copy-page span { display: none; }
-        .copy-page { padding: 0.45rem; }
+        .copy-main span { display: none; }
     }
 </style>
