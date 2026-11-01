@@ -14,6 +14,20 @@ const options = [
     ))}
 </mc-theme-toggle>
 
+<script is:inline>
+    // Marks the stored choice while the page is still parsing, so the highlight never jumps after paint.
+    (() => {
+        let choice = 'auto';
+        try {
+            const stored = localStorage.getItem('starlight-theme');
+            if (stored === 'light' || stored === 'dark') choice = stored;
+        } catch {}
+        document.querySelectorAll('[data-theme-value]').forEach((button) => {
+            button.setAttribute('aria-checked', String(button.dataset.themeValue === choice));
+        });
+    })();
+</script>
+
 <script>
     // Starlight's own key and values, so its theme provider and the phone menu's select agree with this one.
     const KEY = 'starlight-theme';

@@ -42,9 +42,10 @@ const options = [
 
         {markdown && (
             <div class="copy-page" data-page-actions>
-                <button type="button" class="copy-main" data-copy-page>
-                    <Fragment set:html={icon(COPY)}/>
-                    <span data-copy-label aria-live="polite">Copy page</span>
+                <button type="button" class="copy-main" data-copy-page aria-label="Copy page as Markdown" title="Copy page">
+                    <span class="copy-icon" data-copy-icon><Fragment set:html={icon(COPY)}/></span>
+                    <span class="copy-icon" data-copied-icon hidden><Fragment set:html={icon('<path d="M20 6 9 17l-5-5"/>')}/></span>
+                    <span class="sr-only" data-copy-label aria-live="polite"></span>
                 </button>
                 <button type="button" class="copy-toggle" data-menu-toggle aria-haspopup="menu" aria-expanded="false" aria-label="More ways to use this page">
                     <Fragment set:html={icon('<path d="m6 9 6 6 6-6"/>')}/>
@@ -86,18 +87,27 @@ const options = [
             items()[0]?.focus();
         };
 
+        const copyIcon = actions.querySelector<HTMLElement>('[data-copy-icon]');
+        const copiedIcon = actions.querySelector<HTMLElement>('[data-copied-icon]');
+
         actions.querySelectorAll('[data-copy-page]').forEach(button => button.addEventListener('click', async () => {
             close(true);
-            if (!label || !source) return;
+            if (!label || !source || !copyIcon || !copiedIcon) return;
 
             try {
                 await navigator.clipboard.writeText(source.content.textContent ?? '');
-                label.textContent = 'Copied';
+                label.textContent = 'Page copied';
+                copyIcon.hidden = true;
+                copiedIcon.hidden = false;
             } catch {
-                label.textContent = 'Could not copy';
+                label.textContent = 'The page could not be copied';
             }
 
-            setTimeout(() => { label.textContent = 'Copy page'; }, 2000);
+            setTimeout(() => {
+                label.textContent = '';
+                copyIcon.hidden = false;
+                copiedIcon.hidden = true;
+            }, 2000);
         }));
 
         toggle?.addEventListener('click', () => (menu?.hidden ? open() : close()));
@@ -176,7 +186,13 @@ const options = [
         cursor: pointer;
     }
 
-    .copy-main { padding: 0.4rem 0.7rem; border-radius: 0.6rem 0 0 0.6rem; }
+    .copy-main { padding: 0.45rem 0.6rem; border-radius: 0.6rem 0 0 0.6rem; }
+
+    .copy-icon { display: inline-flex; }
+
+    .copy-icon[hidden] { display: none; }
+
+    .copy-main [data-copied-icon] { color: var(--sl-color-accent); }
 
     .copy-toggle { padding: 0.4rem 0.5rem; border-inline-start: 1px solid var(--sl-color-hairline) !important; border-radius: 0 0.6rem 0.6rem 0; }
 
@@ -224,7 +240,4 @@ const options = [
         outline: none;
     }
 
-    @media (max-width: 40rem) {
-        .copy-main span { display: none; }
-    }
 </style>

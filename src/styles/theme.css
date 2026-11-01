@@ -179,3 +179,35 @@
     /* Without a sidebar the card would touch the left edge while keeping its gap on the right. */
     :root:not([data-has-sidebar]) .main-frame { padding-inline-start: 0.75rem; }
 }
+
+@media (min-width: 50rem) {
+    /* The home page searches from its hero, so the header keeps one search in one place everywhere else. */
+    :root:not([data-has-sidebar]) .header site-search > button {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+    }
+}
+
+/* Moving between pages swaps only the content: the header and sidebar carry over, so the logo never flickers. */
+@view-transition { navigation: auto; }
+
+.header { view-transition-name: mc-header; }
+
+.sidebar-pane { view-transition-name: mc-sidebar; }
+
+::view-transition-old(root),
+::view-transition-new(root) { animation-duration: 0.12s; }
+
+::view-transition-old(mc-header),
+::view-transition-new(mc-header),
+::view-transition-old(mc-sidebar),
+::view-transition-new(mc-sidebar) { animation: none; }
+
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) { animation: none !important; }
+}
