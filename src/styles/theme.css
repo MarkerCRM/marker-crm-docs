@@ -158,21 +158,7 @@
 
     [data-has-sidebar] .sidebar-content { padding-top: 3.75rem; }
 
-    [data-has-sidebar] .header site-search,
-    [data-has-sidebar] .header site-search > button { width: 100%; max-width: none; }
-
-    .header site-search > button {
-        height: 2.5rem;
-        padding-inline: 0.85rem;
-        border: 1px solid var(--sl-color-hairline);
-        border-radius: 0.75rem;
-        background: var(--sl-color-bg);
-        color: var(--sl-color-gray-3);
-    }
-
-    .header site-search > button:hover { border-color: var(--sl-color-gray-4); color: var(--sl-color-white); }
-
-    .header site-search > button > span::after { content: '…'; }
+    [data-has-sidebar] .header mc-search { display: block; width: 100%; }
 }
 
 @media (min-width: 50rem) {
@@ -182,7 +168,7 @@
 
 @media (min-width: 50rem) {
     /* The home page searches from its hero, so the header keeps one search in one place everywhere else. */
-    :root:not([data-has-sidebar]) .header site-search > button {
+    :root:not([data-has-sidebar]) .header .mc-search-trigger {
         position: absolute;
         width: 1px;
         height: 1px;

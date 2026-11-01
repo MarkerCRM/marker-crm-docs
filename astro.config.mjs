@@ -2,6 +2,7 @@
 import {defineConfig} from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightSidebarTopics from 'starlight-sidebar-topics';
+import {sidebarTopics} from './src/lib/sections.mjs';
 
 export default defineConfig({
     site: 'https://docs.markercrm.com',
@@ -18,38 +19,10 @@ export default defineConfig({
                 Header: './src/components/Header.astro',
                 PageTitle: './src/components/PageTitle.astro',
                 Footer: './src/components/Footer.astro',
+                Search: './src/components/Search.astro',
             },
             plugins: [
-                starlightSidebarTopics([
-                    {
-                        id: 'guides',
-                        label: 'Guides',
-                        link: '/getting-started/',
-                        icon: 'open-book',
-                        items: [
-                            {label: 'Getting started', items: [{autogenerate: {directory: 'getting-started'}}]},
-                            {label: 'Contacts', items: [{autogenerate: {directory: 'contacts'}}]},
-                            {label: 'Emails', items: [{autogenerate: {directory: 'emails'}}]},
-                            {label: 'Automations', items: [{autogenerate: {directory: 'automations'}}]},
-                            {label: 'Reports', items: [{autogenerate: {directory: 'reports'}}]},
-                            {label: 'Logs', items: [{autogenerate: {directory: 'logs'}}]},
-                            {label: 'Settings', items: [{autogenerate: {directory: 'settings'}}]},
-                            {label: 'Add-ons', link: '/add-ons/'},
-                        ],
-                    },
-                    {
-                        id: 'developers',
-                        label: 'Developers',
-                        link: '/developers/',
-                        icon: 'puzzle',
-                        items: [
-                            {label: 'Start here', items: [{autogenerate: {directory: 'developers/start'}}]},
-                            {label: 'Automations', items: [{autogenerate: {directory: 'developers/automations'}}]},
-                            {label: 'Extending the CRM', items: [{autogenerate: {directory: 'developers/extending'}}]},
-                            {label: 'Reference', items: [{autogenerate: {directory: 'developers/reference'}}]},
-                        ],
-                    },
-                ], {exclude: ['/'], topics: {developers: ['/developers/']}}),
+                starlightSidebarTopics(sidebarTopics(), {exclude: ['/'], topics: {developers: ['/developers/']}}),
             ],
         }),
     ],

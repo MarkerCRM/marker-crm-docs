@@ -1,0 +1,381 @@
+---
+const glyph = paths => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
+const SEARCH = '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>';
+---
+
+<mc-search>
+    <button type="button" class="mc-search-trigger" data-open-search aria-label="Search the docs" aria-keyshortcuts="Control+K Meta+K">
+        <Fragment set:html={glyph(SEARCH)}/>
+        <span class="mc-search-label">Search…</span>
+        <kbd class="mc-search-kbd" data-mod-key>⌘K</kbd>
+    </button>
+
+    <dialog class="mc-search-dialog" aria-label="Search the docs">
+        <div class="mc-search-panel">
+            <div class="mc-search-field">
+                <Fragment set:html={glyph(SEARCH)}/>
+                <input
+                    type="search"
+                    placeholder="Search the docs…"
+                    autocomplete="off"
+                    spellcheck="false"
+                    role="combobox"
+                    aria-autocomplete="list"
+                    aria-expanded="true"
+                    aria-controls="mc-search-results"
+                    data-search-input
+                >
+                <button type="button" class="mc-search-close" data-close-search aria-label="Close search">Esc</button>
+            </div>
+
+            <p class="mc-search-heading" data-search-heading>Recent searches</p>
+            <ul id="mc-search-results" class="mc-search-results" role="listbox" aria-label="Results" data-search-results></ul>
+            <p class="mc-search-empty" data-search-empty hidden></p>
+
+            <footer class="mc-search-footer">
+                <span><kbd>↑</kbd><kbd>↓</kbd> Select</span>
+                <span><kbd>↵</kbd> Open</span>
+                <span class="mc-search-footer-end"><kbd>Esc</kbd> Close</span>
+            </footer>
+        </div>
+    </dialog>
+</mc-search>
+
+<script>
+    import {breadcrumbFor} from '../lib/sections.mjs';
+
+    type Row = {kind: 'page' | 'heading'; title: string; url: string; crumbs: string[]};
+
+    const RECENT = 'mc-recent-searches';
+    const PAGE_ICON = '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/>';
+    const HEADING_ICON = '<path d="M4 9h16"/><path d="M4 15h16"/><path d="M10 3 8 21"/><path d="M16 3l-2 18"/>';
+    const icon = (paths: string) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
+    const escape = (text: string) => text.replace(/[&<>"]/g, char => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[char] as string));
+
+    const recent = (): Row[] => {
+        try {
+            return JSON.parse(localStorage.getItem(RECENT) || '[]');
+        } catch {
+            return [];
+        }
+    };
+
+    const remember = (row: Row) => {
+        try {
+            localStorage.setItem(RECENT, JSON.stringify([row, ...recent().filter(entry => entry.url !== row.url)].slice(0, 6)));
+        } catch {}
+    };
+
+    let pagefind: any = null;
+
+    const loadIndex = async () => {
+        if (!pagefind) {
+            const path = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/pagefind/pagefind.js`;
+            pagefind = await import(/* @vite-ignore */ path);
+            await pagefind.init();
+        }
+
+        return pagefind;
+    };
+
+    class Search extends HTMLElement {
+        dialog!: HTMLDialogElement;
+        input!: HTMLInputElement;
+        list!: HTMLUListElement;
+        rows: Row[] = [];
+        active = 0;
+        ticket = 0;
+
+        connectedCallback() {
+            this.dialog = this.querySelector('dialog')!;
+            this.input = this.querySelector('[data-search-input]')!;
+            this.list = this.querySelector('[data-search-results]')!;
+
+            if (!/Mac|iPhone|iPad/.test(navigator.platform)) this.querySelector('[data-mod-key]')!.textContent = 'Ctrl K';
+
+            this.querySelector('[data-open-search]')!.addEventListener('click', () => this.open());
+            this.querySelector('[data-close-search]')!.addEventListener('click', () => this.dialog.close());
+            this.dialog.addEventListener('click', (event) => { if (event.target === this.dialog) this.dialog.close(); });
+            this.dialog.addEventListener('close', () => document.body.removeAttribute('data-search-open'));
+            this.input.addEventListener('input', () => this.search());
+            this.input.addEventListener('keydown', event => this.keys(event));
+
+            document.addEventListener('mc:open-search', () => this.open());
+            window.addEventListener('keydown', (event) => {
+                const typing = (event.target as HTMLElement)?.closest?.('input, textarea, [contenteditable]');
+                if (((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') || (event.key === '/' && !typing)) {
+                    event.preventDefault();
+                    this.dialog.open ? this.dialog.close() : this.open();
+                }
+            });
+        }
+
+        open() {
+            if (this.dialog.open) return;
+
+            this.dialog.showModal();
+            document.body.setAttribute('data-search-open', '');
+            this.input.select();
+            this.search();
+            loadIndex().catch(() => {});
+        }
+
+        async search() {
+            const query = this.input.value.trim();
+            const mine = ++this.ticket;
+
+            if (!query) {
+                this.show(recent(), recent().length ? 'Recent searches' : '', recent().length ? '' : 'Search the guides and the developer docs.');
+                return;
+            }
+
+            try {
+                const index = await loadIndex();
+                const found = await index.debouncedSearch(query, {}, 150);
+                if (found === null || mine !== this.ticket) return;
+
+                const pages = await Promise.all(found.results.slice(0, 8).map((result: any) => result.data()));
+                if (mine !== this.ticket) return;
+
+                const rows: Row[] = [];
+
+                pages.forEach((page: any) => {
+                    const pageUrl = page.url;
+                    const crumbs = breadcrumbFor(new URL(pageUrl, location.origin).pathname);
+                    const title = page.meta?.title || pageUrl;
+
+                    rows.push({kind: 'page', title, url: pageUrl, crumbs});
+
+                    (page.sub_results || [])
+                        .filter((sub: any) => sub.url !== pageUrl && sub.title && sub.title !== title)
+                        .slice(0, 2)
+                        .forEach((sub: any) => rows.push({kind: 'heading', title: sub.title, url: sub.url, crumbs: [...crumbs, title].filter((crumb, at, all) => crumb !== all[at - 1])}));
+                });
+
+                this.show(rows.slice(0, 14), '', rows.length ? '' : `No results for “${query}”.`);
+            } catch {
+                this.show([], '', 'Search is available on the published site, after a build.');
+            }
+        }
+
+        show(rows: Row[], heading: string, empty: string) {
+            this.rows = rows;
+            this.active = 0;
+
+            const headingEl = this.querySelector<HTMLElement>('[data-search-heading]')!;
+            headingEl.textContent = heading;
+            headingEl.hidden = !heading;
+
+            const emptyEl = this.querySelector<HTMLElement>('[data-search-empty]')!;
+            emptyEl.textContent = empty;
+            emptyEl.hidden = !empty;
+
+            this.list.innerHTML = rows.map((row, index) => `
+                <li id="mc-search-option-${index}" role="option" aria-selected="${index === 0}" class="mc-search-row" data-index="${index}">
+                    <a href="${escape(row.url)}" tabindex="-1">
+                        <span class="mc-search-icon">${icon(row.kind === 'page' ? PAGE_ICON : HEADING_ICON)}</span>
+                        <span class="mc-search-text">
+                            <span class="mc-search-title">${escape(row.title)}</span>
+                            ${row.crumbs.length ? `<span class="mc-search-crumbs">${row.crumbs.map(escape).join('<span aria-hidden="true"> › </span>')}</span>` : ''}
+                        </span>
+                    </a>
+                </li>`).join('');
+
+            this.list.querySelectorAll<HTMLElement>('[data-index]').forEach((item) => {
+                const index = Number(item.dataset.index);
+                item.addEventListener('mousemove', () => this.highlight(index));
+                item.querySelector('a')!.addEventListener('click', () => remember(this.rows[index]));
+            });
+
+            this.highlight(0);
+        }
+
+        highlight(index: number) {
+            if (!this.rows.length) {
+                this.input.removeAttribute('aria-activedescendant');
+                return;
+            }
+
+            this.active = (index + this.rows.length) % this.rows.length;
+            this.list.querySelectorAll('[role="option"]').forEach((option, at) => option.setAttribute('aria-selected', String(at === this.active)));
+            this.input.setAttribute('aria-activedescendant', `mc-search-option-${this.active}`);
+            this.list.querySelector(`#mc-search-option-${this.active}`)?.scrollIntoView({block: 'nearest'});
+        }
+
+        keys(event: KeyboardEvent) {
+            if (event.key === 'ArrowDown') this.highlight(this.active + 1);
+            else if (event.key === 'ArrowUp') this.highlight(this.active - 1);
+            else if (event.key === 'Enter' && this.rows[this.active]) {
+                remember(this.rows[this.active]);
+                window.location.href = this.rows[this.active].url;
+            } else return;
+
+            event.preventDefault();
+        }
+    }
+
+    customElements.define('mc-search', Search);
+</script>
+
+<style>
+    .mc-search-trigger {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        width: 100%;
+        height: 2.5rem;
+        padding: 0 0.85rem;
+        border: 1px solid var(--sl-color-hairline);
+        border-radius: 0.75rem;
+        background: var(--sl-color-bg);
+        font: inherit;
+        font-size: var(--sl-text-sm);
+        color: var(--sl-color-gray-3);
+        cursor: pointer;
+    }
+
+    .mc-search-trigger:hover { border-color: var(--sl-color-gray-4); color: var(--sl-color-white); }
+
+    .mc-search-label { flex: 1; text-align: start; }
+
+    .mc-search-trigger :global(svg), .mc-search-field :global(svg) { width: 1rem; height: 1rem; flex-shrink: 0; }
+
+    kbd {
+        padding: 0.05rem 0.4rem;
+        border: 1px solid var(--sl-color-gray-5);
+        border-radius: 0.35rem;
+        background: var(--sl-color-gray-7, var(--sl-color-gray-6));
+        font-family: inherit;
+        font-size: var(--sl-text-xs);
+        color: var(--sl-color-gray-3);
+    }
+
+    @media (max-width: 49.99rem) {
+        .mc-search-trigger { width: auto; padding: 0.5rem; border: 0; background: transparent; color: var(--sl-color-white); }
+        .mc-search-label, .mc-search-kbd { display: none; }
+        .mc-search-trigger :global(svg) { width: 1.25rem; height: 1.25rem; }
+    }
+
+    .mc-search-dialog {
+        width: min(40rem, calc(100vw - 2rem));
+        max-height: min(36rem, calc(100dvh - 4rem));
+        margin: 10vh auto auto;
+        padding: 0;
+        border: 1px solid var(--sl-color-hairline);
+        border-radius: 1.25rem;
+        background: var(--sl-color-bg);
+        color: var(--sl-color-white);
+        box-shadow: 0 24px 64px rgb(0 0 0 / 0.2);
+    }
+
+    .mc-search-dialog::backdrop { background: rgb(0 0 0 / 0.35); backdrop-filter: blur(2px); }
+
+    .mc-search-panel {
+        display: flex;
+        flex-direction: column;
+        max-height: inherit;
+        padding: 0.6rem;
+    }
+
+    .mc-search-field {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        padding: 0 0.6rem 0 0.9rem;
+        border: 1px solid var(--sl-color-gray-5);
+        border-radius: 0.9rem;
+        color: var(--sl-color-gray-3);
+    }
+
+    .mc-search-field:focus-within { border-color: var(--sl-color-gray-4); }
+
+    .mc-search-field input {
+        flex: 1;
+        min-width: 0;
+        height: 3rem;
+        border: 0;
+        outline: none;
+        background: transparent;
+        font: inherit;
+        font-size: var(--sl-text-lg);
+        color: var(--sl-color-white);
+    }
+
+    .mc-search-field input::-webkit-search-cancel-button { display: none; }
+
+    .mc-search-close {
+        padding: 0.2rem 0.5rem;
+        border: 1px solid var(--sl-color-gray-5);
+        border-radius: 0.4rem;
+        background: transparent;
+        font: inherit;
+        font-size: var(--sl-text-xs);
+        color: var(--sl-color-gray-3);
+        cursor: pointer;
+    }
+
+    .mc-search-heading, .mc-search-empty {
+        margin: 0.9rem 0.75rem 0.35rem;
+        font-size: var(--sl-text-sm);
+        color: var(--sl-color-gray-3);
+    }
+
+    .mc-search-empty { margin-bottom: 1rem; }
+
+    .mc-search-results {
+        flex: 1;
+        min-height: 0;
+        margin: 0.25rem 0 0;
+        padding: 0;
+        overflow-y: auto;
+        list-style: none;
+        scrollbar-width: thin;
+    }
+
+    .mc-search-results :global(.mc-search-row a) {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.8rem;
+        padding: 0.6rem 0.75rem;
+        border-radius: 0.75rem;
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .mc-search-results :global(.mc-search-row[aria-selected='true'] a) { background: var(--sl-color-gray-7, var(--sl-color-gray-6)); }
+
+    .mc-search-results :global(.mc-search-icon) { display: inline-flex; margin-top: 0.1rem; color: var(--sl-color-gray-3); }
+
+    .mc-search-results :global(.mc-search-icon svg) { width: 1.1rem; height: 1.1rem; }
+
+    .mc-search-results :global(.mc-search-text) { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+
+    .mc-search-results :global(.mc-search-title) { font-weight: 500; color: var(--sl-color-white); }
+
+    .mc-search-results :global(.mc-search-crumbs) {
+        overflow: hidden;
+        font-size: var(--sl-text-sm);
+        color: var(--sl-color-gray-3);
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .mc-search-footer {
+        display: flex;
+        gap: 1.25rem;
+        margin-top: 0.5rem;
+        padding: 0.7rem 0.6rem 0.2rem;
+        border-top: 1px solid var(--sl-color-hairline);
+        font-size: var(--sl-text-sm);
+        color: var(--sl-color-gray-3);
+    }
+
+    .mc-search-footer span { display: inline-flex; align-items: center; gap: 0.3rem; }
+
+    .mc-search-footer-end { margin-inline-start: auto; }
+
+    @media (max-width: 40rem) {
+        .mc-search-footer { display: none; }
+        .mc-search-dialog { margin-top: 1rem; }
+    }
+</style>

@@ -69,7 +69,7 @@ const icon = name => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
             <span class="home-eyebrow">Documentation</span>
             <h1>Run your CRM inside WordPress</h1>
             <p class="home-lead">Guides for your contacts, emails and automations, and the reference for building on Marker CRM.</p>
-            <button type="button" class="home-search" data-open-search>
+            <button type="button" class="home-search" data-hero-search>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                 <span>Search the docs…</span>
                 <kbd>⌘K</kbd>
@@ -142,11 +142,8 @@ const icon = name => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
 </div>
 
 <script>
-    // The header's search dialog serves the whole site; this field opens it from the hero.
-    // The dialog closes on any click outside it, so this click must not reach the window after opening it.
-    document.querySelectorAll('[data-open-search]').forEach(button => button.addEventListener('click', (event) => {
-        event.stopPropagation();
-        document.querySelector<HTMLButtonElement>('site-search button[data-open-modal]')?.click();
+    document.querySelectorAll('[data-hero-search]').forEach(button => button.addEventListener('click', () => {
+        document.dispatchEvent(new CustomEvent('mc:open-search'));
     }));
 </script>
 
