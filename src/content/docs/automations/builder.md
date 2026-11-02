@@ -63,6 +63,9 @@ empty area in **Select** mode to draw a box around them (in **Pan** mode, hold
 <kbd>Shift</kbd> while you drag), then drag any one of them. The builder remembers where you
 put each card.
 
+Lines follow the cards. Place a step beside the one before it and they're joined side to side;
+place it below and the line runs from the bottom of one card to the top of the next.
+
 A step you have never placed by hand keeps its spot one gap below whatever comes before it,
 so when you drag a step, the unplaced steps after it follow along.
 
