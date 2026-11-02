@@ -1,5 +1,4 @@
 ---
-import {Code} from '@astrojs/starlight/components';
 import {popularPages} from '../lib/sections.mjs';
 
 // Lucide icons, the same set the plugin's admin uses.
@@ -11,12 +10,27 @@ const icons = {
     settings: '<path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/>',
     plug: '<path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/>',
     arrow: '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+    send: '<path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/>',
+    hand: '<path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2"/><path d="M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>',
+    clock: '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
+    upload: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/>',
+    filter: '<path d="M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z"/>',
+    code: '<path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/>',
 };
 
 const steps = [
     {title: 'Install and set up sending', text: 'Activate the plugin, then choose the name and address your emails come from.', href: '/getting-started/installation/'},
     {title: 'Bring in your contacts', text: 'Import a CSV, or let sign-ups and forms add people as they arrive.', href: '/contacts/import/'},
     {title: 'Send or automate', text: 'Send a campaign to a list, or start an automation from a recipe.', href: '/getting-started/quick-start/'},
+];
+
+const tasks = [
+    {icon: 'send', title: 'Send a newsletter', text: 'Write an email, choose who gets it, and send it now or at a set time.', href: '/emails/campaigns/'},
+    {icon: 'hand', title: 'Welcome new subscribers', text: 'Start the Welcome series recipe and every new member gets three emails over a week.', href: '/automations/'},
+    {icon: 'clock', title: 'Run an email course', text: 'A series of emails that each person receives on their own clock from the day they join.', href: '/emails/sequences/'},
+    {icon: 'upload', title: 'Move your contacts over', text: 'Export a CSV from your old tool and import it, with tags, lists and custom fields.', href: '/contacts/import/'},
+    {icon: 'filter', title: 'Email the right people', text: 'Save conditions as a segment that keeps itself up to date.', href: '/contacts/segments/'},
+    {icon: 'chart', title: 'See what worked', text: 'How much was opened, clicked, bounced and unsubscribed over any period.', href: '/reports/email/'},
 ];
 
 const areas = [
@@ -29,31 +43,6 @@ const areas = [
 ];
 
 
-const developerLinks = [
-    ['Your first add-on', 'A complete plugin with one trigger and one action.', '/developers/start/first-add-on/'],
-    ['Triggers and actions', 'The registration contract, fields and results.', '/developers/automations/triggers/'],
-    ['Hooks', 'Every action and filter Marker CRM fires.', '/developers/reference/hooks/'],
-    ['REST API', 'Routes, authentication and responses.', '/developers/reference/rest-api/'],
-];
-
-const snippet = `add_action('marker_crm/loaded', function () {
-    add_filter('marker_crm/automation_actions', function ($actions) {
-        $actions['acme_grant_points'] = [
-            'label'  => __('Grant reward points', 'acme'),
-            'group'  => __('Rewards', 'acme'),
-            'fields' => [[
-                'key'      => 'points',
-                'label'    => __('Points', 'acme'),
-                'type'     => 'number',
-                'required' => true,
-            ]],
-            'run'    => 'acme_grant_points',
-        ];
-
-        return $actions;
-    });
-});`;
-
 const icon = name => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name]}</svg>`;
 ---
 
@@ -62,7 +51,7 @@ const icon = name => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
         <div class="home-hero-text">
             <span class="home-eyebrow">Documentation</span>
             <h1>Run your CRM inside WordPress</h1>
-            <p class="home-lead">Guides for your contacts, emails and automations, and the reference for building on Marker CRM.</p>
+            <p class="home-lead">Step-by-step guides for keeping your contacts in one place, sending emails they want, and following up automatically — all from your WordPress dashboard.</p>
             <button type="button" class="home-search" data-hero-search>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                 <span>Search the docs…</span>
@@ -71,7 +60,7 @@ const icon = name => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
 
             <div class="home-actions">
                 <a class="home-button home-button--primary" href="/getting-started/">Get started <Fragment set:html={icon('arrow')}/></a>
-                <a class="home-button" href="/developers/">Developer docs</a>
+                <a class="home-button" href="/getting-started/quick-start/">Quick start</a>
             </div>
         </div>
 
@@ -98,6 +87,19 @@ const icon = name => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
         </ol>
     </section>
 
+    <section class="home-section" aria-labelledby="home-tasks-title">
+        <h2 id="home-tasks-title">What do you want to do?</h2>
+        <div class="home-tasks">
+            {tasks.map(task => (
+                <a class="home-task" href={task.href}>
+                    <span class="home-icon"><Fragment set:html={icon(task.icon)}/></span>
+                    <strong>{task.title}</strong>
+                    <span>{task.text}</span>
+                </a>
+            ))}
+        </div>
+    </section>
+
     <section class="home-section" aria-labelledby="home-guides-title">
         <h2 id="home-guides-title">Explore the guides</h2>
         <div class="home-areas">
@@ -118,21 +120,14 @@ const icon = name => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
         </div>
     </section>
 
-    <section class="home-developers" aria-labelledby="home-dev-title">
-        <div class="home-developers-text">
-            <span class="home-eyebrow">For developers</span>
-            <h2 id="home-dev-title">Build on Marker CRM</h2>
-            <p>Add-ons are ordinary WordPress plugins. Register your own automation triggers and actions, merge tags and segment fields, and they appear in the builder like the ones that ship.</p>
-            <ul>
-                {developerLinks.map(([label, text, href]) => (
-                    <li><a href={href}><strong>{label}</strong><span>{text}</span></a></li>
-                ))}
-            </ul>
-        </div>
-        <div class="home-code">
-            <Code code={snippet} lang="php" title="acme-rewards.php"/>
-        </div>
-    </section>
+    <a class="home-developers" href="/developers/">
+        <span class="home-icon"><Fragment set:html={icon('code')}/></span>
+        <span>
+            <strong>Building on Marker CRM?</strong>
+            <span>Hooks, the REST API, and add-ons that register their own triggers, actions and merge tags.</span>
+        </span>
+        <span class="home-developers-link">Developer docs <Fragment set:html={icon('arrow')}/></span>
+    </a>
 </div>
 
 <script>
@@ -351,7 +346,7 @@ const icon = name => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
         color: var(--sl-color-white);
     }
 
-    .home-steps a > span:last-child, .home-area-head span span, .home-developers li span {
+    .home-steps a > span:last-child, .home-area-head span span {
         font-size: var(--sl-text-sm);
         line-height: 1.55;
         color: var(--home-muted);
@@ -413,45 +408,78 @@ const icon = name => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
     .home-area li a:hover { color: var(--sl-color-accent); }
     .home-area li a:hover::after { opacity: 1; }
 
-    .home-developers {
+    .home-tasks {
         display: grid;
-        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.35fr);
-        gap: 2.5rem;
-        align-items: center;
-        padding: 2rem;
-        border: 1px solid var(--home-border);
-        border-radius: 1.1rem;
-        background: var(--sl-color-gray-7, var(--sl-color-gray-6));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
     }
 
-    .home-developers h2 { margin-bottom: 0.75rem; font-size: var(--sl-text-2xl); }
-
-    .home-developers p {
-        margin: 0 0 1.25rem;
-        line-height: 1.65;
-        color: var(--sl-color-gray-2);
-    }
-
-    .home-developers li a {
+    .home-task {
         display: flex;
         flex-direction: column;
-        padding: 0.6rem 0;
-        border-top: 1px solid var(--home-border);
+        gap: 0.35rem;
+        padding: 1.25rem;
+        border: 1px solid var(--home-border);
+        border-radius: 0.9rem;
+        background: var(--home-card);
+        transition: border-color 0.15s;
     }
 
-    .home-developers li a:hover strong { color: var(--sl-color-accent); }
+    .home-task:hover { border-color: var(--sl-color-gray-4); }
 
-    .home-code { min-width: 0; }
+    .home-task .home-icon { margin-bottom: 0.5rem; }
+
+    .home-task strong { font-weight: 600; color: var(--sl-color-white); }
+
+    .home-task > span:last-child {
+        font-size: var(--sl-text-sm);
+        line-height: 1.55;
+        color: var(--home-muted);
+    }
+
+    .home-developers {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.25rem;
+        border: 1px solid var(--home-border);
+        border-radius: 0.9rem;
+        transition: border-color 0.15s;
+    }
+
+    .home-developers:hover { border-color: var(--sl-color-gray-4); }
+
+    .home-developers > span:nth-child(2) {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: 0.15rem;
+    }
+
+    .home-developers > span:nth-child(2) > span {
+        font-size: var(--sl-text-sm);
+        color: var(--home-muted);
+    }
+
+    .home-developers-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: var(--sl-text-sm);
+        font-weight: 500;
+        white-space: nowrap;
+    }
+
+    .home-developers:hover .home-developers-link { color: var(--sl-color-accent); }
 
     @media (max-width: 64rem) {
-        .home-areas { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-        .home-developers { grid-template-columns: minmax(0, 1fr); }
+        .home-areas, .home-tasks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 48rem) {
         .home { gap: 3rem; }
-        .home-hero, .home-steps, .home-areas { grid-template-columns: minmax(0, 1fr); }
+        .home-hero, .home-steps, .home-areas, .home-tasks { grid-template-columns: minmax(0, 1fr); }
+        .home-developers { flex-wrap: wrap; }
         .home-hero { gap: 2rem; padding-top: 0.5rem; }
-        .home-developers { padding: 1.25rem; }
     }
 </style>
