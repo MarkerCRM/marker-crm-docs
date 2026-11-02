@@ -42,7 +42,9 @@ file name and how many rows it has.
 
 Each column in your file is listed with a sample value. Beside it, choose the contact field it
 fills, or leave it as **Not imported**. Columns with familiar headings — *E-mail*, *Surname*,
-*Zip*, *Phone* — are matched for you; check them.
+*Zip*, *Phone* — are matched for you; check them. Spacing and punctuation don't matter, so the
+headings in an Outlook or Google Contacts export (*E-mail Address*, *E-mail 1 - Value*,
+*Mobile Phone*) are matched too.
 
 - **Email** must be mapped. It is how contacts are matched and deduplicated, and **Continue**
   stays disabled until it is.

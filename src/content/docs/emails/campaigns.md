@@ -126,7 +126,8 @@ address and how many were left out, followed by a list of checks.
 - **Pick a date and time to schedule**, or **That send time has already passed**.
 - **A link has no address**.
 - For A/B tests: **Give every version a subject**, or tracking is off so the test cannot pick a
-  winner.
+  winner. Sending also stops if two versions share a subject line — *Each subject line in the
+  test must be different* — since there would be nothing to compare.
 
 **Other items are warnings.** You can send anyway, but read them: no postal address in the
 footer, no preview text, a free mailbox as the sender, **No test sent yet**, a subject that will

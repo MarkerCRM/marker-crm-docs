@@ -74,6 +74,7 @@ When you turn it on, the screen lists what deleting the plugin would remove:
 - Every contact, with their tags, lists and custom field values
 - Every log entry and background job
 - All CRM settings, including this one
+- Import and export files left on the server, and the key that signs links in sent emails
 
 Your WordPress users, posts and settings are not touched.
 

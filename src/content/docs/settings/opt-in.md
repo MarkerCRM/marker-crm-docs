@@ -21,8 +21,10 @@ receive anything else. It is on by default.
 It grows your list more slowly. In return, every address on it is real and belongs to someone
 who asked to hear from you. That keeps bounces and spam complaints down.
 
-While a contact hasn't confirmed, their status is **Pending** and campaigns skip them. When
-they click the confirm button they become **Subscribed**. The time and the
+While a contact hasn't confirmed, their status is **Pending** and campaigns skip them. The link
+in the email opens a page with a **Confirm my subscription** button; when they press it they
+become **Subscribed**. Opening the link alone confirms nothing, so a mail scanner that follows
+every link can't sign someone up. The time and the
 [part of their IP address](/settings/privacy/) are saved as proof that they agreed.
 
 :::note[Turning it off]
