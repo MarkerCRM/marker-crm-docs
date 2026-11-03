@@ -163,6 +163,12 @@ The body of `POST contacts` and `PUT contacts/{id}` is what
 | `POST` | `terms/{id}/visibility` | Make a list public or private | `edit_segments` |
 | `POST` | `terms/{id}/optin` | Set a list's own double opt-in | `edit_segments` |
 
+### Rule fields
+
+| Method | Path | Does | Capability |
+|---|---|---|---|
+| `GET` | `rule-fields` | Every rule field, for building conditions (`segments/fields` answers the same) | `view_segments` or `edit_automations` |
+
 ### Segments
 
 | Method | Path | Does | Capability |
@@ -170,7 +176,6 @@ The body of `POST contacts` and `PUT contacts/{id}` is what
 | `GET` | `segments` | List segments | `view_segments` |
 | `POST` | `segments` | Create a segment | `edit_segments` |
 | `GET` · `PUT` · `DELETE` | `segments/{id}` | Read, update, delete | `view_` · `edit_` · `delete_segments` |
-| `GET` | `segments/fields` | Every rule field, for building conditions | `view_segments` or `edit_automations` |
 | `POST` | `segments/preview` | Count and sample the contacts a `conditions` tree matches | `view_segments` |
 | `GET` | `segments/counts` | Contact counts for up to 100 segment `ids` | `view_segments` |
 
