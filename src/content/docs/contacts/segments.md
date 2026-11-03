@@ -67,12 +67,20 @@ three levels deep.
   **Date of birth**, **Source**, **Created**, **Status changed**, and your
   [custom fields](/contacts/custom-fields/).
 - **Segmentation** — **Status**, **Type**, **Tags**, **Lists**, and when consent was given.
-- **Email activity** — **Last email sent**, **Last email opened**, **Last email clicked**.
-- **Automations** and **Sequences** — whether a contact entered, is in, completed or left one
-  early.
-- **WordPress** — **Last login** and **WordPress role**, for contacts who are site users.
+- **Email activity** (Marker CRM Pro) — **Last email sent**, **Last email opened**, **Last email clicked**.
+- **Automations** (Marker CRM Pro) — whether a contact entered, is in, completed or left an
+  automation early.
+- **Sequences** — whether a contact entered, is in or completed a sequence.
+- **WordPress** — **WordPress role**, and with Marker CRM Pro **Last login**, for contacts who are
+  site users.
 - **Company** — company name, domain, industry, type, country and custom fields, when
   [Companies](/contacts/companies/) is on.
+
+:::note[If Marker CRM Pro is turned off]
+A segment that uses a Pro field stops matching: its count on **Segments** is left blank and its
+preview says a field is unknown. Nothing is deleted. The segment works again as soon as Pro is
+active.
+:::
 
 ## Saving a filter from the contacts table
 

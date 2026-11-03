@@ -49,7 +49,7 @@ numbers and underscores, prefixed with your plugin's slug.
 | Key | | |
 |---|---|---|
 | `label` | | Shown in the field picker. Defaults to the key |
-| `group` | | The picker tab it sits on. The core tabs are *Contact*, *Segmentation*, *Email activity*, *WordPress* and *Company*; any other name adds a tab |
+| `group` | | The picker tab it sits on. The core tabs are *Contact*, *Segmentation*, *Sequences*, *WordPress* and *Company* (Marker CRM Pro adds *Email activity* and *Automations*); any other name adds a tab |
 | `section` | | A heading inside the tab |
 | `type` | | `text` (the default), `number`, `select`, `multiselect`, `date` or `boolean`. Decides the input and the default operators |
 | `options` | | `[['value' => …, 'label' => …], …]` for `select` and `multiselect` |
@@ -125,8 +125,9 @@ a callable `resolve` is treated the same way.
 
 ## Changing core fields
 
-The filter receives every core field, already built — contact columns, subscriptions, email
-activity, automations, WordPress, company, tags, lists and custom fields. You may relabel or
+The filter receives every core field, already built — contact columns, subscriptions,
+sequences, WordPress, company, tags, lists and custom fields — and, with Marker CRM Pro, email
+activity, automations and last login. You may relabel or
 `unset()` one, but a rule already saved with a removed field stops being answerable.
 
 The field list is built once per request. If you add fields after the first segment has been
