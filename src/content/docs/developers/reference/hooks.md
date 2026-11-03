@@ -178,6 +178,8 @@ daily). Listen to `marker_crm/tick` instead of either.
 | `marker_crm/stateful_term_types` | `string[] $types` (`['list']`) | — | Types whose removed relations are kept as `unsubscribed` |
 | `marker_crm/term_boot_limit` | `int $limit` (`300`) | — | How many terms of a type the admin is sent before it searches the server |
 | `marker_crm/require_contact_email` | `bool` (`true`) | — | Return `false` to allow contacts with only a phone number |
+| `marker_crm/contact_list_args` | `array $args` | `array $input` (the request's parameters) | The contacts list's filters, read from the request — add your own keys here |
+| `marker_crm/contacts_query` | contacts query | `array $args` | Narrow the contacts list by your keys; a value you cannot answer should narrow to nobody |
 | `marker_crm/contact_channels` | `array $channels` | — | The subscription channels (`email`, `sms`): label, address normaliser and allowed statuses |
 | `marker_crm/contact_statuses` | `array $statuses` | — | Status key → label |
 | `marker_crm/starting_statuses` | `string[] $statuses` | — | The statuses a person may set by hand |

@@ -34,7 +34,7 @@ You can sort by **Name**, **Status** and **Added**.
 - The filter buttons narrow the table by **Type**, **Tags**, **Lists** and, with Companies
   on, **Company**. A tag or list filter shows contacts currently in it — someone who has
   unsubscribed from a list is not counted as in it.
-- **Advanced filter** swaps the quick filters for the full condition builder — the same one
+- **Advanced filter** (Marker CRM Pro) swaps the quick filters for the full condition builder — the same one
   [segments](/contacts/segments/) use. Build your conditions, choose **Apply**, and the table
   shows who matches. **Save as segment** keeps the conditions under a name so you can come
   back to them.
@@ -42,7 +42,7 @@ You can sort by **Name**, **Status** and **Added**.
 Filters are kept in the page address, so you can bookmark a filtered view or share the link
 with a colleague.
 
-When the table is filtered by a segment, a bar above it names the segment and its count.
+With Marker CRM Pro, when the table is filtered by a segment, a bar above it names the segment and its count.
 Choose the **×** in that bar to clear it.
 
 ### Bulk actions

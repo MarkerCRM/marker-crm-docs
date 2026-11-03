@@ -3,7 +3,16 @@ title: Segments
 description: Save a set of conditions as a segment that keeps itself up to date, and use it to filter contacts, choose campaign audiences and export.
 sidebar:
   order: 5
+  badge:
+    text: Pro
+    variant: note
 ---
+
+:::note[Marker CRM Pro]
+Segments, the advanced filter and segments as an audience are part of Marker CRM Pro. Without
+Pro, **Contacts → Segments** shows what they do and how to upgrade. Segments you saved are kept,
+and come back as they were when Pro is active.
+:::
 
 A segment is a filter you save once and reuse. It holds rules, not people: anyone who matches
 the rules is in, and anyone who stops matching drops out. You never add a contact to a

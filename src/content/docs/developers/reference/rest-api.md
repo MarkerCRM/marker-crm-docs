@@ -169,7 +169,7 @@ The body of `POST contacts` and `PUT contacts/{id}` is what
 |---|---|---|---|
 | `GET` | `rule-fields` | Every rule field, for building conditions (`segments/fields` answers the same) | `view_segments` or `edit_automations` |
 
-### Segments
+### Segments (Marker CRM Pro)
 
 | Method | Path | Does | Capability |
 |---|---|---|---|
