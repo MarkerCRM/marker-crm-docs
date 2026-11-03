@@ -28,9 +28,9 @@ any integrations you have installed.
 |---|---|
 | **Add a tag** / **Remove a tag** | Puts the chosen tags on the contact, or takes them off. |
 | **Add to a list** / **Remove from a list** | Adds the contact to the chosen lists, or takes them off. |
-| **Change contact email status** | Sets **New status** to **Subscribed**, **Pending**, **Unsubscribed** or **Transactional**. |
-| **Update contact fields** | Writes new values into one or more fields. Each row has **Field**, **How** and **New value**; **Add another field** adds a row. |
-| **Add a note or activity** | Leaves a note, call or meeting on the contact's timeline: **Kind**, **Title** and **What it says**. |
+| **Change contact email status** (Pro) | Sets **New status** to **Subscribed**, **Pending**, **Unsubscribed** or **Transactional**. |
+| **Update contact fields** (Pro) | Writes new values into one or more fields. Each row has **Field**, **How** and **New value**; **Add another field** adds a row. |
+| **Add a note or activity** (Pro) | Leaves a note, call or meeting on the contact's timeline: **Kind**, **Title** and **What it says**. |
 | **Add to a company** / **Remove from a company** | Links the contact to a company (optionally **Make it their primary company**), or unlinks them. Only while the companies module is on. |
 
 Some actions refuse on purpose, and the step is skipped with the reason in the contact's
@@ -52,8 +52,8 @@ history rather than failing:
 |---|---|
 | **Send an email** | Sends an email you write in this step. |
 | **Send a campaign's email** | Sends the email of an existing campaign, with that campaign's subject, content and sender. A contact who has already had that campaign is skipped. |
-| **Add to a sequence** | Starts the contact on a [sequence](/emails/sequences/) from its first email. The sequence must be on. |
-| **Take out of a sequence** | Stops the chosen sequences for this contact (leave empty for every sequence). |
+| **Add to a sequence** (Pro) | Starts the contact on a [sequence](/emails/sequences/) from its first email. The sequence must be on. |
+| **Take out of a sequence** (Pro) | Stops the chosen sequences for this contact (leave empty for every sequence). |
 
 For **Send an email**, click **Write the email** in the panel. The editor opens with the
 envelope above the content:
@@ -78,8 +78,8 @@ contact, their details fill the merge tags.
 
 | Action | What it does |
 |---|---|
-| **Take them out of other automations** | Ends the contact's runs in the chosen automations (leave empty for every other automation). |
-| **Start another automation** | Puts the contact into another automation at its first step. It has to be on, and its own re-entry setting decides whether they may start it again. |
+| **Take them out of other automations** (Pro) | Ends the contact's runs in the chosen automations (leave empty for every other automation). |
+| **Start another automation** (Pro) | Puts the contact into another automation at its first step. It has to be on, and its own re-entry setting decides whether they may start it again. |
 | **End the automation** | Takes the contact out here. The card reads *Contacts stop here*, and they count as **Completed**. |
 
 :::note[Automations can't send someone round in circles]
@@ -134,7 +134,7 @@ Find these under **Timing**.
 A contact whose date is missing, or already past, doesn't wait at all — they carry straight
 on. A wait until a date that has already passed shows as a warning in the checklist.
 
-### Wait for an event
+### Wait for an event (Pro)
 
 **Wait for an event** holds the contact until they do something, for at most a time limit.
 Click **Choose an event** to pick the event (any trigger), fill in its settings, and set

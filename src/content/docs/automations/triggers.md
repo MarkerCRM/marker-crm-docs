@@ -11,6 +11,13 @@ shown at the top of the canvas. When the event happens to a contact and the auto
 
 ![The trigger panel for Tag is added, with the Lead tag chosen and an Only if rule for contacts in the United States](/images/placeholder.svg)
 
+
+:::note[What Marker CRM starts from without Pro]
+**New user signs up**, **Added to a list**, **Contact is created** and **Confirms their subscription**
+start automations in Marker CRM itself. Every other trigger needs Marker CRM Pro and is listed with a
+**Pro** tag. **Tag is added**, **Tag is removed** and **Removed from a list** still work as goals without Pro.
+:::
+
 ## Choosing and changing the trigger
 
 A new automation from scratch asks for its trigger straight away. To change it later, click
@@ -77,15 +84,15 @@ on the rail.
 
 | Trigger | Starts when | Settings |
 |---|---|---|
-| **Tag is added** | One of the chosen tags is added to a contact. | **Tags**; **When**: **Any of them is added**, or **They have all of them** (starts when the last missing one arrives). |
-| **Tag is removed** | One of the chosen tags is taken off a contact. | **Tags**; **When**: **Any of them is removed**, or **They have none left**. |
+| **Tag is added** (Pro as a start; free as a goal) | One of the chosen tags is added to a contact. | **Tags**; **When**: **Any of them is added**, or **They have all of them** (starts when the last missing one arrives). |
+| **Tag is removed** (Pro as a start; free as a goal) | One of the chosen tags is taken off a contact. | **Tags**; **When**: **Any of them is removed**, or **They have none left**. |
 | **Added to a list** | A contact joins one of the chosen lists. | **Lists**; **When**, as for tags. |
-| **Removed from a list** | A contact leaves one of the chosen lists. | **Lists**; **When**, as for tags. |
+| **Removed from a list** (Pro as a start; free as a goal) | A contact leaves one of the chosen lists. | **Lists**; **When**, as for tags. |
 | **Contact is created** | A new contact is added, however they arrive. | None. |
 | **Confirms their subscription** | A contact confirms their email subscription. | None. |
-| **Unsubscribes** | A contact stops getting email. | **Because they**: **Unsubscribed** (the default), **Bounced**, **Reported spam**. |
-| **A date on the contact** | Each year on a date the contact carries. | **Date field** (**Date of birth** or any custom field of type date), **Days before or after** (a minus sign means before, like -3), **At** (09:00 by default). |
-| **Clicks an action link** | A contact clicks one of the chosen [action links](/settings/action-links/), in an email or on a page. | **Action links**. A click counts when the link was in one of your emails, or the contact is signed in. |
+| **Unsubscribes** (Pro) | A contact stops getting email. | **Because they**: **Unsubscribed** (the default), **Bounced**, **Reported spam**. |
+| **A date on the contact** (Pro) | Each year on a date the contact carries. | **Date field** (**Date of birth** or any custom field of type date), **Days before or after** (a minus sign means before, like -3), **At** (09:00 by default). |
+| **Clicks an action link** (Pro) | A contact clicks one of the chosen [action links](/settings/action-links/), in an email or on a page. | **Action links**. A click counts when the link was in one of your emails, or the contact is signed in. |
 
 Some details worth knowing:
 
@@ -124,8 +131,8 @@ Shown only while the companies module is on.
 
 | Trigger | Starts when | Settings |
 |---|---|---|
-| **Joins a company** | A contact is added to a company. | **Any of these companies** (leave empty for any). |
-| **Leaves a company** | A contact is removed from a company. | **Any of these companies**. |
+| **Joins a company** (Pro) | A contact is added to a company. | **Any of these companies** (leave empty for any). |
+| **Leaves a company** (Pro) | A contact is removed from a company. | **Any of these companies**. |
 
 Re-linking someone who is already in the company starts nothing. Deleting a company starts
 nothing either.
@@ -134,8 +141,8 @@ nothing either.
 
 | Trigger | Starts when | Settings |
 |---|---|---|
-| **Finishes an automation** | A contact comes to the end of one of the chosen automations. | **Automations**; **When they**: **Reach the end** (the default), and optionally **Leave early, by a leave rule**. |
-| **Finishes a sequence** | A contact has been sent every email in one of the chosen [sequences](/emails/sequences/). | **Sequences**. |
+| **Finishes an automation** (Pro) | A contact comes to the end of one of the chosen automations. | **Automations**; **When they**: **Reach the end** (the default), and optionally **Leave early, by a leave rule**. |
+| **Finishes a sequence** (Pro) | A contact has been sent every email in one of the chosen [sequences](/emails/sequences/). | **Sequences**. |
 
 A contact who was taken out by hand, or whose run failed, does not count as finishing. An
 automation can't start itself through a chain of others: if A starts B and B would start A
@@ -146,7 +153,7 @@ again, the second start is refused.
 | Trigger | Starts when | Settings |
 |---|---|---|
 | **New user signs up** | Someone registers a WordPress account. | **Who**: **People who sign up themselves** (default) or **Anyone who gets an account**; **Only these roles**; **New contacts join as**: **Transactional** (default), **Pending — send a confirmation email**, or **Subscribed**; **If they are already a contact**: **Update them and start** or **Skip them**. |
-| **User logs in** | A WordPress user signs in. | **Which logins**: **Every login**, **Their first login**, or **After being away** (with **Days away**, 30 by default); **Only these roles**; **If they are not a contact yet**: **Do nothing** (default), or add them as **Transactional**, **Pending** or **Subscribed**. |
+| **User logs in** (Pro) | A WordPress user signs in. | **Which logins**: **Every login**, **Their first login**, or **After being away** (with **Days away**, 30 by default); **Only these roles**; **If they are not a contact yet**: **Do nothing** (default), or add them as **Transactional**, **Pending** or **Subscribed**. |
 
 **New user signs up** creates a contact for a newcomer. With **People who sign up
 themselves**, an account an admin creates — or one made from WP-CLI — does not start it, so
