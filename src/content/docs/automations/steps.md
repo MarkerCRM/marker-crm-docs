@@ -188,7 +188,12 @@ are the same as [segment](/contacts/segments/) rules.
 
 ### A/B split
 
-**A/B split** shares contacts between paths at random, by the weights you set. Each path has
+:::note[Marker CRM Pro]
+**A/B split** needs Marker CRM Pro. Without it the step is listed with a **Pro** tag; an automation
+that already has one cannot be activated, and contacts who reach it wait there until Pro is back.
+:::
+
+**A/B split** (Marker CRM Pro) shares contacts between paths at random, by the weights you set. Each path has
 a name and a percentage. **Share evenly** splits 100 between them, **Add a path** adds
 another, and the bin icon removes one when there are more than two. The weights must add up
 to 100% before you can go live. A path at 0% shows **Nobody will take this path**.

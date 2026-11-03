@@ -165,6 +165,7 @@ daily). Listen to `marker_crm/tick` instead of either.
 
 | Hook | Value | Extra parameters | Use |
 |---|---|---|---|
+| `marker_crm/automation_split_arm` | `null` | `array $branches, string $seed` | Return the key of the path an A/B split sends this seed down. Marker CRM Pro answers it; left unanswered, contacts at a split wait |
 | `marker_crm/automation_rules` | `null` | `array $tree, int[] $contactIds` | Return the ids among `$contactIds` that `$tree` matches. Marker CRM Pro answers it; left `null`, Only if lets nobody in and If / else and Leave when hold the contact |
 | `marker_crm/automation_triggers` | `array $triggers` | — | Register triggers. See [Triggers](/developers/automations/triggers/) |
 | `marker_crm/automation_actions` | `array $actions` | — | Register actions. See [Actions](/developers/automations/actions/) |
