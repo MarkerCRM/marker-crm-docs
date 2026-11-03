@@ -103,14 +103,15 @@ Some details worth knowing:
 
 ### Email
 
-These appear only while tracking is on: **Track opens** and **Track clicks** under
+Both need Marker CRM Pro — without it they are listed with a **Pro** tag, and an automation that
+uses one cannot be activated. They also appear only while tracking is on: **Track opens** and **Track clicks** under
 [Settings → Email defaults](/settings/email/). Turn tracking off and an automation already using them
 is listed as unavailable.
 
 | Trigger | Starts when | Settings |
 |---|---|---|
-| **Opens an email** | A contact opens an email. | **Any of these emails** — campaigns, and emails in automations (leave empty for any); **Ignore automated opens** (on by default). |
-| **Clicks a link in an email** | A contact clicks a link in an email. | **Any of these emails**; **Only links containing**; **Ignore automated clicks** (on by default). |
+| **Opens an email** (Pro) | A contact opens an email. | **Any of these emails** — campaigns, and emails in automations (leave empty for any); **Ignore automated opens** (on by default). |
+| **Clicks a link in an email** (Pro) | A contact clicks a link in an email. | **Any of these emails**; **Only links containing**; **Ignore automated clicks** (on by default). |
 
 Mail security scanners click every link in an email as it arrives, and Apple Mail fetches
 every email's images whether or not anyone reads it. **Ignore automated opens** and **Ignore

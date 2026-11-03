@@ -49,7 +49,7 @@ empty and shows up in the builder's checklist as something to fix.
 | **Thanks for confirming** | Onboarding | A welcome the moment someone confirms their subscription. Trigger: **Confirms their subscription**. |
 | **New member onboarding** | Onboarding | Tag new WordPress users and welcome them to their account. Trigger: **New user signs up**. |
 | **Follow up on a tag** | Nurture | Two emails a few days apart when a contact gets a tag. Trigger: **Tag is added**. Email, wait 3 days, email. |
-| **Follow up on a click** | Nurture | Tag contacts who click a link in an email, and follow up a day later. Trigger: **Clicks a link in an email**. |
+| **Follow up on a click** | Nurture | Tag contacts who click a link in an email, and follow up a day later. Trigger: **Clicks a link in an email** (Marker CRM Pro; the recipe shows only with Pro). |
 | **Birthday greeting** | Engagement | An email on each contact's birthday. Trigger: **A date on the contact**, at 09:00. |
 
 A recipe only appears when everything it uses is available on your site. **Follow up on a
