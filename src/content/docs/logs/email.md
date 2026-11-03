@@ -59,6 +59,10 @@ Queued emails have nothing to show yet.
 
 ## Send it again
 
+:::note[Marker CRM Pro]
+Sending a logged message again needs Marker CRM Pro. Without it, the log shows **Resend** locked.
+:::
+
 Click **Send it again** (the circular arrow) on a row, or select several rows and click
 **Resend**. The email is queued again to the same person.
 
