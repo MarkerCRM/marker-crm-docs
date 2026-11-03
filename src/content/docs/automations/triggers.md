@@ -24,7 +24,14 @@ and the automation cannot be turned on until you fill them in.
 
 ## Only if
 
-Below the trigger's settings, **Only if** narrows who gets in. Click **Add rules** and build
+:::note[Marker CRM Pro]
+Rules in automations — **If / else**, **Only if** and **Stop early → When they match rules** —
+need Marker CRM Pro. If Pro is turned off, an automation that uses them is kept as it is but cannot
+be activated, a trigger with **Only if** lets nobody in, and contacts already at an **If / else** or
+under a **Stop early** rule wait where they are. Nothing is deleted; reactivate Pro and they carry on.
+:::
+
+Below the trigger's settings, **Only if** (Marker CRM Pro) narrows who gets in. Click **Add rules** and build
 rules the same way you build a [segment](/contacts/segments/): contact fields, tags and lists,
 email activity, WordPress role, company, and whether they have been in other automations.
 

@@ -169,7 +169,14 @@ Find these on the **Conditions** tab.
 
 ### If / else
 
-**If / else** checks the contact's data when they arrive. Those who match the first path's
+:::note[Marker CRM Pro]
+Rules in automations — **If / else**, **Only if** and **Stop early → When they match rules** —
+need Marker CRM Pro. If Pro is turned off, an automation that uses them is kept as it is but cannot
+be activated, a trigger with **Only if** lets nobody in, and contacts already at an **If / else** or
+under a **Stop early** rule wait where they are. Nothing is deleted; reactivate Pro and they carry on.
+:::
+
+**If / else** (Marker CRM Pro) checks the contact's data when they arrive. Those who match the first path's
 rules go one way; **Everyone else** goes the other. Rename either path in the panel. The rules
 are the same as [segment](/contacts/segments/) rules.
 
@@ -192,7 +199,7 @@ builder header:
 
 - **When they do something** — pick an event, such as **Unsubscribes** or **Tag is added**.
   The moment it happens to a contact in the automation, their run ends.
-- **When they match rules** — rules checked before every step. A contact who matches as they
+- **When they match rules** (Marker CRM Pro) — rules checked before every step. A contact who matches as they
   move on to the next step leaves.
 
 Contacts taken out this way are counted as **Left**. **Finishes an automation**, with **Leave
