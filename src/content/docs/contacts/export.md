@@ -3,7 +3,15 @@ title: Export contacts
 description: Download contacts as a CSV or JSON file — everyone, a segment or a selection — with the columns you choose.
 sidebar:
   order: 8
+  badge:
+    text: Pro
+    variant: note
 ---
+
+:::note[Marker CRM Pro]
+Exporting contacts and companies is part of Marker CRM Pro. Without Pro, **Export** shows what it
+does and how to upgrade. Import is in Marker CRM itself.
+:::
 
 Export builds a file of your contacts to download — for a spreadsheet, a backup or another
 tool. You choose who goes in, which columns, and the format. Exporting needs the export

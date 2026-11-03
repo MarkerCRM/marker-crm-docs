@@ -145,6 +145,7 @@ These fire only while the companies module is on.
 
 | Hook | Parameters | Fires |
 |---|---|---|
+| `marker_crm/imports_swept` | `int $hours` | The nightly sweep removed import files older than `$hours`; Marker CRM Pro sweeps its export files on the same schedule |
 | `marker_crm/job_dispatched` | `Job $job, int $id` | A job was put on the queue |
 | `marker_crm/job_completed` | `Job $job, int $id` | A job finished |
 | `marker_crm/job_failed` | `Job $job, int $id, Throwable $e` | A job failed for the last time |
@@ -225,9 +226,9 @@ daily). Listen to `marker_crm/tick` instead of either.
 | `marker_crm/campaign_recipients` | contacts query | `Campaign $campaign` | The query that selects a campaign's recipients |
 | `marker_crm/campaign_audience_batch` | `int` (`1000`) | — | How many recipients are queued per job |
 | `marker_crm/audience_groups` | `array $groups` | — | Groups an audience can name beside lists and tags: `key => ['type' => 'segment', 'tree' => fn (int $id): ?array, 'names' => fn (int[] $ids): array<int, string>]`. An audience naming a group nobody registered reaches nobody and cannot be sent |
-| `marker_crm/export_scopes` | `string[] $scopes` (`[]`) | `string $type` | Ways to choose who an export takes, beside `all` and `selection` |
-| `marker_crm/export_audience` | `array $audience` | `array $asked, string $type` | The export's audience after cleaning; validate and keep your scope's own keys here |
-| `marker_crm/export_list_args` | `null` | `array $audience` | Return the contact list arguments for your scope; left `null`, the export fails rather than taking everyone |
+| `marker_crm/export_scopes` (Pro) | `string[] $scopes` (`[]`) | `string $type` | Ways to choose who an export takes, beside `all` and `selection` |
+| `marker_crm/export_audience` (Pro) | `array $audience` | `array $asked, string $type` | The export's audience after cleaning; validate and keep your scope's own keys here |
+| `marker_crm/export_list_args` (Pro) | `null` | `array $audience` | Return the contact list arguments for your scope; left `null`, the export fails rather than taking everyone |
 | `marker_crm/campaign_stats` | `array $stats` | `int[] $ids` | Report totals per campaign id |
 
 ### REST responses
@@ -251,7 +252,7 @@ not remove documented ones.
 | `marker_crm/action_link_response` | `ActionLink $link` |
 | `marker_crm/webhook_response` | `$webhook` |
 | `marker_crm/import_response` | `$import` |
-| `marker_crm/export_response` | `$export` |
+| `marker_crm/export_response` (Pro) | `$export` |
 
 ### Queue
 
