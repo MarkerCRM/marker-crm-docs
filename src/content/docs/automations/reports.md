@@ -117,7 +117,7 @@ removed; take them out first. You need permission to delete automations to see t
 ## Adding contacts by hand
 
 Click **Add contacts** at the top of the report. Under **Who**, choose any mix of lists, tags
-and segments, or **Every contact**.
+and, with Marker CRM Pro, segments — or **Every contact**.
 
 The dialog counts as you choose: how many contacts will join, and how many are already in it
 or kept out by its re-entry setting. Click the confirm button (**Add** *N* **contacts**) to

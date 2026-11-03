@@ -53,6 +53,15 @@ the count beside it is how many contacts are subscribed.
 To leave people out, click **+ Except** and choose lists, tags or segments. Anyone in any of
 those is left out, even if they are also in the audience.
 
+Segments as an audience need Marker CRM Pro; without it, the picker offers lists and tags.
+
+:::caution[If Marker CRM Pro is turned off]
+A campaign whose audience, or whose **Except**, names a segment cannot be sent or scheduled:
+sending says *Part of this audience needs Marker CRM Pro.* One that was still writing its sends
+pauses. It is never sent to fewer or more people than you chose. Reactivate Pro and send or
+resume it as usual.
+:::
+
 The number at the end of the **To** row is how many people **can be emailed**. Contacts who are
 not subscribed, or whose address is on the suppression list, are not counted and do not
 receive the campaign. Hover over the number to see how many were left out for that reason.

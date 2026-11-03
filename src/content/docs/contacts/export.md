@@ -23,7 +23,9 @@ permission, which administrators have.
 Choose one:
 
 - **Every contact**
-- **A segment** — then pick the **Segment**. See [Segments](/contacts/segments/).
+- **A segment** (Marker CRM Pro) — then pick the **Segment**. See [Segments](/contacts/segments/).
+  Without Pro, an export of a segment cannot start, and one already running stops as failed
+  rather than taking every contact.
 - **The contacts you selected** — offered when you came from a selection.
 
 The number that will be exported is shown beside your choice.

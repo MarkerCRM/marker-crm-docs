@@ -83,8 +83,8 @@ and send nothing until it is on again. You can also activate or pause several fr
 
 A sequence has to be **Active** before anyone can be added. Then add contacts from:
 
-- **The sequence's report** — click **Add contacts**, choose lists, tags or segments (or
-  **Every contact**) under **Who**, and confirm. The dialog says how many are already in it or
+- **The sequence's report** — click **Add contacts**, choose lists, tags or, with Marker CRM Pro,
+  segments (or **Every contact**) under **Who**, and confirm. The dialog says how many are already in it or
   kept out by the re-entry setting.
 - **The contacts list** — select contacts and choose **Add to a sequence**.
 - **A contact's page** — use **Add to an automation or sequence**.
