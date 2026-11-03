@@ -92,7 +92,7 @@ stop. A loop for itself is also stopped: an automation can't start itself.
 ### WordPress & developer
 
 :::note[Marker CRM Pro]
-The WordPress actions below need Marker CRM Pro. Without it they are listed with a **Pro** tag
+The WordPress actions and **Send a webhook** below need Marker CRM Pro. Without it they are listed with a **Pro** tag
 and choosing one explains the upgrade; an automation that already uses one cannot be activated,
 and a contact who reaches it waits until Pro is back.
 :::
@@ -103,7 +103,7 @@ and a contact who reaches it waits until Pro is back.
 | **Change their WordPress role** (Pro) | Gives their user the chosen role — replacing their current roles, or keeping them and adding this one. |
 | **Remove a WordPress role** (Pro) | Takes the chosen role off their user. Someone left with no role gets the site's default. |
 | **Update WordPress user meta** (Pro) | Writes key and value rows to their user meta. Values can use merge tags. |
-| **Send a webhook** | Sends the contact to an address you choose. |
+| **Send a webhook** (Pro) | Sends the contact to an address you choose. |
 
 **Create a WordPress user** and **Change their WordPress role** only offer roles that cannot
 take over the site — never administrator, editor or shop manager. An administrator's roles are
