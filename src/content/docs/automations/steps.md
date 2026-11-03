@@ -91,12 +91,18 @@ stop. A loop for itself is also stopped: an automation can't start itself.
 
 ### WordPress & developer
 
+:::note[Marker CRM Pro]
+The WordPress actions below need Marker CRM Pro. Without it they are listed with a **Pro** tag
+and choosing one explains the upgrade; an automation that already uses one cannot be activated,
+and a contact who reaches it waits until Pro is back.
+:::
+
 | Action | What it does |
 |---|---|
-| **Create a WordPress user** | Gives the contact an account if they have none: **Role** (empty for the site's default), **Username** (made from their email if empty or taken), user meta, and **Email them their login details**. |
-| **Change their WordPress role** | Gives their user the chosen role — replacing their current roles, or keeping them and adding this one. |
-| **Remove a WordPress role** | Takes the chosen role off their user. Someone left with no role gets the site's default. |
-| **Update WordPress user meta** | Writes key and value rows to their user meta. Values can use merge tags. |
+| **Create a WordPress user** (Pro) | Gives the contact an account if they have none: **Role** (empty for the site's default), **Username** (made from their email if empty or taken), user meta, and **Email them their login details**. |
+| **Change their WordPress role** (Pro) | Gives their user the chosen role — replacing their current roles, or keeping them and adding this one. |
+| **Remove a WordPress role** (Pro) | Takes the chosen role off their user. Someone left with no role gets the site's default. |
+| **Update WordPress user meta** (Pro) | Writes key and value rows to their user meta. Values can use merge tags. |
 | **Send a webhook** | Sends the contact to an address you choose. |
 
 **Create a WordPress user** and **Change their WordPress role** only offer roles that cannot
