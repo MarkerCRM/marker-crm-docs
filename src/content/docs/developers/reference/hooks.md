@@ -221,6 +221,10 @@ daily). Listen to `marker_crm/tick` instead of either.
 | `marker_crm/campaign_before_send` | `bool` (`true`) | `Campaign $campaign` | Return `false` to refuse sending a campaign |
 | `marker_crm/campaign_recipients` | contacts query | `Campaign $campaign` | The query that selects a campaign's recipients |
 | `marker_crm/campaign_audience_batch` | `int` (`1000`) | — | How many recipients are queued per job |
+| `marker_crm/audience_groups` | `array $groups` | — | Groups an audience can name beside lists and tags: `key => ['type' => 'segment', 'tree' => fn (int $id): ?array, 'names' => fn (int[] $ids): array<int, string>]`. An audience naming a group nobody registered reaches nobody and cannot be sent |
+| `marker_crm/export_scopes` | `string[] $scopes` (`[]`) | `string $type` | Ways to choose who an export takes, beside `all` and `selection` |
+| `marker_crm/export_audience` | `array $audience` | `array $asked, string $type` | The export's audience after cleaning; validate and keep your scope's own keys here |
+| `marker_crm/export_list_args` | `null` | `array $audience` | Return the contact list arguments for your scope; left `null`, the export fails rather than taking everyone |
 | `marker_crm/campaign_stats` | `array $stats` | `int[] $ids` | Report totals per campaign id |
 
 ### REST responses
