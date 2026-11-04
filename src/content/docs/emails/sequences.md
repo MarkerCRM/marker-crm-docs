@@ -11,6 +11,12 @@ the next after its wait, and so on, counted from when *they* were added.
 
 Sequences live under **Emails → Sequences**.
 
+:::note[Marker CRM Pro]
+Sequences need Marker CRM Pro. Without it, **Emails → Sequences** says what they do, and **Add to a sequence**
+in Contacts is listed with a **Pro** tag. If Pro is turned off, the sequences you made are kept as they are, but
+nobody new can be added and anyone part-way through waits where they are, getting nothing, until Pro is back on.
+:::
+
 ## Sequences and automations
 
 A sequence is a simpler kind of [automation](/automations/):

@@ -53,7 +53,7 @@ Tick contacts to open the bulk bar. It offers:
 - **Add to lists** / **Remove from lists**
 - **Change status** — sets the email status of every selected contact.
 - **Change type** — **Lead** or **Customer**.
-- **Add to an automation** / **Add to a sequence** — puts them into one that is switched on.
+- **Add to an automation** / **Add to a sequence** — puts them into one that is switched on. Sequences need Marker CRM Pro.
   Shown to people who can edit automations.
 - **Delete**
 

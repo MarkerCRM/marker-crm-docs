@@ -95,6 +95,13 @@ text, a preview text for each).
 Open or click tracking has to be on in [Settings → Email defaults](/settings/email/) for the
 test to pick a winner.
 
+:::note[Marker CRM Pro]
+A/B testing needs Marker CRM Pro; without it **A/B** carries a **Pro** tag. If Pro is turned off while a test is
+running, the campaign is paused: the test group keeps what it was sent, and everyone waiting for the winner keeps
+waiting until Pro is back on and you **Resume** it. A campaign set up with a test cannot be sent until Pro is on
+again or the test is turned off.
+:::
+
 ### UTM
 
 Open the **UTM** row and turn on **Add UTM parameters to links** to tag every link with
@@ -163,6 +170,11 @@ A scheduled campaign cannot be edited. Click **Unschedule to edit** to turn it b
 draft. To end a recurring campaign, choose **Stop repeating**; runs already sent keep their
 reports.
 
+:::note[Marker CRM Pro]
+**Recurring** needs Marker CRM Pro; without it the option carries a **Pro** tag. If Pro is turned off, a
+recurring campaign is kept as it is, with its runs and their reports, but no new run is made until Pro is back on.
+:::
+
 ## While it sends
 
 Sending happens in the background, in batches, through Marker CRM's queue. The pace follows
@@ -192,7 +204,9 @@ tabs:
 - **Recipients** — everyone it went to, filtered by **All**, **Opened**, **Clicked**,
   **Did not open**, **Unsubscribed**, **Failed** and **Not sent yet**. **Tag these people** adds
   or removes tags for the whole group. On **Did not open** and **Failed**, **Resend to these**
-  sends the email again to that group.
+  sends the email again to that group. Both need Marker CRM Pro, as does **Resend to … who didn't open**
+  at the top of the report; without it they carry a **Pro** tag. Sending a single email again from its row
+  stays free.
 - **A/B test** — how each version did, which won and whether the result can be trusted.
 - **Links & UTM** — every link in the email with its clicks, and the UTM parameters used.
 - **Runs** — for a recurring campaign, each run and its numbers.
