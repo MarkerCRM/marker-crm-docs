@@ -300,9 +300,9 @@ These need `edit_campaigns` or `edit_automations`, except where noted.
 
 | Method | Path | Does | Capability |
 |---|---|---|---|
-| `GET` | `notes` | Notes on a record: `object_type` and `object_id` | `view_` on that record type |
-| `POST` | `notes` | Log a note, call or meeting | `edit_` on that record type |
-| `PUT` · `DELETE` | `notes/{id}` | Update, delete | `edit_` · `delete_` on that record type |
+| `GET` | `notes` | Notes on a record: `object_type` and `object_id`; `manual=1` for only what people wrote. Each carries `is_manual` | `view_` on that record type |
+| `POST` | `notes` | Log a note, call or meeting; always `is_manual` | `edit_` on that record type |
+| `PUT` · `DELETE` | `notes/{id}` | Update a manual one (an automatic one answers `422`), delete any | `edit_` · `delete_` on that record type |
 
 ### Reports
 

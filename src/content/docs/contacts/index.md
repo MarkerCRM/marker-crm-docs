@@ -114,11 +114,14 @@ The arrows in the header step to the previous and next contact in the list you c
 
 - **Overview** — basic information, address and [custom fields](/contacts/custom-fields/).
   Edit custom field values in place, or choose **Configure** to manage the fields themselves.
-- **Activity** — one timeline of notes, emails sent and bounced, and status changes, newest
-  first. Filter it by **Notes**, **Email** or **System**.
-- **Notes** — write a **Note**, or log a **Call**, **Meeting** or **Email** that happened
-  outside the CRM, with **When it happened**. Notes can be pinned to the top, edited and
-  deleted.
+- **Activity** — one timeline of everything about them, newest first: what people wrote,
+  emails sent and bounced, status changes, and what add-ons record, such as deals and orders.
+  Filter it by kind, or tick **Manual only** to see just what people wrote, with a search.
+  **Add activity** opens a panel to write a **Note**, or log a **Call**, **Meeting** or
+  **Email** that happened outside the CRM, with **When it happened**. Something a person
+  wrote can be edited, pinned to the top and deleted. An entry the CRM or an automation
+  recorded, such as a status change, can only be deleted. Emails sent, orders and deal
+  changes stay: they are the records themselves, kept where they belong.
 - **Emails** — every email sent to them, with opens and clicks. **See what we sent** shows
   the email as they received it. Shown to people who can view logs.
 - **Automations** — the automations and sequences they are in, or have been through.
