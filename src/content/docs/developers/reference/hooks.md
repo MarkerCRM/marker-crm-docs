@@ -195,6 +195,7 @@ daily). Listen to `marker_crm/tick` instead of either.
 | `marker_crm/company_import_fields` | `array $fields` | — | The same, for companies |
 | `marker_crm/export_columns` | `array $columns` | — | The columns a contact export can include |
 | `marker_crm/company_export_columns` | `array $columns` | — | The same, for companies |
+| `marker_crm/deal_export_columns` (Pro) | `array $columns` | — | The same, for deals |
 | `marker_crm/import_sources` | `array $sources` | — | The sources the importer lists. The admin can only run CSV imports today |
 | `marker_crm/company_industries` | `string[]` | — | The industry choices for a company |
 | `marker_crm/company_types` | `string[]` | — | The company type choices |
@@ -227,6 +228,7 @@ daily). Listen to `marker_crm/tick` instead of either.
 | `marker_crm/campaign_recipients` | contacts query | `Campaign $campaign` | The query that selects a campaign's recipients |
 | `marker_crm/campaign_audience_batch` | `int` (`1000`) | — | How many recipients are queued per job |
 | `marker_crm/audience_groups` | `array $groups` | — | Groups an audience can name beside lists and tags: `key => ['type' => 'segment', 'tree' => fn (int $id): ?array, 'names' => fn (int[] $ids): array<int, string>]`. An audience naming a group nobody registered reaches nobody and cannot be sent |
+| `marker_crm/export_types` (Pro) | `array $types` (`[]`) | — | Kinds of record an export takes beside contacts and companies: `type => ['columns' => class-string, 'query' => fn (array $args, int $userId), 'relations' => string[], 'read' => fn (Model $record, array $source): mixed\|null, 'custom' => fn (Model $record): array]`. `read` returns `null` for a cell the export reads itself. Deals register here |
 | `marker_crm/export_scopes` (Pro) | `string[] $scopes` (`[]`) | `string $type` | Ways to choose who an export takes, beside `all` and `selection` |
 | `marker_crm/export_audience` (Pro) | `array $audience` | `array $asked, string $type` | The export's audience after cleaning; validate and keep your scope's own keys here |
 | `marker_crm/export_list_args` (Pro) | `null` | `array $audience` | Return the contact list arguments for your scope; left `null`, the export fails rather than taking everyone |
