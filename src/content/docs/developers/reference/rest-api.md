@@ -303,6 +303,7 @@ These need `edit_campaigns` or `edit_automations`, except where noted.
 | `GET` | `notes` | Notes on a record: `object_type` and `object_id`; `manual=1` for only what people wrote. Each carries `is_manual` | `view_` on that record type |
 | `POST` | `notes` | Log a note, call or meeting; always `is_manual` | `edit_` on that record type |
 | `PUT` · `DELETE` | `notes/{id}` | Update a manual one (an automatic one answers `422`), delete any | `edit_` · `delete_` on that record type |
+| `POST` | `notes/delete` | Delete several at once: `ids`, at most 100. One record you may not delete on refuses them all | `delete_` on every record they are on |
 
 ### Reports
 
