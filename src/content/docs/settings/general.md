@@ -1,27 +1,52 @@
 ---
 title: General
-description: How dates are shown in the CRM, and what a WordPress user account does to the contact that belongs to it.
+description: How dates and amounts read in the CRM, and what a WordPress user account does to the contact that belongs to it.
 sidebar:
   order: 3
 ---
 
-The General screen covers two things: how dates read across the CRM, and how WordPress user
+The General screen covers how dates and amounts read across the CRM, and how WordPress user
 accounts and contacts stay connected.
 
 Open it from **Settings → General**.
 
-![The General screen, with Dates and times, WordPress users and Tags by role sections](/images/placeholder.svg)
+![The General screen, with Dates and times, Currency, WordPress users and Tags by role sections](/images/placeholder.svg)
 
 ## Dates and times
 
-**Show dates as** decides how every date in the CRM reads:
+**Show dates as** decides how every date in the CRM reads. Each choice shows an example beside it:
 
-- **Time since** — "3 hours ago", "last week". This is the default.
-- **The date itself** — the actual date and time.
+| Choice | Example |
+|---|---|
+| **Time since** (the default) | 3 days ago |
+| **M j, Y** | Mar 2, 2026 |
+| **M j, Y g:i a** | Mar 2, 2026 2:30 pm |
+| **F j, Y** | March 2, 2026 |
+| **F j, Y g:i a** | March 2, 2026 2:30 pm |
+| **Y-m-d** | 2026-03-02 |
+| **Y-m-d H:i** | 2026-03-02 14:30 |
+| **m/d/Y** | 03/02/2026 |
+| **d/m/Y** | 02/03/2026 |
+| **d.m.Y H:i** | 02.03.2026 14:30 |
 
-Three example rows (**A moment ago**, **Last week**, **Last year**) show the result as you
-switch. The date format and the first day of the week come from WordPress. Change them
-with **Date and time format in WordPress**, which opens **Settings → General** in WordPress.
+A choice without a time shows only the date in lists. Where a time matters, such as a scheduled
+send, it is added after the date. With **Time since**, those places use **M j, Y g:i a**. Month
+names come from the site's language.
+
+## Currency
+
+How amounts read in Deals: deal values, reports and emails.
+
+| Setting | What it does |
+|---|---|
+| **Currency** | The one currency the CRM uses. While none is chosen and WooCommerce is active, the store's currency is used. Changing it relabels every amount already recorded; nothing is converted, and the screen warns you before you save. |
+| **Symbol position** | **Left** ($100), **Right** (100$), **Left with space** ($ 100) or **Right with space** (100 $). |
+| **Thousand separator** | The character between thousands, such as `,` in 1,000. It can be a space, or left empty. |
+| **Decimal separator** | The character before the decimals, such as `.` in 10.50. |
+| **Number of decimals** | How many decimals an amount shows, from 0 to 4. |
+
+A store's own amounts, such as WooCommerce orders and carts, always read in that store's currency
+and format, not these.
 
 ## WordPress users
 
