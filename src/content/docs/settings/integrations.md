@@ -60,13 +60,28 @@ marked **Pro**.
   status you set on the **Manage** page. **Import now** brings in customers who bought before.
 - **Lifetime value, orders, and first and last order** on each contact, as columns in the contact list and as
   segment rules.
-- **Automation triggers:** **Places an order**, **Order is completed**, **Order status changes**, **Order is
-  refunded**, **Hasn't ordered in a while**, **Lifetime value passes an amount**, **Reviews a product**, and the
+- **Automation triggers:** **New order (paid)**, **Order completed**, **Order status changed**, **Order is
+  refunded**, **Hasn't ordered in a while**, **Lifetime value reached**, **Product reviewed**, and the
   WooCommerce Subscriptions events.
-- **Automation steps:** **Create a coupon**, **Change the order's status**, **Add a note to the order**.
+- **Automation steps:** **Create a coupon**, **Change the order's status**, **Add order note**.
 - **A tab on each product** that tags its buyers when they pay and changes the tags when they are refunded.
 - **Checkout filled in** with the name and email of a visitor who came from one of your emails.
 - **Revenue** credited to the email the buyer came from, on campaign and automation reports and the dashboard.
 - The [WooCommerce report](/reports/woocommerce/) and [abandoned carts](/settings/abandoned-carts/).
+
+## SureCart
+
+The SureCart integration comes with Pro, and its row is marked **Pro** until you have it. With Pro:
+
+- **Everyone who pays becomes a contact**, with the **Default lists**, **Default tags** and **Status for new
+  contacts** you set on the SureCart **Manage** page. New customers start as **Transactional**: a purchase is not
+  permission to send them marketing. Contacts already in the CRM keep their status and their name; a purchase only
+  fills in what is missing. A phone number is kept, with no consent to text.
+- **Automation triggers:**
+  - **New order (paid)** runs when an order is paid, once per order however many products it has.
+  - **Purchase revoked** runs when SureCart revokes one, after a refund or when a subscription ends. It
+    runs only for someone already in the CRM.
+
+  Both can be narrowed with **With any of these products**; leave it empty for any product.
 
 Other tools can also send contacts in through [Incoming webhooks](/settings/webhooks/).
