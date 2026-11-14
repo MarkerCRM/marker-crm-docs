@@ -39,7 +39,7 @@ How amounts read in Deals: deal values, reports and emails.
 
 | Setting | What it does |
 |---|---|
-| **Currency** | The one currency the CRM uses. While none is chosen and WooCommerce is active, the store's currency is used. Changing it relabels every amount already recorded; nothing is converted, and the screen warns you before you save. |
+| **Currency** | The one currency the CRM uses, from a list of fifteen common ones (US dollar, euro, pound, yen, yuan, rupee, taka, and the Australian, Canadian, Singapore, Swiss, UAE, Saudi, Brazilian and South African currencies). A currency saved before that stays selectable. While none is chosen and WooCommerce is active, the store's currency is used. Changing it relabels every amount already recorded; nothing is converted, and the screen warns you before you save. |
 | **Symbol position** | **Left** ($100), **Right** (100$), **Left with space** ($ 100) or **Right with space** (100 $). |
 | **Thousand separator** | The character between thousands, such as `,` in 1,000. It can be a space, or left empty. |
 | **Decimal separator** | The character before the decimals, such as `.` in 10.50. |

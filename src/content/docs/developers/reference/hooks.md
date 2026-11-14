@@ -191,6 +191,7 @@ daily). Listen to `marker_crm/tick` instead of either.
 | `marker_crm/custom_field_scopes` | `array $scopes` | — | The record types custom fields can belong to |
 | `marker_crm/note_types` | `array $kinds` | — | The kinds of note a person or automation may log: key → label, or key → `['label' => …, 'fields' => [key => ['label' => …, 'options' => [value => label], 'default' => value]]]` for choices asked when logging it |
 | `marker_crm/note_link_options` | `array $options` | `string $objectType, int $objectId` | What an entry logged on this record may also be about, each `['object_type', 'object_id', 'title']`. Return only what the current user may see |
+| `marker_crm/currencies` | `array $currencies` | — | The currencies Settings → General offers, ISO code → `['name' => …, 'symbol' => …]`. Add one, or remove one, by its code |
 | `marker_crm/note_object_types` | `array $types` | — | The record types activities can be on; `titles` (ids → names this user may see) and `path` (`deals/%d`) let other records' activities name and link to them |
 | `marker_crm/import_fields` | `array $fields` | — | The contact fields an import can map a column to |
 | `marker_crm/company_import_fields` | `array $fields` | — | The same, for companies |
