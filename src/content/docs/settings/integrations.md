@@ -95,19 +95,25 @@ The Easy Digital Downloads integration comes with Pro, and its row is marked **P
 
 - **Everyone whose order is completed becomes a contact**, with the **Default lists**, **Default tags** and **Status
   for new contacts** you set on its **Manage** page. New customers start as **Transactional**: a purchase is not
-  permission to send them marketing. Contacts already in the CRM keep their status and their name; their name is
-  taken from the Easy Digital Downloads customer.
+  permission to send them marketing; **Subscribed**, **Pending** (sends a double opt-in email) and **Unsubscribed**
+  are the other choices. Contacts already in the CRM keep their status and their name; their name is taken from the
+  Easy Digital Downloads customer.
+- **Import now** on the **Manage** page brings in customers who bought before the integration was on, in the
+  background. It starts no automations for their past purchases.
+- **What each customer has spent**, kept net of refunds and with renewals counted: their orders, lifetime value and
+  first and last order, used by the Easy Digital Downloads report.
 - **Their orders** in the contact's **Purchases** tab: number and date, status, total, and a link to the order for
   people who can edit payments in Easy Digital Downloads.
 - **Automation triggers:**
   - **New order (paid)** runs when an order is completed, once per order. **Who** can limit it to people new to the
-    CRM.
+    CRM, and **Which orders** to a customer's first order or their repeat orders.
   - **Order refunded** runs when an order is refunded, in full or in part, for someone already in the CRM.
   - With **EDD Recurring Payments**: **Subscription renewal paid** runs when a subscription renews and its payment
     goes through, and **Subscription expired** when one reaches its end without renewing.
   - With **EDD Software Licensing**: **License expired** runs when a license expires.
 
-  Each can be narrowed with **With any of these products**, the downloads in your store. The renewal, expiry and
+  Each can be narrowed with **With any of these products**, the downloads in your store; **New order (paid)** and
+  **Subscription renewal paid** also with **Or a product in these categories**. The renewal, expiry and
   license triggers run for someone already in the CRM, and appear only while their add-on is active.
 
 Other tools can also send contacts in through [Incoming webhooks](/settings/webhooks/).
