@@ -77,6 +77,8 @@ The SureCart integration comes with Pro, and its row is marked **Pro** until you
   contacts** you set on the SureCart **Manage** page. New customers start as **Transactional**: a purchase is not
   permission to send them marketing. Contacts already in the CRM keep their status and their name; a purchase only
   fills in what is missing. A phone number is kept, with no consent to text.
+- **Their SureCart orders** in the contact's **Purchases** tab, read from SureCart when you open it: number and
+  date, status, total, and a link to the order for people who can edit SureCart orders.
 - **Automation triggers:**
   - **New order (paid)** runs when an order is paid, once per order however many products it has.
   - **Purchase revoked** runs when SureCart revokes one, after a refund or when a subscription ends. It

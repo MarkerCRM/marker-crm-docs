@@ -134,6 +134,8 @@ The arrows in the header step to the previous and next contact in the list you c
 - **Emails** — every email sent to them, with opens and clicks. **See what we sent** shows
   the email as they received it. Shown to people who can view logs.
 - **Automations** — the automations and sequences they are in, or have been through.
+- **Purchases** — what they bought, shown when a store is connected. With more than one store, the buttons at the
+  top pick which store's orders you see, and the last one you picked stays picked.
 
 With Companies on, an **Additional information** panel beside the tabs lists the contact's
 companies. See [Companies](/contacts/companies/).
