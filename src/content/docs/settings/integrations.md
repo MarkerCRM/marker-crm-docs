@@ -89,4 +89,25 @@ The SureCart integration comes with Pro, and its row is marked **Pro** until you
   order), for a welcome meant only for first-time customers. Whether someone can go through the automation again is
   the automation's **Re-entry** setting, and emails in it go only to contacts whose status allows them.
 
+## Easy Digital Downloads
+
+The Easy Digital Downloads integration comes with Pro, and its row is marked **Pro** until you have it. With Pro:
+
+- **Everyone whose order is completed becomes a contact**, with the **Default lists**, **Default tags** and **Status
+  for new contacts** you set on its **Manage** page. New customers start as **Transactional**: a purchase is not
+  permission to send them marketing. Contacts already in the CRM keep their status and their name; their name is
+  taken from the Easy Digital Downloads customer.
+- **Their orders** in the contact's **Purchases** tab: number and date, status, total, and a link to the order for
+  people who can edit payments in Easy Digital Downloads.
+- **Automation triggers:**
+  - **New order (paid)** runs when an order is completed, once per order. **Who** can limit it to people new to the
+    CRM.
+  - **Order refunded** runs when an order is refunded, in full or in part, for someone already in the CRM.
+  - With **EDD Recurring Payments**: **Subscription renewal paid** runs when a subscription renews and its payment
+    goes through, and **Subscription expired** when one reaches its end without renewing.
+  - With **EDD Software Licensing**: **License expired** runs when a license expires.
+
+  Each can be narrowed with **With any of these products**, the downloads in your store. The renewal, expiry and
+  license triggers run for someone already in the CRM, and appear only while their add-on is active.
+
 Other tools can also send contacts in through [Incoming webhooks](/settings/webhooks/).
