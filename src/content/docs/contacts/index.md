@@ -120,11 +120,17 @@ The arrows in the header step to the previous and next contact in the list you c
   **List**, which loads more as you scroll, or as a **Table**, where you can tick several entries and delete them
   at once.
   **Add activity** opens a panel to write a **Note**, or log a **Call**, **Meeting** or
-  **Email** that happened outside the CRM, with **When it happened**. Something a person
-  wrote can be edited, pinned to the top and deleted. An entry the CRM or an automation
+  **Email** that happened outside the CRM, with **When it happened**. A call also asks for its **Outcome**
+  (Connected, No answer, Left a voicemail) and an email for its **Direction** (Sent or Received); both show beside
+  the entry. When the contact has open deals, **Also about** links the entry to them: it shows here and on each
+  deal, and each names the other with a link to open it. It stays here if the contact leaves the deal or the deal
+  is deleted, and pinning it here does not pin it on the deal. A long entry folds to four lines with **Show more**; in the table, click a
+  row to read the whole entry.
+  Something a person wrote can be edited, pinned to the top and deleted. An entry the CRM or an automation
   recorded, such as a status change, can only be deleted. Emails sent, orders and deal
-  changes stay: they are the records themselves. Delete an email from **Logs → Email**, and old ones go on their
-  own after the time set under [Privacy and data](/settings/privacy/).
+  changes stay: they are the records themselves, and their **Open** icon takes you to where they live. Delete an
+  email from **Logs → Email**, and old ones go on their own after the time set under
+  [Privacy and data](/settings/privacy/).
 - **Emails** — every email sent to them, with opens and clicks. **See what we sent** shows
   the email as they received it. Shown to people who can view logs.
 - **Automations** — the automations and sequences they are in, or have been through.

@@ -58,7 +58,7 @@ The tabs are:
 - **People** — the contacts at this company. Search them, add with **Add existing** or
   **New contact**, and use the bulk bar to tag them, add them to lists, change their status,
   export them, **Remove from company** or delete them.
-- **Activity** — notes, calls and meetings logged against the company, added with **Add activity**, and **Manual only** to see just those.
+- **Activity** — notes, calls and meetings logged against the company, added with **Add activity**, and **Manual only** to see just those. An entry can also be about one of the company's deals (**Also about**); it then shows on the deal too.
 
 ## Linking contacts to companies
 

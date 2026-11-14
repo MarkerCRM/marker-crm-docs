@@ -300,9 +300,11 @@ These need `edit_campaigns` or `edit_automations`, except where noted.
 
 | Method | Path | Does | Capability |
 |---|---|---|---|
-| `GET` | `notes` | Notes on a record: `object_type` and `object_id`; `manual=1` for only what people wrote. Each carries `is_manual` | `view_` on that record type |
-| `POST` | `notes` | Log a note, call or meeting; always `is_manual` | `edit_` on that record type |
-| `PUT` · `DELETE` | `notes/{id}` | Update a manual one (an automatic one answers `422`), delete any | `edit_` · `delete_` on that record type |
+| `GET` | `notes` | Notes on a record: `object_type` and `object_id`; `manual=1` for only what people wrote. An entry is on every record it links to. Each carries `is_manual`, `fields`, `is_pinned` (on this record), `links` and `related`: the other records it is on that you may see, each with `title` and `path` | `view_` on that record type |
+| `GET` | `notes/link-options` | What an entry on this record may also be about (a contact's or company's open deals, a deal's people): `object_type`, `object_id`, `title` | `edit_` on that record type |
+| `POST` | `notes/{id}/pin` | Pin or unpin (`is_pinned`) on one record, `object_type` and `object_id` | `edit_` on that record type |
+| `POST` | `notes` | Log a note, call or meeting; always `is_manual`. `fields` keeps only the kind's own (a call's `outcome`, an email's `direction`), each one of its options. `links` adds other records it is about, each `object_type` and `object_id` | `edit_` on that record type, and on each linked record |
+| `PUT` · `DELETE` | `notes/{id}` | Update a manual one (an automatic one answers `422`; `links` replaces every record it is on), delete any | `edit_` · `delete_` on every record it is on |
 | `POST` | `notes/delete` | Delete several at once: `ids`, at most 100. One record you may not delete on refuses them all | `delete_` on every record they are on |
 
 ### Reports
