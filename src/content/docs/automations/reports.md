@@ -37,9 +37,10 @@ The **Performance** tab has up to three cards:
   the flow has goals. A contact who passed a goal without doing its event isn't counted.
 - **Emails** — across every email in the flow: **Opened**, **Clicked** and **Unsubscribed**.
 
-Below them, **How far they get** draws the flow with its width following the number of
-contacts, so you can see where people drop away. Click a step to list the contacts who reached
-it.
+Below them, **How far they get** is a bar for **Entered** and one for each step, in the order
+the flow runs. Each bar shows how many contacts reached it, with their share of everyone who
+entered underneath, so you can see where people drop away. Click a bar to list the contacts who
+reached it.
 
 ### What each run status means
 
@@ -53,8 +54,9 @@ it.
 
 ## Steps
 
-The **Steps** tab lists every step in order, with paths indented under the step that splits
-them and the share of contacts who took each path.
+The **Steps** tab starts with the trigger and how many contacts **Entered**, then lists every
+step in order, with paths indented under the step that splits them and the share of contacts who
+took each path.
 
 For each step you see how many contacts **Reached** it, what share of everyone who entered
 that is, and how many are **waiting** there now. Where a step reaches fewer contacts than the

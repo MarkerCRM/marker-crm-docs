@@ -85,5 +85,8 @@ The SureCart integration comes with Pro, and its row is marked **Pro** until you
     runs only for someone already in the CRM.
 
   Both can be narrowed with **With any of these products**; leave it empty for any product.
+  **New order (paid)** also has **Who**: **Anyone**, or **Only people new to the CRM** (not a contact before this
+  order), for a welcome meant only for first-time customers. Whether someone can go through the automation again is
+  the automation's **Re-entry** setting, and emails in it go only to contacts whose status allows them.
 
 Other tools can also send contacts in through [Incoming webhooks](/settings/webhooks/).

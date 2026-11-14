@@ -147,8 +147,9 @@ Opened from **Settings** in the header. It holds **If someone triggers it again*
 
 ## Stats on the canvas
 
-Turn on **Stats** in the header to see, on each card, how many contacts **reached** it and
-how many are **waiting** there now. Email steps also show the share **opened** and
+Turn on **Stats** in the header to see how many contacts **entered** on the trigger card, and
+on each step card how many **reached** it, their share of everyone who entered, and how many
+are **waiting** there now. Email steps also show the share **opened** and
 **clicked**, and how many **left** (unsubscribed) from that email. Path labels show what share
 of contacts took each path.
 
