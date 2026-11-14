@@ -137,4 +137,5 @@ for you, because the law requires both.
 The composer's **Preview** (the eye icon) shows the email exactly as it will be sent, with its
 design and footer. In a campaign, merge tags are filled with the first contact in the
 audience, or show their fallbacks while the audience is empty. To check it in a real inbox,
-send a test (**Test email**). See [Campaigns](/emails/campaigns/#send-a-test).
+send a test (**Test email**), which every composer has: campaigns, automation and sequence
+emails, and an email to one contact. See [Campaigns](/emails/campaigns/#send-a-test).

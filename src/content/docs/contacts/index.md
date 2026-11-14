@@ -141,7 +141,9 @@ companies. See [Companies](/contacts/companies/).
 ### Sending a direct email
 
 **Send email**, at the right of the contact's **Emails** tab, opens a composer addressed to
-this one contact. Write a subject and the message, preview it, and choose **Send**. It goes
+this one contact. Write a subject and the message, preview it, and choose **Send**.
+**Test email** sends it to an address you choose first, with the contact's details in the
+merge tags; the contact gets nothing and it is not logged. It goes
 out within the minute, through the same queue as every other email, and appears in that tab.
 
 A direct email can only go to a contact whose status is **Subscribed** or **Transactional**.

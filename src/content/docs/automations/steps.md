@@ -72,7 +72,8 @@ envelope above the content:
   date has passed when the contact gets there. Times are in your site's timezone.
 
 **Send a test** sends the email as it stands to one address. If that address belongs to a
-contact, their details fill the merge tags.
+contact, their details fill the merge tags. Inside the email editor, **Test email** does the
+same with what you are editing, before you choose **Done**.
 
 ### Automation
 
