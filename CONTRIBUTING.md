@@ -20,7 +20,7 @@ plugin). Never move or rename these without changing that table in the same rele
 `/` · `/contacts/` · `/contacts/tags/` · `/contacts/lists/` · `/contacts/companies/` ·
 `/contacts/segments/` · `/contacts/custom-fields/` · `/contacts/import/` · `/contacts/export/` ·
 `/emails/campaigns/` · `/emails/sequences/` · `/emails/templates/` · `/emails/patterns/` ·
-`/automations/` · `/reports/contacts/` · `/reports/email/` · `/reports/woocommerce/` ·
+`/automations/` · `/reports/contacts/` · `/reports/email/` · `/reports/woocommerce/` · `/reports/edd/` ·
 `/logs/email/` · `/logs/sms/` · `/add-ons/` · `/settings/business-profile/` · `/settings/email/` ·
 `/settings/general/` · `/settings/sms/` · `/settings/opt-in/` · `/settings/preference-page/` ·
 `/settings/action-links/` · `/settings/abandoned-carts/` · `/settings/integrations/` ·

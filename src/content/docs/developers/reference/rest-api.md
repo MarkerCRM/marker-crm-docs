@@ -314,6 +314,18 @@ These need `edit_campaigns` or `edit_automations`, except where noted.
 | `GET` | `reports/contacts` · `reports/email` | Contact and email reports | `view_reports` |
 | `GET` | `reports/dashboard` | The dashboard | `manage_dashboard` |
 
+#### Store reports (Marker CRM Pro)
+
+`{store}` is a store registered on `marker_crm/commerce_stores`: `woocommerce`, `edd`. Any other answers `404`.
+
+| Method | Path | Does | Capability |
+|---|---|---|---|
+| `GET` | `stores/{store}/report` | Totals for all time, customer stages and health, cut-offs, and what the store has: `subscriptions`, `emails`, `segments`, `extra` | `view_reports` |
+| `GET` | `stores/{store}/report/trend` | Per bucket of `from`–`to` (site dates): revenue, orders, subscriptions started and ended, and new and returning customers, beside the period `compare` names (`previous`, `month`, `quarter`, `year`, `custom` with `compare_from` and `compare_to`, `none`). `kind` (`all`, `subscriptions`, `subscription`, `renewal`, `one_time`) and `products` narrow revenue and orders | `view_reports` |
+| `GET` | `stores/{store}/report/cards/{card}` | `emails`, `products` or `subscriptions` for `from`–`to`; a card the store has not got answers `404` | `view_reports` |
+| `POST` | `stores/{store}/report/stages/{stage}` | Save a stage's customers as a segment, kept up to date, and return its `id` | `edit_segments` |
+| `POST` | `stores/{store}/report/cutoffs` | Save `at_risk_days`, `lapsed_days`, `top_percent` | `manage_settings` |
+
 ### Settings and administration
 
 All need `manage_settings`, except `users`.

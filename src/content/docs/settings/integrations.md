@@ -101,7 +101,8 @@ The Easy Digital Downloads integration comes with Pro, and its row is marked **P
 - **Import now** on the **Manage** page brings in customers who bought before the integration was on, in the
   background. It starts no automations for their past purchases.
 - **What each customer has spent**, kept net of refunds and with renewals counted: their orders, lifetime value and
-  first and last order, used by the Easy Digital Downloads report.
+  first and last order, as segment rules under **Easy Digital Downloads** — with **Bought products** and **Bought
+  from categories** — and in the [Easy Digital Downloads report](/reports/edd/).
 - **Their orders** in the contact's **Purchases** tab: number and date, status, total, and a link to the order for
   people who can edit payments in Easy Digital Downloads.
 - **Automation triggers:**

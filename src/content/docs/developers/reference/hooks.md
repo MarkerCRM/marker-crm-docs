@@ -203,6 +203,8 @@ daily). Listen to `marker_crm/tick` instead of either.
 | `marker_crm/company_types` | `string[]` | — | The company type choices |
 | `marker_crm/company_socials` | `array` | — | The social profile fields on a company |
 | `marker_crm/shared_email_domains` | `string[]` | — | Domains (such as `gmail.com`) never used to link a contact to a company |
+| `marker_crm/commerce_stores` (Pro) | `array $stores` | — | Store slug → a class extending `MarkerCRMPro\App\Commerce\Store`, for a store whose purchases are kept through `Commerce::replace()`. Each gets the report routes under `stores/{slug}/report`; its screen is registered in the admin with `storeReport({store, products})` |
+| `marker_crm/commerce_report` (Pro) | `array $report` | `string $fromUtc, string $toUtc, string $provider` | Add figures to a store's report; Abandoned carts adds `carts` for the store's own carts |
 
 ### Emails and sending
 
