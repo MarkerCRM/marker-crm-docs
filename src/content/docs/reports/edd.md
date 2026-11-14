@@ -16,11 +16,13 @@ stages and customer health — read from your Easy Digital Downloads orders. Wha
 - **There is no email revenue card yet.** Orders from Easy Digital Downloads are not yet credited to the email the
   buyer came from.
 - **With EDD Recurring Payments**, the chart has **Subscriptions** and the kinds of order, and the **Subscriptions**
-  card appears. A first subscription order is the one that started a subscription; a renewal is a renewal payment.
+  card appears. **Active subscriptions** at the top shows what they bring in a month: each one's recurring amount,
+  brought to a month by its billing period (a yearly $120 counts as $10). A first subscription order is the one that started a subscription; a renewal is a renewal payment.
   A subscription counts as ended on its expiration date once it is cancelled or has expired — the day its access
   stops.
-- **With EDD Software Licensing**, a **Licences** card shows **Valid** licences (active or not yet activated),
-  those **Expiring in 30 days**, **Expired** ones and **Activated sites** (local test sites left out).
+- **With EDD Software Licensing**, two more cards at the top: **Valid licences** (active or not yet activated), with
+  the sites they are activated on (local test sites left out), and **Expiring licences** in the next 30 days, with
+  how many have already expired.
 
 A stage opens as a segment named *Easy Digital Downloads: …*. Its cut-offs are set on the card or under **Customer
 stages** on the Easy Digital Downloads **Manage** page.

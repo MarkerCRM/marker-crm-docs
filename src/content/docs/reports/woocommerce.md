@@ -18,6 +18,7 @@ The cards at the top are for all time, whatever period you choose below.
 - **Customers** — customers who are contacts, and how many ordered more than once.
 - **Spend per customer** — what a customer has spent on average. Guest checkouts are left out unless **Include
   guest checkouts** is on.
+- **Active subscriptions**, with WooCommerce Subscriptions — subscriptions active right now.
 - **Email revenue** — what was ordered after clicking one of your emails, and its share of all revenue.
 
 When syncing is paused, a notice says so. New orders are not synced while it is, so customers, stages and email
