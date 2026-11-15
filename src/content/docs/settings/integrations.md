@@ -74,8 +74,8 @@ marked **Pro**.
 The FluentCart integration comes with Pro, and its row is marked **Pro** until you have it. With Pro:
 
 - **Everyone who pays becomes a contact**, with the **Default lists**, **Default tags** and **Status for new contacts**
-  you set on its **Manage** page. New customers start as **Transactional**: a purchase is not permission to send them
-  marketing. Contacts already in the CRM keep their status and their name. **Import now** brings in customers who
+  you set on its **Manage** page. New customers start as **Subscribed**; **Transactional** (order emails only),
+  **Pending** (sends a double opt-in email) and **Unsubscribed** are the other choices. Contacts already in the CRM keep their status and their name. **Import now** brings in customers who
   bought before, quietly: their past orders start no automations.
 - **What each customer has spent**, kept net of refunds and with renewals counted: orders, lifetime value, first and last
   order, as columns in the contact list and as segment rules under **FluentCart** (with **Bought products**, **Bought
@@ -92,10 +92,13 @@ The FluentCart integration comes with Pro, and its row is marked **Pro** until y
   **Subscription renewal paid**, **Subscription cancelled**, **Subscription expired**.
 - **Automation steps:** **Create a coupon** — a FluentCart coupon of the contact's own, for a later email as
   `{{coupon.…}}` — and **Add order note**, which writes in the order's activity.
-- **Marker CRM in FluentCart's integrations.** FluentCart edits products in its own screens, so tags per product are set
-  there: **FluentCart → Integrations → Add Integration → Marker CRM**, on every order or on one product. Choose **Add
-  tags**, **Remove tags** and the **Event Trigger**; **Take the added tags off again on a refund or when a
-  subscription's access ends** undoes them. Lists stay out: they are what people subscribe to.
+- **Marker CRM in FluentCart's integrations.** FluentCart edits products in its own screens, so lists and tags per
+  product are set there: **FluentCart → Integrations → Add Integration → Marker CRM**, on every order or on one product.
+  Choose **Add to lists**, **Add tags**, **Remove from lists**, **Remove tags**, a **Note** for the contact (FluentCart's
+  order fields can go in it), the **Event Trigger**, and on a product, **Run on Selected Variations Only**.
+  **Take the added lists and tags off again on a refund or when a subscription's access ends** undoes them.
+  **Subscribe the buyer to marketing emails** is off to begin with, since a purchase is not consent: tick it where buying
+  is how people sign up. With double opt-in on, they are emailed to confirm first.
 - **Revenue** credited to the email the buyer came from, on campaign and automation reports and the dashboard, and the
   [FluentCart report](/reports/fluentcart/).
 - [Abandoned carts](/settings/abandoned-carts/) for FluentCart's checkout.
@@ -105,8 +108,8 @@ The FluentCart integration comes with Pro, and its row is marked **Pro** until y
 The SureCart integration comes with Pro, and its row is marked **Pro** until you have it. With Pro:
 
 - **Everyone who pays becomes a contact**, with the **Default lists**, **Default tags** and **Status for new
-  contacts** you set on the SureCart **Manage** page. New customers start as **Transactional**: a purchase is not
-  permission to send them marketing. Contacts already in the CRM keep their status and their name; a purchase only
+  contacts** you set on the SureCart **Manage** page. New customers start as **Subscribed**; **Transactional** (order
+  emails only), **Pending** and **Unsubscribed** are the other choices. Contacts already in the CRM keep their status and their name; a purchase only
   fills in what is missing. A phone number is kept, with no consent to text.
 - **Their SureCart orders** in the contact's **Purchases** tab, read from SureCart when you open it: number and
   date, status, total, and a link to the order for people who can edit SureCart orders.
@@ -125,9 +128,8 @@ The SureCart integration comes with Pro, and its row is marked **Pro** until you
 The Easy Digital Downloads integration comes with Pro, and its row is marked **Pro** until you have it. With Pro:
 
 - **Everyone whose order is completed becomes a contact**, with the **Default lists**, **Default tags** and **Status
-  for new contacts** you set on its **Manage** page. New customers start as **Transactional**: a purchase is not
-  permission to send them marketing; **Subscribed**, **Pending** (sends a double opt-in email) and **Unsubscribed**
-  are the other choices. Contacts already in the CRM keep their status and their name; their name is taken from the
+  for new contacts** you set on its **Manage** page. New customers start as **Subscribed**; **Transactional** (order
+  emails only), **Pending** (sends a double opt-in email) and **Unsubscribed** are the other choices. Contacts already in the CRM keep their status and their name; their name is taken from the
   Easy Digital Downloads customer.
 - **Import now** on the **Manage** page brings in customers who bought before the integration was on, in the
   background. It starts no automations for their past purchases.
