@@ -74,9 +74,12 @@ When you turn it on, the screen lists what deleting the plugin would remove:
 - Every contact, with their tags, lists and custom field values
 - Every log entry and background job
 - All CRM settings, including this one
+- The CRM's settings on products, coupons, orders and reviews: the tags a product or download applies, and what
+  the CRM noted on an order (the email it came from, its abandoned cart). Orders in WooCommerce's High-Performance Order
+  Storage keep theirs; WooCommerce removes them with the order
 - Import and export files left on the server, and the key that signs links in sent emails
 
-Your WordPress users, posts and settings are not touched.
+Your WordPress users, posts and settings are not touched, and neither are the store's own products and orders.
 
 :::caution
 Turn this on only when you are about to delete the plugin and want nothing left behind.
