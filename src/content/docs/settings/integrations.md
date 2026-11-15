@@ -69,6 +69,38 @@ marked **Pro**.
 - **Revenue** credited to the email the buyer came from, on campaign and automation reports and the dashboard.
 - The [WooCommerce report](/reports/woocommerce/) and [abandoned carts](/settings/abandoned-carts/).
 
+## FluentCart
+
+The FluentCart integration comes with Pro, and its row is marked **Pro** until you have it. With Pro:
+
+- **Everyone who pays becomes a contact**, with the **Default lists**, **Default tags** and **Status for new contacts**
+  you set on its **Manage** page. New customers start as **Transactional**: a purchase is not permission to send them
+  marketing. Contacts already in the CRM keep their status and their name. **Import now** brings in customers who
+  bought before, quietly: their past orders start no automations.
+- **What each customer has spent**, kept net of refunds and with renewals counted: orders, lifetime value, first and last
+  order, as columns in the contact list and as segment rules under **FluentCart** (with **Bought products**, **Bought
+  from categories** and **Used coupons**), and two ready segments: **FluentCart customers** and **FluentCart repeat
+  customers**.
+- **Their orders** in the contact's **Purchases** tab, with **Re-sync** to work them out again, and their FluentCart
+  subscriptions under it.
+- **A consent box at checkout**, set under **Checkout** on the **Manage** page as for WooCommerce: ticking it subscribes
+  them when the order is placed, through double opt-in when that is on. **Fill in checkout for people who came from an
+  email** puts their name and email in for a visitor who clicked one of your emails.
+- **Automation triggers:** **New order (paid)** — narrowed by **Who**, **Which orders**, products, categories and
+  **Order total at least** — **Order refunded** (any, full or partial), **Order completed**, **Order cancelled**,
+  **Order status changed**, **Order shipped**, **Order delivered**, **No order in a while**, **Lifetime value reached**,
+  and **Subscription started**, **Subscription renewal paid**, **Subscription renewal failed**, **Subscription
+  cancelled**, **Subscription expired**.
+- **Automation steps:** **Create a coupon** — a FluentCart coupon of the contact's own, for a later email as
+  `{{coupon.…}}` — **Change order status** and **Add order note**, which writes in the order's activity.
+- **Marker CRM in FluentCart's integrations.** FluentCart edits products in its own screens, so tags per product are set
+  there: **FluentCart → Integrations → Add Integration → Marker CRM**, on every order or on one product. Choose **Add
+  tags**, **Remove tags** and the **Event Trigger**; **Take the added tags off again on a refund or when a
+  subscription's access ends** undoes them. Lists stay out: they are what people subscribe to.
+- **Revenue** credited to the email the buyer came from, on campaign and automation reports and the dashboard, and the
+  [FluentCart report](/reports/fluentcart/).
+- [Abandoned carts](/settings/abandoned-carts/) for FluentCart's checkout.
+
 ## SureCart
 
 The SureCart integration comes with Pro, and its row is marked **Pro** until you have it. With Pro:
