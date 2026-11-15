@@ -105,6 +105,9 @@ The Easy Digital Downloads integration comes with Pro, and its row is marked **P
   from categories** — and in the [Easy Digital Downloads report](/reports/edd/).
 - **Their orders** in the contact's **Purchases** tab: number and date, status, total, and a link to the order for
   people who can edit payments in Easy Digital Downloads.
+- **A Marker CRM box on each download** (Downloads → edit a download): **Add tags** and **Remove tags** for **When it is
+  bought** and for **When the order is refunded in full**. A partial refund changes no tags. They apply while syncing
+  is on, for every download in the order.
 - **Automation triggers:**
   - **New order (paid)** runs when an order is completed, once per order. **Who** can limit it to people new to the
     CRM, and **Which orders** to a customer's first order or their repeat orders.
