@@ -120,4 +120,13 @@ The Easy Digital Downloads integration comes with Pro, and its row is marked **P
   **Subscription renewal paid** also with **Or a product in these categories**. The renewal, expiry and
   license triggers run for someone already in the CRM, and appear only while their add-on is active.
 
+## Voxel
+
+The Voxel integration comes with Pro, and its row is marked **Pro** until you have it. It turns on by itself while
+Voxel is your theme, with nothing to set up.
+
+- **Automation trigger: Order placed** runs when a customer places an order in Voxel. Narrow it with **With any of
+  these product types**; leave it empty for any order. It runs only for a customer who is already a contact, matched by
+  the email on their account: Voxel orders do not add people to the CRM.
+
 Other tools can also send contacts in through [Incoming webhooks](/settings/webhooks/).
