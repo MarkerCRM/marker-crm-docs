@@ -15,6 +15,7 @@ subscriptions, customer stages and customer health — read from your FluentCart
 - **Revenue** counts orders paid, partly paid or partly refunded, net of refunds. A fully refunded order counts for
   nothing.
 - **Kinds of order** come from FluentCart's own: a subscription's first order, a renewal, or a one-time order.
+- **Refunded** at the top is everything refunded, and its share of what was taken before refunds.
 - **A subscription ends** on the day it is cancelled, or on its expiry once it has expired. **Active subscriptions**
   at the top shows what they bring in a month, each one's amount brought to a month by its billing interval.
 

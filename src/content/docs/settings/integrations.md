@@ -87,12 +87,11 @@ The FluentCart integration comes with Pro, and its row is marked **Pro** until y
   them when the order is placed, through double opt-in when that is on. **Fill in checkout for people who came from an
   email** puts their name and email in for a visitor who clicked one of your emails.
 - **Automation triggers:** **New order (paid)** — narrowed by **Who**, **Which orders**, products, categories and
-  **Order total at least** — **Order refunded** (any, full or partial), **Order completed**, **Order cancelled**,
-  **Order status changed**, **Order shipped**, **Order delivered**, **No order in a while**, **Lifetime value reached**,
-  and **Subscription started**, **Subscription renewal paid**, **Subscription renewal failed**, **Subscription
-  cancelled**, **Subscription expired**.
+  **Order total at least** — **Order refunded** (any, full or partial), **Order cancelled**, **Order shipped**,
+  **Order delivered**, **No order in a while**, **Lifetime value reached**, and **Subscription started**,
+  **Subscription renewal paid**, **Subscription cancelled**, **Subscription expired**.
 - **Automation steps:** **Create a coupon** — a FluentCart coupon of the contact's own, for a later email as
-  `{{coupon.…}}` — **Change order status** and **Add order note**, which writes in the order's activity.
+  `{{coupon.…}}` — and **Add order note**, which writes in the order's activity.
 - **Marker CRM in FluentCart's integrations.** FluentCart edits products in its own screens, so tags per product are set
   there: **FluentCart → Integrations → Add Integration → Marker CRM**, on every order or on one product. Choose **Add
   tags**, **Remove tags** and the **Event Trigger**; **Take the added tags off again on a refund or when a
