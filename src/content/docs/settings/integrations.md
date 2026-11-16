@@ -67,7 +67,8 @@ marked **Pro**.
 - **A tab on each product** that tags its buyers when they pay and changes the tags when they are refunded.
 - **Checkout filled in** with the name and email of a visitor who came from one of your emails.
 - **Revenue** credited to the email the buyer came from, on campaign and automation reports and the dashboard.
-- The [WooCommerce report](/reports/woocommerce/) and [abandoned carts](/settings/abandoned-carts/).
+- The [WooCommerce report](/reports/woocommerce/), and [abandoned carts](/settings/abandoned-carts/), switched on in the
+  integration's own **Abandoned carts** tab.
 
 ## FluentCart
 
@@ -88,8 +89,10 @@ The FluentCart integration comes with Pro, and its row is marked **Pro** until y
   email** puts their name and email in for a visitor who clicked one of your emails.
 - **Automation triggers:** **New order (paid)** — narrowed by **Who**, **Which orders**, products, categories and
   **Order total at least** — **Order refunded** (any, full or partial), **Order cancelled**, **Order shipped**,
-  **Order delivered**, **No order in a while**, **Lifetime value reached**, and **Subscription started**,
-  **Subscription renewal paid**, **Subscription cancelled**, **Subscription expired**.
+  **Order delivered**, **No order in a while**, **Lifetime value reached**, **Abandons a cart** (while its abandoned
+  carts are on), and **Subscription started**, **Subscription renewal paid**, **Subscription cancelled**,
+  **Subscription expired**. An order event brings its buyer in as a contact when they are not one yet — an order on
+  hold can be shipped before it is paid — with the **Status for new contacts**, lists and tags set above.
 - **Automation steps:** **Create a coupon** — a FluentCart coupon of the contact's own, for a later email as
   `{{coupon.…}}` — and **Add order note**, which writes in the order's activity.
 - **Marker CRM in FluentCart's integrations.** FluentCart edits products in its own screens, so lists and tags per
@@ -101,7 +104,8 @@ The FluentCart integration comes with Pro, and its row is marked **Pro** until y
   is how people sign up. With double opt-in on, they are emailed to confirm first.
 - **Revenue** credited to the email the buyer came from, on campaign and automation reports and the dashboard, and the
   [FluentCart report](/reports/fluentcart/).
-- [Abandoned carts](/settings/abandoned-carts/) for FluentCart's checkout.
+- [Abandoned carts](/settings/abandoned-carts/) for FluentCart's checkout, switched on in the integration's own
+  **Abandoned carts** tab.
 
 ## SureCart
 
