@@ -9,7 +9,7 @@ A pattern is a few blocks you save once and reuse in any email: a sign-off, a so
 an offer box, a header. Where a [template](/emails/templates/) is a whole email to start from,
 a pattern is a piece you drop into one.
 
-Patterns live under **Emails → Patterns**.
+Patterns live under **Campaigns → Patterns**.
 
 ![The patterns list, with each pattern's category and whether it is synced](/images/placeholder.svg)
 

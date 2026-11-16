@@ -6,7 +6,10 @@ sidebar:
 ---
 
 A campaign is one email sent to an audience you choose: once, at a time you pick, or on a
-repeating schedule. Campaigns live under **Emails → Campaigns**.
+repeating schedule. Campaigns live under **Campaigns → Campaigns**.
+
+With the [SMS & WhatsApp](/settings/sms/) add-on on, the same list holds text campaigns too: a **Channel** column and
+filter appear, and **New campaign** first asks whether it goes out as an email, an SMS or a WhatsApp message.
 
 ![The campaigns list, with status, audience, recipients and open and click rates for each campaign](/images/placeholder.svg)
 

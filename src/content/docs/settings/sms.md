@@ -52,10 +52,13 @@ that channel straight away. **START** (or unstop, subscribe) subscribes them aga
 
 ## Text campaigns
 
-**Emails → SMS & WhatsApp** lists text campaigns, one channel at a time. **New text campaign** asks for a title and the
-channel; then choose who it goes to (lists, tags, or everyone who agreed), write the message — the counter shows its
-length and how many SMS segments a carrier bills — and send it now or at a time you choose. Once it has gone, the
-campaign shows how many were sent, delivered, failed and still waiting.
+Text campaigns sit in the same list as email ones, under **Campaigns → Campaigns**. Once SMS or WhatsApp is on, the list
+gains a **Channel** column and a channel filter, and **New campaign** asks what it should go out as: **Email**, **SMS**
+or **WhatsApp**. A channel that is on but not yet connected says **Set it up first**, with a link to its settings.
+
+An SMS or WhatsApp campaign then asks who it goes to (lists, tags, or everyone who agreed), the message — the counter
+shows its length and how many SMS segments a carrier bills — and whether to send it now or at a time you choose. Once it
+has gone, the campaign shows how many were sent, delivered, failed and still waiting.
 
 ## Inbox
 

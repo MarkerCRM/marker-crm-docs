@@ -9,10 +9,10 @@ A sequence is a series of emails with gaps between them: a seven-day course, a w
 a follow-up after a demo. You write it once. Each contact you add gets the first email, then
 the next after its wait, and so on, counted from when *they* were added.
 
-Sequences live under **Emails → Sequences**.
+Sequences live under **Campaigns → Sequences**.
 
 :::note[Marker CRM Pro]
-Sequences need Marker CRM Pro. Without it, **Emails → Sequences** says what they do, and **Add to a sequence**
+Sequences need Marker CRM Pro. Without it, **Campaigns → Sequences** says what they do, and **Add to a sequence**
 in Contacts is listed with a **Pro** tag. If Pro is turned off, the sequences you made are kept as they are, but
 nobody new can be added and anyone part-way through waits where they are, getting nothing, until Pro is back on.
 :::

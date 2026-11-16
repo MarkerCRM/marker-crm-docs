@@ -9,7 +9,7 @@ A template is a whole email to start from: its blocks, its design and its footer
 email from a template copies it, so the email and the template are separate from then on.
 Changing a template later changes none of the emails started from it.
 
-Templates live under **Emails → Templates**.
+Templates live under **Campaigns → Templates**.
 
 ![The templates list, with built-in and custom templates, their category and how many campaigns used each](/images/placeholder.svg)
 

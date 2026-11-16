@@ -53,7 +53,7 @@ More: [Lists](/contacts/lists/).
 
 ## 4. Send your first campaign
 
-1. Go to **Emails → Campaigns** and choose **New campaign**.
+1. Go to **Campaigns → Campaigns** and choose **New campaign**.
 2. In **To**, choose the list you made. Only contacts whose status is **Subscribed** receive
    a campaign; the composer shows how many can be emailed.
 3. Write a subject line and the email.
