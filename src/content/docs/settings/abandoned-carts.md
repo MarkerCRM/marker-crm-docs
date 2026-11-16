@@ -5,11 +5,12 @@ sidebar:
   order: 8
 ---
 
-Abandoned carts come with Marker CRM Pro and work with **WooCommerce** and **FluentCart**. Each store has its own:
-open **Settings → Integrations → FluentCart** (or WooCommerce), go to its **Abandoned carts** tab, and switch on
-**Keep abandoned carts for this store**. Its settings show once it is on, and belong to that store alone, so FluentCart
-can keep carts while WooCommerce does not, or each can use its own timing. Carts from every store show together under
-**Reports → Abandoned carts**; while no store has them on, the report says so, with a button to each store's settings.
+Abandoned carts come with Marker CRM Pro and work with **WooCommerce** and **FluentCart**. It is an add-on: open
+**Add-ons → Abandoned carts** and turn it on. The page has a card for each store you run, with its own switch,
+**Keep abandoned carts for WooCommerce** (or FluentCart), and the order statuses that count as bought there; everything
+below the store cards — timing, privacy, who is left out, and what happens to the contact — is shared by every store.
+Carts from every store show together under **Reports → Abandoned carts**; while no store is switched on, the report says
+so, with a button to the settings.
 
 ## How a cart is followed
 
@@ -30,7 +31,14 @@ item.
 
 ## Settings
 
-In the store's **Abandoned carts** tab, once **Keep abandoned carts for this store** is on:
+For each store, on its card:
+
+| Setting | What it does |
+|---|---|
+| **Keep abandoned carts for WooCommerce** / **FluentCart** | Keeps that store's carts. Off, the store keeps none and its **Abandons a cart** trigger cannot start. |
+| **A cart is recovered when its order is** | The order statuses that win a cart back. Processing and Completed to begin with; tick **On hold** if you take bank transfers, cheques or other offline payments, so the reminders stop once they order. WooCommerce also offers **Pending payment**. |
+
+Shared by every store:
 
 | Setting | What it does |
 |---|---|

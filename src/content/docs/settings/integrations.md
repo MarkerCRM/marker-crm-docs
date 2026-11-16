@@ -67,8 +67,8 @@ marked **Pro**.
 - **A tab on each product** that tags its buyers when they pay and changes the tags when they are refunded.
 - **Checkout filled in** with the name and email of a visitor who came from one of your emails.
 - **Revenue** credited to the email the buyer came from, on campaign and automation reports and the dashboard.
-- The [WooCommerce report](/reports/woocommerce/), and [abandoned carts](/settings/abandoned-carts/), switched on in the
-  integration's own **Abandoned carts** tab.
+- The [WooCommerce report](/reports/woocommerce/), and [abandoned carts](/settings/abandoned-carts/), switched on for
+  WooCommerce in the **Abandoned carts** add-on.
 
 ## FluentCart
 
@@ -104,8 +104,8 @@ The FluentCart integration comes with Pro, and its row is marked **Pro** until y
   is how people sign up. With double opt-in on, they are emailed to confirm first.
 - **Revenue** credited to the email the buyer came from, on campaign and automation reports and the dashboard, and the
   [FluentCart report](/reports/fluentcart/).
-- [Abandoned carts](/settings/abandoned-carts/) for FluentCart's checkout, switched on in the integration's own
-  **Abandoned carts** tab.
+- [Abandoned carts](/settings/abandoned-carts/) for FluentCart's checkout, switched on for FluentCart in the
+  **Abandoned carts** add-on.
 
 ## SureCart
 
