@@ -152,7 +152,7 @@ again, the second start is refused.
 
 | Trigger | Starts when | Settings |
 |---|---|---|
-| **New user signs up** | Someone registers a WordPress account. | **Who**: **People who sign up themselves** (default) or **Anyone who gets an account**; **Only these roles**; **New contacts join as**: **Transactional** (default), **Pending — send a confirmation email**, or **Subscribed**; **If they are already a contact**: **Update them and start** or **Skip them**. |
+| **New user signs up** | Someone registers a WordPress account. | **Who**: **People who sign up themselves** (default) or **Anyone who gets an account**; **Only these roles**; **New contacts join as**: **Subscribed** (default), **Pending — send a confirmation email**, or **Transactional**; **If they are already a contact**: **Update them and start** or **Skip them**. |
 | **User logs in** (Pro) | A WordPress user signs in. | **Which logins**: **Every login**, **Their first login**, or **After being away** (with **Days away**, 30 by default); **Only these roles**; **If they are not a contact yet**: **Do nothing** (default), or add them as **Transactional**, **Pending** or **Subscribed**. |
 
 **New user signs up** creates a contact for a newcomer. With **People who sign up
