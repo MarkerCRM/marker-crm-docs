@@ -224,6 +224,10 @@ daily). Listen to `marker_crm/tick` instead of either.
 | `marker_crm/send_utm` | `array $tags` | `Send $send` | UTM parameters added to links |
 | `marker_crm/optin_email_html` | `string $html` | `Contact $contact, ContactSubscription $subscription` | The double opt-in email |
 | `marker_crm/mailers` | `array $mailers` | — | The SMTP plugins the email settings recognise |
+| `marker_crm/ai_prompt` | `string $prompt` | `string $name, string $variant` | Any instruction the AI add-on sends. `$name`: `improve_system`, `improve`, `draft_system`, `draft`, `subjects_system`, `subjects`, `summary_system`, `summary`; `$variant` is the action or record type |
+| `marker_crm/ai_text` | `null` | `string $prompt, array $options` | Return a string to answer an AI request yourself, without WordPress's AI client |
+| `marker_crm/ai_requests_per_minute` | `int` (`20`) | — | AI requests one person may make a minute; `0` for no limit |
+| `marker_crm/ai_summary_context` | `array $facts` | `string $type, Contact\|Company\|Deal $record` | What an AI summary is written from; Marker CRM Pro adds `purchases` to a contact's |
 
 ### Campaigns
 

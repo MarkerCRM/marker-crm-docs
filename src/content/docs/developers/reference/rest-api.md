@@ -328,6 +328,23 @@ These need `edit_campaigns` or `edit_automations`, except where noted.
 | `POST` | `stores/{store}/report/stages/{stage}` | Save a stage's customers as a segment, kept up to date, and return its `id` | `edit_segments` |
 | `POST` | `stores/{store}/report/cutoffs` | Save `at_risk_days`, `lapsed_days`, `top_percent` | `manage_settings` |
 
+### AI
+
+`ai/status`, `ai/settings`, `ai/models` and `ai/test` answer whether the add-on is on or off, for its settings page; the rest only while it is on,
+otherwise `404`. A request the AI cannot answer is `422` with its reason, and more than
+the minute's allowance is `429`.
+
+| Method | Path | Does | Capability |
+|---|---|---|---|
+| `GET` | `ai/status` | Whether it is `enabled`, whether the site supports WordPress AI, its connected `connectors` and their `models`, the other `providers`, and the settings, the API key masked | `manage_settings` |
+| `POST` | `ai/settings` | Save `provider` (`wordpress`, `openai`, `anthropic`, `gemini`, `openrouter`), `model`, `api_key`, `brand_voice`, `summary_notes`. Any provider but `wordpress` needs a key and a model; the key is stored encrypted, and `••••••••` keeps the saved one. Answers as `ai/status` | `manage_settings` |
+| `POST` | `ai/models` | The models of `provider` for `api_key` (`••••••••` for the saved one), as the provider lists them | `manage_settings` |
+| `POST` | `ai/test` | One short request with `provider`, `model` and `api_key` as given, saved or not: `reply` | `manage_settings` |
+| `POST` | `ai/improve` | `action` (`rewrite`, `shorten`, `expand`, `grammar`, `tone`, `translate`, `custom`), `text` (HTML), `tone`, `language`, `instruction` → `text`, `warnings` (merge tags lost or unknown) | `edit_campaigns`, `edit_automations` or `send_campaigns` |
+| `POST` | `ai/draft` | `brief`, `tone`, `length` (`short`, `medium`, `long`) → `body` (HTML), `subjects` (up to five), `preview`, `warnings` | as `ai/improve` |
+| `POST` | `ai/subjects` | `content` (the email), `subject`, `preview` → `subjects` (up to five), `previews` (up to three) | as `ai/improve` |
+| `GET` · `POST` | `ai/summaries/{type}/{id}` | The saved summary of a `contact`, `company` or `deal`, or `null`; `POST` writes a new one. A record you may not see answers `404` | `view_` on that record type |
+
 ### Settings and administration
 
 All need `manage_settings`, except `users`.

@@ -18,6 +18,7 @@ Each row names an optional part, says what it does, and has a switch.
 | Add-on | What it adds |
 |---|---|
 | **Companies** | Keep the businesses your contacts work for, and see everyone at one of them together. Adds the **Companies** tab under **Contacts**. See [Companies](/contacts/companies/). |
+| **AI Assistant** | Write and improve emails, suggest subject lines, and summarise contacts, companies and deals, with the AI connected to your WordPress site. Free; needs WordPress 7.0 or newer. Also switched on in **Settings → AI Assistant**. See [AI Assistant](/settings/ai/). |
 
 Companies is off on a new site.
 
@@ -25,7 +26,7 @@ Companies is off on a new site.
 
 Click the switch.
 
-- **Turning one on** reloads the page, and the new screens appear in the menus.
+- **Turning one on** brings in its screens and menus. Most appear at once; a few, such as Deals, reload the page first.
 - **Turning one off** hides it everywhere: its menu items, tabs and screens.
 
 :::note[Nothing is deleted]
