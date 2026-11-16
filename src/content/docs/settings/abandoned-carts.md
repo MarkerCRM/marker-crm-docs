@@ -6,7 +6,7 @@ sidebar:
 ---
 
 Abandoned carts come with Marker CRM Pro and work with **WooCommerce** and **FluentCart**. It is an add-on: open
-**Add-ons → Abandoned carts** and turn it on. The page has a card for each store you run, with its own switch,
+**Settings → Add-ons → Abandoned carts** and turn it on. The page has a card for each store you run, with its own switch,
 **Keep abandoned carts for WooCommerce** (or FluentCart), and the order statuses that count as bought there; everything
 below the store cards — timing, privacy, who is left out, and what happens to the contact — is shared by every store.
 Carts from every store show together under **Reports → Abandoned carts**; while no store is switched on, the report says
