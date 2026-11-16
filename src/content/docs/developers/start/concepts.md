@@ -54,7 +54,7 @@ $contact = ContactService::matching([['channel' => 'email', 'address' => $email]
 ### Extra data on a contact
 
 Do not alter `marker_crm_contacts`. For a value the site owner should see and edit, use a
-custom field (**Contacts → Custom fields**) and write it through `custom`. For data only your
+custom field (**Settings → Custom fields**) and write it through `custom`. For data only your
 add-on reads, keep your own table, keyed by `contact_id`.
 
 ## Subscriptions and consent

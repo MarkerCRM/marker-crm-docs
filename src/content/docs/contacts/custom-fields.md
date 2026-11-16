@@ -11,12 +11,13 @@ contacts table, in segments, imports and exports, and in automations.
 
 ## The custom fields screen
 
-Go to **Contacts → Custom Fields**. Each field shows its **Label**, **Slug**, **Group**,
+Go to **Settings → Custom fields**, under **Team and data**. Each field shows its **Label**, **Slug**, **Group**,
 **Type** and when it was **Created**. A red asterisk marks a required field. Search with
 **Search fields…**.
 
-When [Companies](/contacts/companies/) is on, a switch at the top chooses whether you are
-looking at the fields for **Contacts** or for **Companies**. Each has its own set.
+The tabs at the top choose whose fields you are looking at: **Contacts**, and **Companies** and
+**Deals** while those add-ons are on. Each has its own set, and the tab you are on is part of the
+page's address, so a link can open it directly.
 
 ![The Custom Fields screen with fields grouped as General, Marketing and Sales, and a drag handle on each row](/images/placeholder.svg)
 
