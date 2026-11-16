@@ -146,6 +146,9 @@ Paths are relative to `/wp-json/markercrm/v2/`. `{id}` is a numeric id.
 | `POST` | `contacts/{id}/automations` | Put the contact into an automation | `view_contacts`, `edit_automations` |
 | `GET` · `POST` | `contacts/{id}/direct-email` | Check whether a one-off email can be sent; send one | `view_contacts`, `send_campaigns` |
 | `POST` · `PUT` · `DELETE` | `contacts/{id}/companies` | Link a company, set the primary one, unlink | `edit_contacts` |
+| `GET` | `messaging/contacts/{id}/messages` | SMS and WhatsApp both ways, newest first; `meta.consent` per channel. Cursor: `before`, `before_id`. Pro | `view_contacts` |
+| `POST` | `messaging/contacts/{id}/messages` | Text the contact now: `channel`, `message`. Pro | `edit_contacts` |
+| `PUT` | `messaging/contacts/{id}/consent` | Set a channel's consent: `channel`, `status`. Pro | `edit_contacts` |
 
 The body of `POST contacts` and `PUT contacts/{id}` is what
 `ContactService::createOrUpdate()` takes: contact fields, `subscriptions`, `tags`, `lists`,
@@ -251,7 +254,7 @@ Pass `type=contacts` or `type=companies`.
 
 | Method | Path | Does | Capability |
 |---|---|---|---|
-| `GET` | `campaigns` | List campaigns | `view_campaigns` |
+| `GET` | `campaigns` | List campaigns. `channel` picks email (the default), `sms` or `whatsapp` | `view_campaigns` |
 | `GET` | `campaigns/counts` | Counts by status | `view_campaigns` |
 | `GET` | `campaigns/audience-counts` | How many an audience would reach | `edit_campaigns` |
 | `POST` | `campaigns` | Create a campaign | `edit_campaigns` |

@@ -19,6 +19,7 @@ Each row names an optional part, says what it does, and has a switch.
 |---|---|
 | **Companies** | Keep the businesses your contacts work for, and see everyone at one of them together. Adds the **Companies** tab under **Contacts**. See [Companies](/contacts/companies/). |
 | **Deals** | Track what you are selling through pipelines of your own stages, from first talk to won or lost. Adds **Deals** to the menu. Its pipelines, general settings, lost reasons and contact roles are under **Settings → Add-ons → Deals**; people with only the **Manage pipelines** permission see just that page in Settings. |
+| **SMS & WhatsApp** | Pro. Text contacts from campaigns, automations and their own page, and see their replies, through Twilio, Amazon or the WhatsApp Business API. See [SMS & WhatsApp](/settings/sms/). |
 | **AI Assistant** | Write and improve emails, suggest subject lines, and summarise contacts, companies and deals, with the AI connected to your WordPress site. Free; needs WordPress 7.0 or newer. Also switched on in **Settings → AI Assistant**. See [AI Assistant](/settings/ai/). |
 | **Abandoned carts** | Pro. Win back shoppers who gave their email at checkout but left without buying. Needs WooCommerce or FluentCart. See [Abandoned carts](/settings/abandoned-carts/). |
 
@@ -36,7 +37,7 @@ Click the switch.
 An add-on with settings of its own opens them inside **Settings**: click **Configure** on its row, or its name under
 **Settings → Add-ons**. The page starts with the add-on's own switch; its settings show while it is on.
 
-**Settings → Add-ons** always lists **Abandoned carts**, on or off; the other add-ons appear there once you turn them
+**Settings → Add-ons** always lists **SMS & WhatsApp** and **Abandoned carts**, on or off; the other add-ons appear there once you turn them
 on. **More add-ons** at the bottom comes back to this page. The AI Assistant sits under **Settings → Connections**
 instead, as the connection to your AI.
 

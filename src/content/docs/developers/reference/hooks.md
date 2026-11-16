@@ -134,6 +134,9 @@ These fire only while the companies module is on.
 | `marker_crm/email_bounced` | `Send $send, string $address, string $type` | A bounce was reported. `$type` is `hard` once the address is stopped |
 | `marker_crm/email_complained` | `Send $send, string $address` | A spam complaint was reported |
 | `marker_crm/direct_email_queued` | `Send $send, Contact $contact` | A one-off email to a contact was queued |
+| `marker_crm/sms_sent` · `marker_crm/whatsapp_sent` | `Send $send` | A text was accepted by the provider. Pro |
+| `marker_crm/sms_failed` · `marker_crm/whatsapp_failed` | `Send $send` | A text failed for the last time. Pro |
+| `marker_crm/message_received` | `Contact $contact, Send $send, string $text` | A contact texted you on SMS or WhatsApp. Pro |
 | `marker_crm/send_batch_started` | `Collection $batch` | The queue claimed a batch of sends |
 | `marker_crm/send_batch_finished` | `Collection $batch` | It finished that batch |
 | `marker_crm/action_link_clicked` | `ActionLink $link, ?Contact $contact` | An action link was clicked and its effects applied. `$contact` is `null` when the clicker is unknown |
@@ -215,6 +218,10 @@ daily). Listen to `marker_crm/tick` instead of either.
 | `marker_crm/merge_url_tags` | `array $tags` | — | Add `##url_tokens##`: token → `callable(array $on): string` |
 | `marker_crm/merge_data` | `array $on` | `Send $send` | What merge tags read for one send |
 | `marker_crm/email_before_send` | `bool` (`true`) | `Send $send, array $on` | Return `false` to stop one email; it is marked failed |
+| `marker_crm/messaging_providers` | `array $providers` | — | SMS and WhatsApp providers, keyed `{channel}.{slug}` → a class extending `Providers\Provider`. Pro |
+| `marker_crm/messaging_keywords` | `array $keywords` | — | The words that unsubscribe (`stop`) and resubscribe (`start`) a channel. Pro |
+| `marker_crm/campaign_message_settings` | `?array $kept` | `mixed $asked` | What a campaign on a channel other than email keeps beyond its text, such as a WhatsApp template |
+| `marker_crm/public_route_rate` | `int $perMinute` | `string $route` | How many calls a minute a public route takes from one caller |
 | `marker_crm/email_html` | `string $html` | `Send $send, array $on` | The finished HTML of an email |
 | `marker_crm/email_footer_html` | `string $footer` | `Send $send` | The footer of a marketing email |
 | `marker_crm/email_headers` | `string[] $headers` | `Send $send, string $kind` | Mail headers; `$kind` is the kind of email |
