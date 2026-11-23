@@ -50,8 +50,10 @@ to. When that contact clicks, they get the tags and lists, and the click is save
 their record.
 
 If someone clicks the link without that code — on a web page or forwarded on social
-media — the CRM tries the signed-in WordPress user's contact. If it can't tell who clicked,
-the link still redirects but tags nobody. That click is counted as **from the public**.
+media — the CRM tries the signed-in WordPress user's contact. That only happens when they
+click or open the link themselves: a page that loads the link behind their back, as an image
+for example, tags nobody. If it can't tell who clicked, the link still redirects but tags
+nobody. That click is counted as **from the public**.
 
 :::caution[Forwarded emails]
 The link inside an email belongs to the person it was sent to. If they forward the email
