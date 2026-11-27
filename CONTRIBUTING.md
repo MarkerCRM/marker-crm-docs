@@ -56,6 +56,19 @@ Use `.md` unless you need components, then `.mdx` with
 `import {Steps, Aside, Tabs, TabItem, Card, CardGrid, LinkCard} from '@astrojs/starlight/components';`.
 Asides in plain Markdown: `:::note`, `:::tip`, `:::caution`, `:::danger`.
 
+## Marking Pro
+
+Anything that needs Marker CRM Pro carries the Pro tag, the same way everywhere:
+
+- **A whole page is Pro**: `badge: {text: Pro, variant: note}` under `sidebar:` in the front matter, and a
+  `:::note[Marker CRM Pro]` aside first, saying what Pro adds and what shows without it.
+- **One feature on a mixed page**: `<span class="pro-tag">Pro</span>` right after its bold name
+  (`**Advanced filter** <span class="pro-tag">Pro</span> swaps…`), or in the first cell of its table row.
+- **Never in a heading**: the tag would change the heading's anchor, and the plugin links to anchors. Put it at
+  the start of the first line under the heading instead.
+
+Write "Marker CRM Pro" in prose only where the sentence needs it; the tag replaces "(Marker CRM Pro)" asides.
+
 ## Images
 
 Until real screenshots exist, every image is the same placeholder:
