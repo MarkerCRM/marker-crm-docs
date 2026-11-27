@@ -63,8 +63,8 @@ colleague, an editor — give them access under **Settings → Users and permiss
 
 ## First run
 
-The CRM starts empty. A **Finish setting up** checklist sits in the CRM's sidebar until each
-item is done:
+The CRM starts empty. A **Getting started** panel sits on the Dashboard until each item is
+done:
 
 - **Add your business details** — your business name and postal address, which go in the
   footer of every marketing email.
@@ -73,10 +73,10 @@ item is done:
 - **Create a list**
 - **Send your first campaign**
 
-Each unfinished item links to the screen that completes it. The checklist disappears once all
+Each unfinished item links to the screen that completes it. The panel disappears once all
 five are done. The [Quick start](/getting-started/quick-start/) walks through them in order.
 
-![The Finish setting up checklist in the CRM sidebar, with two of five steps ticked](/images/placeholder.svg)
+![The Getting started panel on the Dashboard, with two of five steps ticked](/images/placeholder.svg)
 
 ## Background work
 

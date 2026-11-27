@@ -32,6 +32,8 @@ any integrations you have installed.
 | **Update contact fields** (Pro) | Writes new values into one or more fields. Each row has **Field**, **How** and **New value**; **Add another field** adds a row. |
 | **Add a note or activity** (Pro) | Leaves a note, call or meeting on the contact's timeline: **Kind**, **Title** and **What it says**. |
 | **Add to a company** / **Remove from a company** | Links the contact to a company (optionally **Make it their primary company**), or unlinks them. Only while the companies module is on. |
+| **Create a task** | Adds a task on the contact: a **Title** (merge tags work), a **Type**, a **Priority**, **Due in days** (0 is today), and **Assigned to** **The contact's owner** or **Someone else** (then choose the **Person**). Someone who cannot use tasks, or a contact with no owner, leaves it unassigned. Only while the Tasks add-on is on. See [Tasks](/tasks/). |
+| **Complete tasks** | Marks the contact's open tasks done: all of them (**Any type**), or only those of one **Type**. Each counts as completed, so it can start **Task is completed** automations. Only while the Tasks add-on is on. |
 
 Some actions refuse on purpose, and the step is skipped with the reason in the contact's
 history rather than failing:

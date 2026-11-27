@@ -43,10 +43,6 @@ only, open the **From** row and tick **Use a different sender for this campaign*
 **From name**, **From address**, **Reply-to name** and **Reply-to address**. Your mailer has to
 be set up to send from that address, or the message bounces.
 
-If the address is on a free mailbox such as Gmail or Yahoo, the row shows **Free mailbox · Fix**.
-Those providers often junk bulk mail sent as their address from another server, so send from
-an address on your own domain.
-
 ### To: lists, tags, segments or everyone
 
 Open the **To** row and choose any mix of lists, tags and segments. A contact in any one of
@@ -149,7 +145,7 @@ address and how many were left out, followed by a list of checks.
   test must be different* — since there would be nothing to compare.
 
 **Other items are warnings.** You can send anyway, but read them: no postal address in the
-footer, no preview text, a free mailbox as the sender, **No test sent yet**, a subject that will
+footer, no preview text, **No test sent yet**, a subject that will
 be cut off, reads as shouting or uses a merge tag without a fallback, nothing to click,
 insecure `http://` links, or an A/B test with too few people to pick a reliable winner.
 

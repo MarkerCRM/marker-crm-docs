@@ -15,14 +15,15 @@ registry entries. The plugin's own rules (`.claude/rules/role.md`, §10) say the
 ## Addresses are a promise
 
 The plugin's admin links straight to these pages (`resources/admin/common/docs.js` in the
-plugin). Never move or rename these without changing that table in the same release:
+plugin, and each add-on's `addons.docs(…)` in `resources/admin/features/*/index.js`). Never
+move or rename these without changing those links in the same release:
 
 `/` · `/contacts/` · `/contacts/tags/` · `/contacts/lists/` · `/contacts/companies/` ·
 `/contacts/segments/` · `/contacts/custom-fields/` · `/contacts/import/` · `/contacts/export/` ·
 `/emails/campaigns/` · `/emails/sequences/` · `/emails/templates/` · `/emails/patterns/` ·
-`/automations/` · `/reports/contacts/` · `/reports/email/` · `/reports/woocommerce/` · `/reports/edd/` · `/reports/fluentcart/` ·
-`/logs/email/` · `/logs/sms/` · `/add-ons/` · `/settings/business-profile/` · `/settings/email/` ·
-`/settings/general/` · `/settings/sms/` · `/settings/opt-in/` · `/settings/preference-page/` ·
+`/automations/` · `/tasks/` · `/files/` · `/reports/contacts/` · `/reports/email/` · `/reports/woocommerce/` · `/reports/edd/` · `/reports/fluentcart/` ·
+`/logs/email/` · `/logs/sms/` · `/add-ons/` · `/add-ons/#frontend-portal` · `/settings/business-profile/` · `/settings/email/` ·
+`/settings/general/` · `/settings/sms/` · `/settings/ai/` · `/settings/opt-in/` · `/settings/preference-page/` ·
 `/settings/action-links/` · `/settings/abandoned-carts/` · `/settings/integrations/` ·
 `/settings/webhooks/` · `/settings/permissions/` · `/settings/privacy/` · `/settings/tools/`
 

@@ -76,6 +76,28 @@ These fire only while the companies module is on.
 | `marker_crm/contacts_joined_company` | `int[] $contactIds, Company $company` | A bulk action linked many contacts. Fires once per company |
 | `marker_crm/contacts_left_company` | `int[] $contactIds, Company $company` | A bulk action unlinked many contacts |
 
+### Tasks
+
+From the Tasks add-on. Each fires after the write; `Task` is `MarkerCRM\App\Features\Tasks\Models\Task`.
+
+| Hook | Parameters | Fires |
+|---|---|---|
+| `marker_crm/task_created` | `Task $task` | A task was added |
+| `marker_crm/task_updated` | `Task $task` | A task was edited or reopened, also when the edit marks it done |
+| `marker_crm/task_completed` | `Task $task` | A task went from not done to done: ticked, set to Done, or added as Done. Again only after a reopen |
+| `marker_crm/task_deleted` | `Task $task` | A task was deleted by someone. Not when it goes with the last record it was about |
+
+### Files
+
+From the Files add-on. Each fires after the write; `File` is `MarkerCRM\App\Features\Files\Models\File`.
+Renaming, changing its records and turning a share link off fire nothing.
+
+| Hook | Parameters | Fires |
+|---|---|---|
+| `marker_crm/file_created` | `File $file` | A file was added: on records, on an activity, or on none. Its `links` are loaded |
+| `marker_crm/file_deleted` | `File $file` | Someone deleted a file, alone or in bulk. Not when it goes with its record or activity |
+| `marker_crm/file_shared` | `File $file` | A share link was turned on, or its expiry changed |
+
 ### Notes
 
 | Hook | Parameters | Fires |
@@ -160,7 +182,8 @@ daily). Listen to `marker_crm/tick` instead of either.
 
 | Hook | Parameters | Fires |
 |---|---|---|
-| `marker_crm/before_enqueue_admin_assets` | — | Before the admin app's scripts are enqueued |
+| `marker_crm/before_enqueue_admin_assets` | — | Before the admin app's scripts are enqueued, in wp-admin or on the frontend portal |
+| `marker_crm/admin_assets_enqueued` | — | The CRM's app was enqueued, in wp-admin or on the frontend portal. Load an add-on's scripts here so they reach both |
 
 ## Filters
 
@@ -195,7 +218,9 @@ daily). Listen to `marker_crm/tick` instead of either.
 | `marker_crm/note_types` | `array $kinds` | — | The kinds of note a person or automation may log: key → label, or key → `['label' => …, 'fields' => [key => ['label' => …, 'options' => [value => label], 'default' => value]]]` for choices asked when logging it |
 | `marker_crm/note_link_options` | `array $options` | `string $objectType, int $objectId` | What an entry logged on this record may also be about, each `['object_type', 'object_id', 'title']`. Return only what the current user may see |
 | `marker_crm/currencies` | `array $currencies` | — | The currencies Settings → General offers, ISO code → `['name' => …, 'symbol' => …]`. Add one, or remove one, by its code |
-| `marker_crm/note_object_types` | `array $types` | — | The record types activities can be on; `titles` (ids → names this user may see) and `path` (`deals/%d`) let other records' activities name and link to them |
+| `marker_crm/note_object_types` | `array $types` | — | The record types activities, files and emails can be on: key → `model`, `resource` (its capability name, `deals`), and optionally `module`, `find(int $id)`, `authorize(string $action, object $record)` in place of the capabilities, `emails`, `titles` (ids → names this user may see) and `path` (`deals/%d`) to name and link to one, and `visible`, a query of the ids this user may see, when that is not all of them, for lists across records such as Files |
+| `marker_crm/note_rows` | `array $rows` | `string $objectType, int $objectId` | A page of a record's timeline entries, as sent; the Files add-on adds each one's `files` in one query |
+| `marker_crm/deal_privacy_fields` | `array $fields` | `int[] $dealIds` | Extra rows of a contact's personal-data export for each of their deals: `[deal id => [label => value]]`. Files adds the deals' file names |
 | `marker_crm/import_fields` | `array $fields` | — | The contact fields an import can map a column to |
 | `marker_crm/company_import_fields` | `array $fields` | — | The same, for companies |
 | `marker_crm/export_columns` | `array $columns` | — | The columns a contact export can include |
@@ -263,6 +288,7 @@ not remove documented ones.
 | `marker_crm/segment_response` | `$segment` |
 | `marker_crm/custom_field_response` | `$field` |
 | `marker_crm/note_response` | `Note $note` |
+| `marker_crm/file_response` | `File $file` |
 | `marker_crm/automation_response` | `Automation $automation` |
 | `marker_crm/campaign_response` | `Campaign $campaign` |
 | `marker_crm/campaign_summary_response` | `Campaign $campaign` |
@@ -295,3 +321,4 @@ not remove documented ones.
 | `marker_crm/before_render_submenus` | `array $menus` | — | The admin submenu: slug → `label`, `cap` |
 | `marker_crm/webhook_types` | `array $types` | — | What an incoming webhook can do: type → `label`, `handler` |
 | `marker_crm/public_routes` | `array $routes` | — | Public front-end routes (`?marker_crm=…`): name → `callable(Request): ?string` returning a URL to redirect to |
+| `marker_crm/search_kinds` | `array $kinds` | — | The kinds of record the header's search looks through: key → `label`, `icon`, `cap`, `module`, `find`. See [Search](/developers/extending/search/) |

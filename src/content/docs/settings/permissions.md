@@ -45,6 +45,9 @@ They need an existing WordPress account. To add someone new, create their accoun
 | **Automations** | **View**, **Edit**, **Delete** |
 | **Logs** | **View**, **Delete** |
 | **Reports** | **View** |
+| **Deals** | **View**, **Edit**, **Delete**, **Import**, **Export**. Only listed while the Deals add-on is on. |
+| **Pipelines & deal settings** | **Manage**. Only listed while the Deals add-on is on. |
+| **Tasks** | **View**, **Edit**, **Delete**, **Manage** — see [Tasks](/tasks/#who-can-do-what). Only listed while the Tasks add-on is on. |
 | **Settings** | **Manage** — every screen under **Settings**, plus **Add-ons**. |
 
 ### Some permissions include others

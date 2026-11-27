@@ -15,7 +15,7 @@ export const sections = [
             {label: 'Logs', directory: 'logs'},
             {label: 'Settings', directory: 'settings'},
         ],
-        links: [{label: 'Add-ons', link: '/add-ons/'}],
+        links: [{label: 'Tasks', link: '/tasks/'}, {label: 'Files', link: '/files/'}, {label: 'Add-ons', link: '/add-ons/'}],
     },
     {
         id: 'developers',

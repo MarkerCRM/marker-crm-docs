@@ -137,6 +137,17 @@ Shown only while the companies module is on.
 Re-linking someone who is already in the company starts nothing. Deleting a company starts
 nothing either.
 
+### Tasks
+
+Shown only while the Tasks add-on is on.
+
+| Trigger | Starts when | Settings |
+|---|---|---|
+| **Task is created** | A task about a contact is added, by anyone or by an automation. | **Type**: one type of task, or **Any type**. |
+| **Task is completed** | A task about a contact is marked done. | **Type**. |
+
+A task about no contact starts no one. As a goal or a wait, each is met once it has happened since the contact began waiting.
+
 ### Automations
 
 | Trigger | Starts when | Settings |

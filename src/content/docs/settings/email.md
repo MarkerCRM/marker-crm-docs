@@ -22,12 +22,6 @@ Open it from **Settings → Email defaults**.
 | **Reply-to name** | Optional. The name on the reply-to address. Empty, it uses the from name. |
 | **Reply-to address** | Optional. Where replies go. Use an inbox that someone reads. |
 
-:::caution[Don't send from a Gmail, Yahoo or Outlook address]
-If the from address is on a free mailbox such as gmail.com, the screen shows a warning.
-Gmail, Yahoo and Outlook reject or junk bulk email sent as their own domains from another
-server. Send from an address on your own domain.
-:::
-
 ## Footer
 
 The footer is added to the bottom of every campaign. Use the **{ }** button in the editor to

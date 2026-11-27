@@ -6,8 +6,8 @@ sidebar:
 ---
 
 This is the shortest path from an empty CRM to email going out. Each step links to the page
-that covers it in full. The same steps appear in the **Finish setting up** checklist in the
-CRM's sidebar, which ticks itself off as you go.
+that covers it in full. The same steps appear in the **Getting started** panel on the
+Dashboard, which ticks itself off as you go.
 
 ## 1. Set your business details and sending defaults
 
@@ -15,8 +15,7 @@ Every marketing email needs a real sender and a postal address in its footer.
 
 1. Go to **Settings → Business profile** and fill in your business name and address.
 2. Go to **Settings → Email defaults** and set the **From name** and **From address**.
-   Use an address on your own domain — Gmail, Yahoo and Outlook reject or junk bulk mail
-   sent as a free mailbox address from another server.
+   Use an address your mailer is set up to send from.
 3. Under **Mailer**, check that a mailer plugin is connected. If none is, install the
    recommended one, then use **Send a test email** to see how your messages arrive.
 

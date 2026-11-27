@@ -44,7 +44,7 @@ curl -u "jane:abcd efgh ijkl mnop qrst uvwx" https://example.com/wp-json/markerc
 ### Who may do what
 
 A user has access to the CRM when they are an administrator (`manage_options`) or have been
-given at least one Marker CRM permission on **Settings → Permissions**. Inside, each endpoint
+given at least one Marker CRM permission on **Settings → Users and permissions**. Inside, each endpoint
 checks a capability named `marker_crm_{action}_{resource}`:
 
 | Resource | Actions |
@@ -57,6 +57,9 @@ checks a capability named `marker_crm_{action}_{resource}`:
 | `automations` | `view` `edit` `delete` |
 | `logs` | `view` `delete` |
 | `reports` | `view` |
+| `deals` | `view` `edit` `delete` `import` `export` (Deals add-on on) |
+| `pipelines` (pipelines and deal settings) | `manage` (Deals add-on on) |
+| `tasks` | `view` `edit` `delete` `manage` (Tasks add-on on) |
 | `dashboard` | `manage` |
 | `settings` | `manage` |
 
@@ -172,6 +175,12 @@ The body of `POST contacts` and `PUT contacts/{id}` is what
 |---|---|---|---|
 | `GET` | `rule-fields` | Every rule field, for building conditions (`segments/fields` answers the same) | `view_segments` or `edit_automations` |
 
+### Search
+
+| Method | Path | Does | Capability |
+|---|---|---|---|
+| `GET` | `search` | `search` (two characters or more) across every kind this user may view, up to 5 of each, as `[{kind, label, icon, items: [{id, title, subtitle, path}], more}]`; `kind` narrows to one, up to 20. `[]` for a shorter term, or a kind that does not exist or this user may not search | CRM access, then each kind's own |
+
 ### Segments (Marker CRM Pro)
 
 | Method | Path | Does | Capability |
@@ -204,6 +213,50 @@ Only while the companies module is on.
 | `POST` | `companies/bulk` | Bulk action | `edit_companies`, or `delete_companies` to delete |
 | `GET` · `PUT` · `DELETE` | `companies/{id}` | Read, update, delete | `view_` · `edit_` · `delete_companies` |
 | `GET` | `companies/{id}/contacts` | The company's contacts | `view_contacts` |
+
+### Tasks
+
+Only while the Tasks add-on is on. A task about records is reached through any of them the user may view, and is
+changed only by whoever it is assigned to, whoever added it, or someone with `manage_tasks`. A task's response has
+`status` (`open`, `in_progress`, `done`), `priority` (`low`, `medium`, `high`) and `records`: `{object_type,
+object_id, title, path}` for each one it is about, the title and path empty for one this user may not see.
+
+| Method | Path | Does | Capability |
+|---|---|---|---|
+| `GET` | `tasks` | List tasks, with `meta.total`. `view` is `today` (the default), `overdue`, `upcoming`, `done`, `open` or `all`; `mine` (default true; false is ignored without `manage_tasks`), `object_type` + `object_id` (every task about that record, whoever's; `view_` on it), `type`, `priority`, `search`, `page`, `per_page` (or `limit`; default 25, up to 100); `before` + `before_id` page `done` by completion time | `view_tasks` |
+| `GET` | `tasks/counts` | `{overdue, today, upcoming, done}`, in the site's time zone | `view_tasks` |
+| `GET` | `tasks/assignees` | The people who can be given a task | `view_tasks` |
+| `POST` | `tasks` | Create a task: `title` (required), `type`, `status`, `priority`, `due` (`Y-m-d` or `Y-m-d H:i`, site time), `assigned_to`, `details`, `links` (`[{object_type, object_id}]`, one of each kind) | `edit_tasks` |
+| `PUT` · `DELETE` | `tasks/{id}` | Update (`title`, `type`, `status`, `priority`, `due`, `assigned_to`, `details`, `links`, which replaces them) or delete | `edit_tasks` · `delete_tasks` |
+| `POST` | `tasks/{id}/complete` · `tasks/{id}/reopen` | Mark done, or open again | `edit_tasks` |
+| `POST` | `tasks/complete` · `tasks/delete` | Bulk, `ids` (the first 100 are used). `403` if any is one this user may not change. Answers `{completed: n}` · `{deleted: n}` | `edit_tasks` · `delete_tasks` |
+| `GET` · `PUT` | `tasks/reminders` | The signed-in person's morning email: `{reminders: bool, hour: 8}`; `PUT` takes `reminders` | `view_tasks` |
+
+### Files
+
+Only while the Files add-on is on. A file is on up to one contact, one company and one deal, or on none (anyone with
+CRM access may see that one; whoever added it, or someone with `manage_settings`, may change it). It is reached
+through any of its records: `view_`, `edit_` or `delete_` on that record's kind (`contacts`, `companies`, `deals`), and a deal's
+pipeline team. A file's response has `id`, `name`, `mime`, `size`, `inline` (whether it can open in place),
+`note_id` (the activity it came with), `share_url`, `share_expires_at` (a date for display, empty unless it
+expires), `created_by`, `created_at` (for display), `occurred_at`, `records` (`{object_type, object_id, title,
+path}` for each one this user may see) and `added_by`. `records` and `added_by` are added after the
+`marker_crm/file_response` filter.
+
+| Method | Path | Does | Capability |
+|---|---|---|---|
+| `GET` | `files` | Every file on a record this user may see: `search`, `type` (`images`, `documents`, `spreadsheets`, `presentations`, `archives`, `audio`, `video`), `kind` (`contact`, `company`, `deal`), `orderby` (`created_at`, `name`, `size`), `order`, `page`, `per_page` | Any CRM access; rows only on kinds the user may view |
+| `GET` | `files?object_type=…&object_id=…` | One record's files, with the same `search`, `type`, `orderby`, `order`, `page` and `per_page`. With `standalone=1` (leaves out those on an activity) or `before` + `before_id`, it pages by cursor instead (`limit`, `meta.more`), as the timeline reads it | `view_` on the record |
+| `POST` | `files` | Upload, as `multipart/form-data`: `file`, `links` (`[{object_type, object_id}]`, one of each kind, or none; or `object_type` + `object_id` for one), and `note_id` for an activity on one of them. `422` with the reason when there is no file, its type or size is not allowed, or the activity is not on the record; `500` when storage fails | `edit_` on each record; CRM access for a file on none |
+| `GET` | `files/{id}/download` | The file, as a download; `inline=1` opens images, PDFs, text, audio and video in place. A file in S3 or R2 answers with a redirect to a link valid for five minutes | `view_` on the record |
+| `GET` | `files/{id}/text` | The first 100 KB of the file, as text: `{text, more}` | `view_` on the record |
+| `POST` · `DELETE` | `files/{id}/share` | Turn the share link on, or set a new expiry, with `days` (`0` never expires, `1`, `7`, `30`; anything else is `0`), or turn it off | `edit_` on one of its records |
+| `PUT` | `files/{id}` | Rename with `name` (it keeps its extension, whatever is typed; `422` when empty), or change its records with `links`, which replace them; a record the user cannot see stays. With both, only `links` is applied | `edit_` on one of its records, and on each one added |
+| `DELETE` | `files/{id}` | Delete it, from every record and from storage | `delete_` on one of its records |
+| `POST` | `files/delete` | Bulk, `ids` (the first 100 are used). Only those the user may delete go; the message says how many | `delete_` on one of each file's records |
+
+A share link is the public address `?marker_crm=file&h={hash}`: anyone may open it until it expires or is turned
+off, rate limited like the site's other public links.
 
 ### Imports and exports
 
